@@ -652,7 +652,8 @@ def spec_clan_guardian(ch):
 
         if victim.position <= merc.POS_MORTAL and victim.is_hero() and ch.position == merc.POS_STANDING:
             victim.in_room.get(victim)
-            instance.rooms[victim.ROOM_VNUM_ALTAR].put(victim)
+            room_id = instance.instances_by_room[merc.ROOM_VNUM_ALTAR][0]
+            instance.rooms[room_id].put(victim)
             continue
 
         ch.cmd_shout("{} Is In DarkLight Headquarters! Attack!".format(victim.name))
@@ -685,7 +686,8 @@ def spec_clan_torcalta(ch):
 
         if victim.position <= merc.POS_MORTAL and victim.is_hero() and ch.position == merc.POS_STANDING:
             victim.in_room.get(victim)
-            instance.rooms[merc.ROOM_VNUM_ALTAR].put(victim)
+            room_id = instance.instances_by_room[merc.ROOM_VNUM_ALTAR][0]
+            instance.rooms[room_id].put(victim)
             continue
 
         ch.cmd_shout("{} Is in the Torc Alta Headquarters! Attack!".format(victim.name))
@@ -718,7 +720,8 @@ def spec_clan_spiritknights(ch):
 
         if victim.position <= merc.POS_MORTAL and victim.is_hero() and ch.position == merc.POS_STANDING:
             victim.in_room.get(victim)
-            instance.rooms[merc.ROOM_VNUM_ALTAR].put(victim)
+            room_id = instance.instances_by_room[merc.ROOM_VNUM_ALTAR][0]
+            instance.rooms[room_id].put(victim)
             continue
 
         ch.cmd_shout("{} Is in the Spirit Knights Headquarters! Attack!".format(victim.name))
@@ -753,7 +756,8 @@ def spec_clan_werewolf(ch):
 
         if victim.position <= merc.POS_MORTAL and victim.is_hero() and ch.position == merc.POS_STANDING:
             victim.in_room.get(victim)
-            instance.rooms[merc.ROOM_VNUM_ALTAR].put(victim)
+            room_id = instance.instances_by_room[merc.ROOM_VNUM_ALTAR][0]
+            instance.rooms[room_id].put(victim)
             continue
 
         fight.one_hit(ch, victim, (merc.TYPE_HIT + 10), 0)
@@ -777,7 +781,8 @@ def spec_kavir_guardian(ch):
 
         if victim.position <= merc.POS_MORTAL and victim.is_hero() and ch.position == merc.POS_STANDING:
             victim.in_room.get(victim)
-            instance.rooms[merc.ROOM_VNUM_ALTAR].put(victim)
+            room_id = instance.instances_by_room[merc.ROOM_VNUM_ALTAR][0]
+            instance.rooms[room_id].put(victim)
             continue
 
         fight.multi_hit(ch, victim, merc.TYPE_UNDEFINED)

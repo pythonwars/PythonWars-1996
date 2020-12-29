@@ -3255,7 +3255,8 @@ class Living(immortal.Immortal, Fight, Grouping, physical.Physical, environment.
             self.chobj = None
 
         if not fpull:
-            instance.rooms[merc.ROOM_VNUM_ALTAR].put(self)
+            room_id = instance.instances_by_room[merc.ROOM_VNUM_ALTAR][0]
+            instance.rooms[room_id].put(self)
             return
 
         if self.desc and self.desc.original:

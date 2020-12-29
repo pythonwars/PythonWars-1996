@@ -53,7 +53,8 @@ def cmd_humanform(ch, argument):
 
     if ch.in_room.vnum == merc.ROOM_VNUM_IN_OBJECT:
         ch.in_room.get(ch)
-        instance.rooms[merc.ROOM_VNUM_HELL].put(ch)
+        room_id = instance.instances_by_room[merc.ROOM_VNUM_HELL][0]
+        instance.rooms[room_id].put(ch)
 
 
 interp.register_command(

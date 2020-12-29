@@ -739,7 +739,8 @@ def item_update():
                         item.in_room.put(creature)
                     else:
                         creature = object_creator.create_mobile(mob_index)
-                        instance.rooms[merc.ROOM_VNUM_HELL].put(creature)
+                        room_id = instance.instances_by_room[merc.ROOM_VNUM_HELL][0]
+                        instance.rooms[room_id].put(creature)
                     egg = object_creator.clone_item(instance.item_templates[merc.OBJ_VNUM_EMPTY_EGG], 0)
                     egg.timer = 2
                     creature.in_room.put(egg)
@@ -803,7 +804,8 @@ def aggr_update():
             wch.affected_by.rem_bit(merc.AFF_POLYMORPH)
             wch.morph = ""
             wch.in_room.get(wch)
-            instance.rooms[merc.ROOM_VNUM_ALTAR].put(wch)
+            room_id = instance.instances_by_room[merc.ROOM_VNUM_ALTAR][0]
+            instance.rooms[room_id].put(wch)
 
             item = wch.chobj
             if item:

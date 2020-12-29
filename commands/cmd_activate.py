@@ -117,7 +117,8 @@ def cmd_activate(ch, argument):
             handler_game.act("$n is hurled from the room by a powerful force.", ch, None, None, merc.TO_ROOM)
             ch.position = merc.POS_STUNNED
             ch.in_room.get(ch)
-            instance.rooms[merc.ROOM_VNUM_TEMPLE].put(ch)
+            room_id = instance.instances_by_room[merc.ROOM_VNUM_TEMPLE][0]
+            instance.rooms[room_id].put(ch)
             handler_game.act("$n appears in the room, and falls to the ground stunned.", ch, None, None, merc.TO_ROOM)
 
         mount = ch.mount
@@ -151,7 +152,8 @@ def cmd_activate(ch, argument):
             handler_game.act("$n is hurled from the room by a powerful force.", ch, None, None, merc.TO_ROOM)
             ch.position = merc.POS_STUNNED
             ch.in_room.get(ch)
-            instance.rooms[merc.ROOM_VNUM_TEMPLE].put(ch)
+            room_id = instance.instances_by_room[merc.ROOM_VNUM_TEMPLE][0]
+            instance.rooms[room_id].put(ch)
             handler_game.act("$n appears in the room, and falls to the ground stunned.", ch, None, None, merc.TO_ROOM)
 
         mount = ch.mount

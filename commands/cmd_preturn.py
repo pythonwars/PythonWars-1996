@@ -64,7 +64,8 @@ def cmd_preturn(ch, argument):
     if ch.in_room:
         ch.in_room.put(ch)
     else:
-        instance.rooms[merc.ROOM_VNUM_TEMPLE].put(ch)
+        room_id = instance.instances_by_room[merc.ROOM_VNUM_TEMPLE][0]
+        instance.rooms[room_id].put(ch)
     ch.pload = ""
 
 

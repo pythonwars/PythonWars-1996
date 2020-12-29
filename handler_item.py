@@ -460,7 +460,8 @@ class Items(instance.Instancer, environment.Environment, physical.Physical, inve
             ch.morph = ""
             ch.hit = 1
             ch.in_room.get(ch)
-            instance.rooms[merc.ROOM_VNUM_ALTAR].put(ch)
+            room_id = instance.instances_by_room[merc.ROOM_VNUM_ALTAR][0]
+            instance.rooms[room_id].put(ch)
             ch.chobj = None
             self.chobj = None
             ch.send("You have been KILLED!!\n")
@@ -478,7 +479,8 @@ class Items(instance.Instancer, environment.Environment, physical.Physical, inve
                     ch.affected_by.rem_bit(merc.AFF_POLYMORPH)
                     ch.morph = ""
                     ch.in_room.get(ch)
-                    instance.rooms[merc.ROOM_VNUM_ALTAR].put(ch)
+                    room_id = instance.instances_by_room[merc.ROOM_VNUM_ALTAR][0]
+                    instance.rooms[room_id].put(ch)
                     ch.chobj = None
                     self.chobj = None
                     ch.send("You return to your body.\n")
