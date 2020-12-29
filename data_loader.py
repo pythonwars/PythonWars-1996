@@ -105,14 +105,15 @@ def load_helps(area):
         nhelp = handler_game.HelpData()
         area, nhelp.level = game_utils.read_int(area)
         area, nhelp.keyword = game_utils.read_string(area)
-        instance.helps[nhelp.keyword] = nhelp
 
         if nhelp.keyword == "$":
             del nhelp
             break
 
+        instance.helps[nhelp.keyword] = nhelp
         area, nhelp.text = game_utils.read_string(area)
         nhelp.text = miniboa.terminal.escape(nhelp.text, "ANSI")
+
         if nhelp.keyword == "GREETING":
             nhelp.text = nhelp.text[1:] if nhelp.text[0] == "." else nhelp.text
             nhelp.text += " "
