@@ -1,0 +1,67 @@
+{
+  "broken_arm": [
+    "broken_arm",
+    1,
+    true
+  ],
+  "lost_arm": [
+    "lost_arm",
+    2,
+    true
+  ],
+  "lost_hand": [
+    "lost_hand",
+    4,
+    true
+  ],
+  "lost_finger_i": [
+    "lost_finger_i",
+    8,
+    true
+  ],
+  "lost_finger_m": [
+    "lost_finger_m",
+    16,
+    true
+  ],
+  "lost_finger_r": [
+    "lost_finger_r",
+    32,
+    true
+  ],
+  "lost_finger_l": [
+    "lost_finger_l",
+    64,
+    true
+  ],
+  "lost_thumb": [
+    "lost_thumb",
+    128,
+    true
+  ],
+  "broken_finger_i": [
+    "broken_finger_i",
+    256,
+    true
+  ],
+  "broken_finger_m": [
+    "broken_finger_m",
+    512,
+    true
+  ],
+  "broken_finger_r": [
+    "broken_finger_r",
+    1024,
+    true
+  ],
+  "broken_finger_l": [
+    "broken_finger_l",
+    2048,
+    true
+  ],
+  "broken_thumb": [
+    "broken_thumb",
+    4096,
+    true
+  ]
+}

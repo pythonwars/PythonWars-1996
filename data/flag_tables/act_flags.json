@@ -1,0 +1,62 @@
+{
+  "npc": [
+    "npc",
+    1,
+    false
+  ],
+  "sentinel": [
+    "sentinel",
+    2,
+    true
+  ],
+  "scavenger": [
+    "scavenger",
+    4,
+    true
+  ],
+  "aggressive": [
+    "aggressive",
+    32,
+    true
+  ],
+  "stay_area": [
+    "stay_area",
+    64,
+    true
+  ],
+  "wimpy": [
+    "wimpy",
+    128,
+    true
+  ],
+  "pet": [
+    "pet",
+    256,
+    true
+  ],
+  "train": [
+    "train",
+    512,
+    true
+  ],
+  "practice": [
+    "practice",
+    1024,
+    true
+  ],
+  "mount": [
+    "mount",
+    2048,
+    true
+  ],
+  "noparts": [
+    "noparts",
+    4096,
+    true
+  ],
+  "noexp": [
+    "noexp",
+    8192,
+    true
+  ]
+}

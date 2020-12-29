@@ -1,0 +1,66 @@
+PythonWars 1996 version
+
+Paul Penner   jindrak@gmail.com
+
+
+
+=== Copyright and License Terms
+
+Diku Mud is copyright (C) 1990, 1991 by Sebastian Hammer, Michael Seifert,
+Hans Henrik St{rfeldt, Tom Madsen, and Katja Nyboe.  Their license agreement
+is in the file 'license.doc'.
+
+Merc Diku Mud is a derivative of the original Diku Mud and is subject to their
+copyright and license agreement.  Merc Diku Mud contains substantial
+enhancements to Diku Mud.  These enhancements are copyright 1992, 1993 by
+Michael Chastain, Michael Quan, and Mitchell Tse.
+
+God Wars is a derivative of Merc2.1 and is subject to their copyright and
+license agreement, as well as those of Diku.  God Wars contains numerous
+code changes and additions.  With the exception of the prompt code, all
+these modifications are copyright 1994, 1995, 1996, 1997, 1998 by Richard
+Woolcock.
+
+In order to use PythonWars you must follow the Diku license, Merc license,
+Rom license, God Wars and PythonWars licenses.
+
+The exact terms of the Diku license are in the file 'diku.license'.  A
+summary of these terms is:
+
+        -- No resale or operation for profit.
+        -- Original author's names must appear in login sequence.
+        -- The 'credits' command must report original authors.
+        -- You must notify the Diku creators that you are operating a Diku mud.
+
+The exact terms of the Merc license are in the file 'merc.license'.  A
+summary of these terms is:
+
+        -- Copyrights must remain in original source.
+        -- 'Help merc' must report the Merc help text, as shipped.
+
+The exact terms of the ROM license are in the file 'rom.license'. A summary
+of these terms is:
+
+        -- Author's name must appear in login sequence.
+        -- Diku and Merc licenses must be followed.
+
+The exact terms of the God Wars license are in the file 'godwars.license'. A
+summary of these terms is:
+
+        -- The internal helpfiles "GODWARS", "GODWARS-HISTORY", "GODWARS-INFO"
+           and "GODWARS-TREE" must not be changed or removed.
+        -- The original Merc authors must be displayed in the login sequence.
+        -- The text 'God Wars was created by KaVir' must be displayed in the
+           login sequence.
+
+The terms of the PythonWars license are:
+
+        -- The text 'PythonWars was created by Paul Penner' must be displayed in
+           the login sequence.
+        -- The term(s) 'PythonWars', 'Python Wars', etc may not be included within
+           the mud name of any derived work without the express written permission
+           of Paul Penner aka Jindrak.
+        -- The internal help file 'PYTHONWARS' and 'PYTHONWARS-INFO' must not be
+           edited or removed and must be accessible to players of all levels.
+        -- The Diku, Merc, Rom and God Wars licenses must be followed.
+        -- The original Pyom authors must be displayed in the login sequence.

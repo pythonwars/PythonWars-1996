@@ -1,0 +1,32 @@
+{
+  "silence": [
+    "silence",
+    1,
+    true
+  ],
+  "no_emote": [
+    "no_emote",
+    2,
+    true
+  ],
+  "no_tell": [
+    "no_tell",
+    4,
+    true
+  ],
+  "log": [
+    "log",
+    8,
+    true
+  ],
+  "deny": [
+    "deny",
+    16,
+    true
+  ],
+  "freeze": [
+    "freeze",
+    32,
+    true
+  ]
+}

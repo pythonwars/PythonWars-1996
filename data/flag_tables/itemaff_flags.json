@@ -1,0 +1,102 @@
+{
+  "shockshield": [
+    "shockshield",
+    1,
+    true
+  ],
+  "fireshield": [
+    "fireshield",
+    2,
+    true
+  ],
+  "iceshield": [
+    "iceshield",
+    4,
+    true
+  ],
+  "acidshield": [
+    "acidshield",
+    8,
+    true
+  ],
+  "dbpass": [
+    "dbpass",
+    16,
+    true
+  ],
+  "chaosshield": [
+    "chaosshield",
+    32,
+    true
+  ],
+  "artifact": [
+    "artifact",
+    64,
+    true
+  ],
+  "regenerate": [
+    "regenerate",
+    128,
+    true
+  ],
+  "speed": [
+    "speed",
+    256,
+    true
+  ],
+  "vorpal": [
+    "vorpal",
+    512,
+    true
+  ],
+  "peace": [
+    "peace",
+    1024,
+    true
+  ],
+  "right_silver": [
+    "right_silver",
+    2048,
+    true
+  ],
+  "left_silver": [
+    "left_silver",
+    4096,
+    true
+  ],
+  "reflect": [
+    "reflect",
+    8192,
+    true
+  ],
+  "resistance": [
+    "resistance",
+    16384,
+    true
+  ],
+  "vision": [
+    "vision",
+    32768,
+    true
+  ],
+  "stalker": [
+    "stalker",
+    65536,
+    true
+  ],
+  "vanish": [
+    "vanish",
+    131072,
+    true
+  ],
+  "rager": [
+    "rager",
+    262144,
+    true
+  ],
+  "highlander": [
+    "highlander",
+    524288,
+    true
+  ]
+}

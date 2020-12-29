@@ -1,0 +1,67 @@
+{
+  "broken_leg": [
+    "broken_leg",
+    1,
+    true
+  ],
+  "lost_leg": [
+    "lost_leg",
+    2,
+    true
+  ],
+  "lost_foot": [
+    "lost_foot",
+    4,
+    true
+  ],
+  "lost_toe_a": [
+    "lost_toe_a",
+    8,
+    true
+  ],
+  "lost_toe_b": [
+    "lost_toe_b",
+    16,
+    true
+  ],
+  "lost_toe_c": [
+    "lost_toe_c",
+    32,
+    true
+  ],
+  "lost_toe_d": [
+    "lost_toe_d",
+    64,
+    true
+  ],
+  "lost_toe_big": [
+    "lost_toe_big",
+    128,
+    true
+  ],
+  "broken_toe_a": [
+    "broken_toe_a",
+    256,
+    true
+  ],
+  "broken_toe_b": [
+    "broken_toe_b",
+    512,
+    true
+  ],
+  "broken_toe_c": [
+    "broken_toe_c",
+    1024,
+    true
+  ],
+  "broken_toe_d": [
+    "broken_toe_d",
+    2048,
+    true
+  ],
+  "broken_toe_big": [
+    "broken_toe_big",
+    4096,
+    true
+  ]
+}

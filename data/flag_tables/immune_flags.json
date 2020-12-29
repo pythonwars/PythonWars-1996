@@ -1,0 +1,127 @@
+{
+  "slash": [
+    "slash",
+    1,
+    true
+  ],
+  "stab": [
+    "stab",
+    2,
+    true
+  ],
+  "smash": [
+    "smash",
+    4,
+    true
+  ],
+  "animal": [
+    "animal",
+    8,
+    true
+  ],
+  "misc": [
+    "misc",
+    16,
+    true
+  ],
+  "charm": [
+    "charm",
+    32,
+    true
+  ],
+  "heat": [
+    "heat",
+    64,
+    true
+  ],
+  "cold": [
+    "cold",
+    128,
+    true
+  ],
+  "lightning": [
+    "lightning",
+    256,
+    true
+  ],
+  "acid": [
+    "acid",
+    512,
+    true
+  ],
+  "summon": [
+    "summon",
+    1024,
+    true
+  ],
+  "voodoo": [
+    "voodoo",
+    2048,
+    true
+  ],
+  "vampire": [
+    "vampire",
+    4096,
+    true
+  ],
+  "stake": [
+    "stake",
+    8192,
+    true
+  ],
+  "sunlight": [
+    "sunlight",
+    16384,
+    true
+  ],
+  "shielded": [
+    "shielded",
+    32768,
+    true
+  ],
+  "hurl": [
+    "hurl",
+    65536,
+    true
+  ],
+  "backstab": [
+    "backstab",
+    131072,
+    true
+  ],
+  "kick": [
+    "kick",
+    262144,
+    true
+  ],
+  "disarm": [
+    "disarm",
+    524288,
+    true
+  ],
+  "steal": [
+    "steal",
+    1048576,
+    true
+  ],
+  "sleep": [
+    "sleep",
+    2097152,
+    true
+  ],
+  "drain": [
+    "drain",
+    4194304,
+    true
+  ],
+  "demon": [
+    "demon",
+    8388608,
+    true
+  ],
+  "transport": [
+    "transport",
+    16777216,
+    true
+  ]
+}

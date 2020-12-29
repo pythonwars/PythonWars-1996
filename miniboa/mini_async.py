@@ -1,0 +1,208 @@
+# -*- coding: utf-8 -*- line endings: unix -*-
+
+#  PythonWars->MOTU-Mud copyright © 2020 by Paul Penner. All rights reserved.
+#  No claim of ownership is asserted over the Masters of the Universe brand, it
+#  is purely a fan work. No part of this codebase may be used without written
+#  permission.
+#
+#  Original Diku Mud copyright © 1990, 1991 by Sebastian Hammer,
+#  Michael Seifert, Hans Henrik Stærfeldt, Tom Madsen, and Katja Nyboe.
+#
+#  Merc Diku Mud improvements copyright © 1992, 1993 by Michael
+#  Chastain, Michael Quan, and Mitchell Tse.
+#
+#  ROM 2.4 is copyright 1993-1998 Russ Taylor.  ROM has been brought to
+#  you by the ROM consortium:  Russ Taylor (rtaylor@hypercube.org),
+#  Gabrielle Taylor (gtaylor@hypercube.org), and Brian Moore (zump@rom.org).
+#
+#  Ported to Python by Davion of MudBytes.net using Miniboa
+#  (https://code.google.com/p/miniboa/).
+#
+#  In order to use any part of this Merc Diku Mud, you must comply with
+#  both the original Diku license in 'license.doc' as well the Merc
+#  license in 'license.txt'.  In particular, you may not remove either of
+#  these copyright notices.
+#
+#  Much time and thought has gone into this software, and you are
+#  benefiting.  We hope that you share your changes too.  What goes
+#  around, comes around.
+
+#
+# Report any bugs in this implementation to me (email above)
+# ------------------------------------------------------------------------------
+# Additional changes by Quixadhal on 2014.06.16
+# -Re-split code into multiple files, for ease of maintenance
+# -Rewrote terminal system
+# ------------------------------------------------------------------------------
+
+# Handle Asynchronous Telnet Connections.
+
+import socket
+import select
+import sys
+
+import comm
+import merc
+from miniboa.telnet import TelnetClient
+from miniboa.telnet import ConnectionLost
+
+
+# Cap sockets to 512 on Windows because winsock can only process 512 at time
+# Cap sockets to 1000 on Linux because you can only have 1024 file descriptors
+MAX_CONNECTIONS = 500 if sys.platform == 'win32' else 1000
+
+# --[ Telnet Server ]-----------------------------------------------------------
+
+
+# Default connection handler
+def _on_connect(client):
+    # Placeholder new connection handler.
+    comm.notify("New connect: {} (D:{} - P:{})".format(client.hostname, client.fileno, client.port), merc.CONSOLE_INFO)
+    comm.notify("             {}".format(client.address), merc.CONSOLE_INFO)
+
+
+# Default disconnection handler
+def _on_disconnect(client):
+    # Placeholder lost connection handler.
+    comm.notify("-- Lost connection to {}".format(client.addrport()), merc.CONSOLE_INFO)
+
+
+class TelnetServer(object):
+    # Poll sockets for new connections and sending/receiving data from clients.
+    def __init__(self, port=23, address="", on_connect=_on_connect,
+                 on_disconnect=_on_disconnect, max_connections=MAX_CONNECTIONS,
+                 timeout=0.05):
+
+        # Create a new Telnet Server.
+        #
+        # port -- Port to listen for new connection on.  On UNIX-like platforms,
+        #         you made need root access to use ports under 1025.
+        #
+        # address -- Address of the LOCAL network interface to listen on.  You
+        #            can usually leave this blank unless you want to restrict traffic
+        #            to a specific network device.  This will usually NOT be the same
+        #            as the Internet address of your server.
+        #
+        # on_connect -- function to call with new telnet connections
+        #
+        # on_disconnect -- function to call when a client's connection dies,
+        #                  either through a terminated session or client.active being set
+        #                  to False.
+        #
+        # max_connections -- maximum simultaneous the server will accept at once
+        #
+        # timeout -- amount of time that Poll() will wait from user input
+        #            before returning.  Also, frees a slice of CPU time.
+        self.port = port
+        self.address = address
+        self.on_connect = on_connect
+        self.on_disconnect = on_disconnect
+        self.max_connections = min(max_connections, MAX_CONNECTIONS)
+        self.timeout = timeout
+
+        server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        server_socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+
+        try:
+            server_socket.bind((address, port))
+            server_socket.listen(5)
+        except socket.error as err:
+            comm.notify("Unable to create the server socket: {}".format(str(err)), merc.CONSOLE_ERROR)
+            raise
+
+        self.server_socket = server_socket
+        self.server_fileno = server_socket.fileno()
+
+        # Dictionary of active clients,
+        # key = file descriptor, value = TelnetClient instance
+        self.clients = {}
+
+    def stop(self):
+        # Disconnects the clients and shuts down the server
+        for clients in self.client_list():
+            comm.close_socket(clients.sock)
+
+        self.server_socket.close()
+        # TODO: Anything else need doing?
+
+    def client_count(self):
+        # Returns the number of active connections.
+        return len(self.clients)
+
+    def client_list(self):
+        # Returns a list of connected clients.
+        return self.clients.values()
+
+    def poll(self):
+        # Perform a non-blocking scan of recv and send states on the server
+        # and client connection sockets.  Process new connection requests,
+        # read incomming data, and send outgoing data.  Sends and receives may
+        # be partial.
+        #
+        # Build a list of connections to test for receive data pending
+        recv_list = [self.server_fileno]  # always add the server
+
+        del_list = []  # list of clients to delete after polling
+
+        for client in self.clients.values():
+            if client.active:
+                recv_list.append(client.fileno)
+            else:
+                self.on_disconnect(client)
+                del_list.append(client.fileno)
+                client.sock.close()
+
+        # Delete inactive connections from the dictionary
+        for client in del_list:
+            del self.clients[client]
+
+        # Build a list of connections that need to send data
+        send_list = []
+        for client in self.clients.values():
+            if client.send_pending:
+                send_list.append(client.fileno)
+
+        # Get active socket file descriptors from select.select()
+        try:
+            rlist, slist, elist = select.select(recv_list, send_list, [],
+                                                self.timeout)
+        except select.error as err:
+            # If we can't even use select(), game over man, game over
+            comm.notify("SELECT socket error '{}'".format(str(err)), merc.CONSOLE_ERROR)
+            raise
+
+        # Process socket file descriptors with data to receive
+        for sock_fileno in rlist:
+            # If it's coming from the server's socket then this is a new
+            # connection request.
+            if sock_fileno == self.server_fileno:
+                try:
+                    sock, addr_tup = self.server_socket.accept()
+                except socket.error as err:
+                    comm.notify("ACCEPT socket error '{}:{}'.".format(err.errno, err.strerror), merc.CONSOLE_ERROR)
+                    continue
+
+                # Check for maximum connections
+                if self.client_count() >= self.max_connections:
+                    comm.notify("Refusing new connection, maximum already in use.", merc.CONSOLE_INFO)
+                    comm.close_socket(sock)
+                    continue
+
+                # Create the client instance
+                new_client = TelnetClient(sock, addr_tup)
+
+                # Add the connection to our dictionary and call handler
+                self.clients[new_client.fileno] = new_client
+                self.on_connect(new_client)
+
+            else:
+                # Call the connection's recieve method
+                try:
+                    self.clients[sock_fileno].socket_recv()
+                except ConnectionLost:
+                    self.clients[sock_fileno].deactivate()
+
+        # Process sockets with data to send
+        for sock_fileno in slist:
+            # Call the connection's send method
+            self.clients[sock_fileno].socket_send()

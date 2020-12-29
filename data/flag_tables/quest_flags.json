@@ -1,0 +1,107 @@
+{
+  "str": [
+    "str",
+    1,
+    true
+  ],
+  "dex": [
+    "dex",
+    2,
+    true
+  ],
+  "int": [
+    "int",
+    4,
+    true
+  ],
+  "wis": [
+    "wis",
+    8,
+    true
+  ],
+  "con": [
+    "con",
+    16,
+    true
+  ],
+  "hitroll": [
+    "hitroll",
+    32,
+    true
+  ],
+  "damroll": [
+    "damroll",
+    64,
+    true
+  ],
+  "hit": [
+    "hit",
+    128,
+    true
+  ],
+  "mana": [
+    "mana",
+    256,
+    true
+  ],
+  "move": [
+    "move",
+    512,
+    true
+  ],
+  "ac": [
+    "ac",
+    1024,
+    true
+  ],
+  "name": [
+    "name",
+    2048,
+    true
+  ],
+  "short": [
+    "short",
+    4096,
+    true
+  ],
+  "long": [
+    "long",
+    8192,
+    true
+  ],
+  "freename": [
+    "freename",
+    16384,
+    true
+  ],
+  "enchanted": [
+    "enchanted",
+    32768,
+    true
+  ],
+  "spellproof": [
+    "spellproof",
+    65536,
+    true
+  ],
+  "artifact": [
+    "artifact",
+    131072,
+    true
+  ],
+  "improved": [
+    "improved",
+    262144,
+    true
+  ],
+  "master_rune": [
+    "master_rune",
+    524288,
+    true
+  ],
+  "relic": [
+    "relic",
+    1038576,
+    true
+  ]
+}

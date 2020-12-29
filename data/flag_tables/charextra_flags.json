@@ -1,0 +1,67 @@
+{
+  "trusted": [
+    "trusted",
+    1,
+    true
+  ],
+  "newpass": [
+    "newpass",
+    2,
+    false
+  ],
+  "oswitch": [
+    "oswitch",
+    4,
+    false
+  ],
+  "switch": [
+    "switch",
+    8,
+    false
+  ],
+  "fake_con": [
+    "fake_con",
+    16,
+    true
+  ],
+  "tied_up": [
+    "tied_up",
+    32,
+    true
+  ],
+  "gagged": [
+    "gagged",
+    64,
+    true
+  ],
+  "blindfolded": [
+    "blindfolded",
+    128,
+    true
+  ],
+  "prompt": [
+    "prompt",
+    256,
+    true
+  ],
+  "married": [
+    "married",
+    512,
+    true
+  ],
+  "call_all": [
+    "call_all",
+    1024,
+    false
+  ],
+  "anti_godless": [
+    "anti_godless",
+    2048,
+    true
+  ],
+  "note_trust": [
+    "note_trust",
+    4096,
+    true
+  ]
+}

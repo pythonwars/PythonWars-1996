@@ -1,0 +1,72 @@
+{
+  "head": [
+    "head",
+    1,
+    true
+  ],
+  "throat": [
+    "throat",
+    2,
+    true
+  ],
+  "arm_left": [
+    "arm_left",
+    4,
+    true
+  ],
+  "arm_r": [
+    "arm_r",
+    8,
+    true
+  ],
+  "hand_l": [
+    "hand_l",
+    16,
+    true
+  ],
+  "hand_r": [
+    "hand_r",
+    32,
+    true
+  ],
+  "leg_l": [
+    "leg_l",
+    64,
+    true
+  ],
+  "leg_r": [
+    "leg_r",
+    128,
+    true
+  ],
+  "foot_l": [
+    "foot_l",
+    256,
+    true
+  ],
+  "foot_r": [
+    "foot_r",
+    512,
+    true
+  ],
+  "leg_t": [
+    "leg_t",
+    1024,
+    true
+  ],
+  "leg_f": [
+    "leg_f",
+    2048,
+    true
+  ],
+  "foot_t": [
+    "foot_t",
+    4096,
+    true
+  ],
+  "foot_f": [
+    "foot_f",
+    8192,
+    true
+  ]
+}

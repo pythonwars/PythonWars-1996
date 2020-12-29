@@ -1,0 +1,37 @@
+{
+  "champion": [
+    "champion",
+    1,
+    true
+  ],
+  "demon_lord": [
+    "demon_lord",
+    2,
+    true
+  ],
+  "wolfman": [
+    "wolfman",
+    4,
+    true
+  ],
+  "prince": [
+    "prince",
+    8,
+    true
+  ],
+  "sire": [
+    "sire",
+    16,
+    true
+  ],
+  "anarch": [
+    "anarch",
+    32,
+    true
+  ],
+  "inconnu": [
+    "inconnu",
+    64,
+    true
+  ]
+}

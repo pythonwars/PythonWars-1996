@@ -1,0 +1,67 @@
+{
+  "0": [
+    "none",
+    "hit",
+    -1
+  ],
+  "1": [
+    "slice",
+    "slice",
+    3
+  ],
+  "2": [
+    "stab",
+    "stab",
+    2
+  ],
+  "3": [
+    "slash",
+    "slash",
+    3
+  ],
+  "4": [
+    "whip",
+    "whip",
+    3
+  ],
+  "5": [
+    "claw",
+    "claw",
+    3
+  ],
+  "6": [
+    "blast",
+    "blast",
+    1
+  ],
+  "7": [
+    "pound",
+    "pound",
+    1
+  ],
+  "8": [
+    "crush",
+    "crush",
+    1
+  ],
+  "9": [
+    "grep",
+    "grep",
+    3
+  ],
+  "10": [
+    "bite",
+    "bite",
+    2
+  ],
+  "11": [
+    "pierce",
+    "pierce",
+    2
+  ],
+  "12": [
+    "suction",
+    "suction",
+    1
+  ]
+}

@@ -1,0 +1,72 @@
+{
+  "npc": [
+    "npc",
+    1,
+    false
+  ],
+  "autoexit": [
+    "autoexit",
+    2,
+    true
+  ],
+  "autoloot": [
+    "autoloot",
+    4,
+    true
+  ],
+  "autosac": [
+    "autosac",
+    8,
+    true
+  ],
+  "blank": [
+    "blank",
+    16,
+    true
+  ],
+  "brief": [
+    "brief",
+    32,
+    true
+  ],
+  "combine": [
+    "combine",
+    64,
+    true
+  ],
+  "prompt": [
+    "prompt",
+    128,
+    true
+  ],
+  "telnet_ga": [
+    "telnet_ga",
+    256,
+    true
+  ],
+  "holylight": [
+    "holylight",
+    512,
+    true
+  ],
+  "wizinvis": [
+    "wizinvis",
+    1024,
+    true
+  ],
+  "ansi": [
+    "ansi",
+    2048,
+    true
+  ],
+  "incog": [
+    "incog",
+    4096,
+    true
+  ],
+  "godless": [
+    "godless",
+    8192,
+    true
+  ]
+}

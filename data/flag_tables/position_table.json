@@ -1,0 +1,42 @@
+{
+  "0": [
+    "dead",
+    "dead"
+  ],
+  "1": [
+    "mortally wounded",
+    "mort"
+  ],
+  "2": [
+    "incapacitated",
+    "incap"
+  ],
+  "3": [
+    "stunned",
+    "stun"
+  ],
+  "4": [
+    "sleeping",
+    "sleep"
+  ],
+  "5": [
+    "meditating",
+    "meditate"
+  ],
+  "6": [
+    "sitting",
+    "sit"
+  ],
+  "7": [
+    "resting",
+    "rest"
+  ],
+  "8": [
+    "fighting",
+    "fight"
+  ],
+  "9": [
+    "standing",
+    "stand"
+  ]
+}

@@ -1,0 +1,57 @@
+{
+  "dark": [
+    "dark",
+    1,
+    true
+  ],
+  "no_mob": [
+    "no_mob",
+    4,
+    true
+  ],
+  "indoors": [
+    "indoors",
+    8,
+    true
+  ],
+  "private": [
+    "private",
+    512,
+    true
+  ],
+  "safe": [
+    "safe",
+    1024,
+    true
+  ],
+  "solitary": [
+    "solitary",
+    2048,
+    true
+  ],
+  "pet_shop": [
+    "pet_shop",
+    4096,
+    true
+  ],
+  "no_recall": [
+    "no_recall",
+    8192,
+    true
+  ],
+  "no_teleport": [
+    "no_teleport",
+    16384,
+    true
+  ],
+  "total_darkness": [
+    "total_darkness",
+    32768,
+    true
+  ],
+  "blade_barrier": [
+    "blade_barrier",
+    65536,
+    true
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "bat": [
+    "bat",
+    1,
+    true
+  ],
+  "wolf": [
+    "wolf",
+    2,
+    true
+  ],
+  "mist": [
+    "mist",
+    4,
+    true
+  ],
+  "serpent": [
+    "serpent",
+    8,
+    true
+  ],
+  "raven": [
+    "raven",
+    16,
+    true
+  ],
+  "fish": [
+    "fish",
+    32,
+    true
+  ],
+  "frog": [
+    "frog",
+    64,
+    true
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "isdoor": [
+    "isdoor",
+    1,
+    false
+  ],
+  "closed": [
+    "closed",
+    2,
+    false
+  ],
+  "locked": [
+    "locked",
+    4,
+    false
+  ],
+  "pickproof": [
+    "pickproof",
+    32,
+    false
+  ]
+}

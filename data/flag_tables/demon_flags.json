@@ -1,0 +1,87 @@
+{
+  "fangs": [
+    "fangs",
+    1,
+    true
+  ],
+  "claws": [
+    "claws",
+    2,
+    true
+  ],
+  "horns": [
+    "horns",
+    4,
+    true
+  ],
+  "hooves": [
+    "hooves",
+    8,
+    true
+  ],
+  "eyes": [
+    "eyes",
+    16,
+    true
+  ],
+  "wings": [
+    "wings",
+    32,
+    true
+  ],
+  "might": [
+    "might",
+    64,
+    true
+  ],
+  "tough": [
+    "tough",
+    128,
+    true
+  ],
+  "speed": [
+    "speed",
+    256,
+    true
+  ],
+  "travel": [
+    "travel",
+    512,
+    true
+  ],
+  "scry": [
+    "scry",
+    1024,
+    true
+  ],
+  "shadowsight": [
+    "shadowsight",
+    2048,
+    true
+  ],
+  "move": [
+    "move",
+    4096,
+    true
+  ],
+  "leap": [
+    "leap",
+    8192,
+    true
+  ],
+  "magic": [
+    "magic",
+    16384,
+    true
+  ],
+  "lifespan": [
+    "lifespan",
+    32768,
+    true
+  ],
+  "unfolded": [
+    "unfolded",
+    65536,
+    true
+  ]
+}

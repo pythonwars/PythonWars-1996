@@ -1,0 +1,114 @@
+{
+  "0": [
+    "water",
+    "clear",
+    0,
+    1,
+    10
+  ],
+  "1": [
+    "beer",
+    "amber",
+    3,
+    2,
+    5
+  ],
+  "2": [
+    "wine",
+    "rose",
+    5,
+    2,
+    5
+  ],
+  "3": [
+    "ale",
+    "brown",
+    2,
+    2,
+    5
+  ],
+  "4 ale": [
+    "dark ale",
+    "dark",
+    1,
+    2,
+    5
+  ],
+  "5": [
+    "whisky",
+    "golden",
+    6,
+    1,
+    4
+  ],
+  "6": [
+    "lemonade",
+    "pink",
+    0,
+    1,
+    8
+  ],
+  "7": [
+    "firebreather",
+    "boiling",
+    10,
+    0,
+    0
+  ],
+  "8": [
+    "local specialty",
+    "everclear",
+    3,
+    3,
+    3
+  ],
+  "9": [
+    "slime mold juice",
+    "green",
+    0,
+    4,
+    -8
+  ],
+  "10": [
+    "milk",
+    "white",
+    0,
+    3,
+    6
+  ],
+  "11": [
+    "tea",
+    "tan",
+    0,
+    1,
+    6
+  ],
+  "12": [
+    "coffee",
+    "black",
+    0,
+    1,
+    6
+  ],
+  "13": [
+    "blood",
+    "red",
+    0,
+    0,
+    5
+  ],
+  "14": [
+    "salt water",
+    "clear",
+    0,
+    1,
+    -2
+  ],
+  "15": [
+    "cola",
+    "cherry",
+    0,
+    1,
+    5
+  ]
+}

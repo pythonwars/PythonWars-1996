@@ -1,0 +1,207 @@
+{
+  "activate": [
+    "activate",
+    1,
+    true
+  ],
+  "twist": [
+    "twist",
+    2,
+    true
+  ],
+  "press": [
+    "press",
+    4,
+    true
+  ],
+  "pull": [
+    "pull",
+    8,
+    true
+  ],
+  "target": [
+    "target",
+    16,
+    true
+  ],
+  "spell": [
+    "spell",
+    32,
+    true
+  ],
+  "transporter": [
+    "transporter",
+    64,
+    true
+  ],
+  "teleporter": [
+    "teleporter",
+    128,
+    true
+  ],
+  "delay1": [
+    "delay1",
+    256,
+    true
+  ],
+  "delay2": [
+    "delay2",
+    512,
+    true
+  ],
+  "object": [
+    "object",
+    1024,
+    true
+  ],
+  "mobile": [
+    "mobile",
+    2048,
+    true
+  ],
+  "action": [
+    "action",
+    4096,
+    true
+  ],
+  "morph": [
+    "morph",
+    8192,
+    true
+  ],
+  "silver": [
+    "silver",
+    16384,
+    true
+  ],
+  "wolfweapon": [
+    "wolfweapon",
+    32768,
+    true
+  ],
+  "drowweapon": [
+    "drowweapon",
+    65536,
+    true
+  ],
+  "champweapon": [
+    "champweapon",
+    131072,
+    true
+  ],
+  "demonic": [
+    "demonic",
+    2622144,
+    true
+  ],
+  "highlander": [
+    "highlander",
+    524288,
+    true
+  ],
+  "damage": [
+    "damage",
+    1048576,
+    true
+  ],
+  "affect": [
+    "affect",
+    2097152,
+    true
+  ],
+  "adv_action": [
+    "adv_action",
+    4194304,
+    true
+  ],
+  "area_affect": [
+    "area_affect",
+    8388608,
+    true
+  ],
+  "victim_target": [
+    "victim_target",
+    16777216,
+    true
+  ],
+  "object_target": [
+    "object_target",
+    33554432,
+    true
+  ],
+  "global_target": [
+    "global_target",
+    67108864,
+    true
+  ],
+  "next_page": [
+    "next_page",
+    134217728,
+    true
+  ],
+  "parameter": [
+    "parameter",
+    268435456,
+    true
+  ],
+  "spell_first": [
+    "spell_first",
+    536870912,
+    true
+  ],
+  "not_caster": [
+    "not_caster",
+    1073741824,
+    true
+  ],
+  "no_players": [
+    "no_players",
+    2147483648,
+    true
+  ],
+  "second_victim": [
+    "second_victim",
+    4294967296,
+    true
+  ],
+  "second_object": [
+    "second_object",
+    8589934592,
+    true
+  ],
+  "reversed": [
+    "reversed",
+    17179869184,
+    true
+  ],
+  "started": [
+    "started",
+    34359738368,
+    true
+  ],
+  "finished": [
+    "finished",
+    68719476736,
+    true
+  ],
+  "failed": [
+    "failed",
+    137438953472,
+    true
+  ],
+  "message_one": [
+    "message_one",
+    274877906944,
+    true
+  ],
+  "message_two": [
+    "message_two",
+    549755813888,
+    true
+  ],
+  "message_three": [
+    "message_three",
+    1099511627776,
+    true
+  ]
+}

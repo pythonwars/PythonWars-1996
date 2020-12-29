@@ -1,0 +1,44 @@
+{
+    "human": [
+        "human",
+        "Hum",
+        75,
+        20,
+        6
+    ],
+    "demon": [
+        "demon",
+        "Dem",
+        75,
+        20,
+        6
+    ],
+    "mage": [
+        "mage",
+        "Mag",
+        75,
+        20,
+        6
+    ],
+    "werewolf": [
+        "werewolf",
+        "Wer",
+        75,
+        20,
+        6
+    ],
+    "vampire": [
+        "vampire",
+        "Vam",
+        75,
+        20,
+        6
+    ],
+    "highlander": [
+        "highlander",
+        "Hig",
+        75,
+        20,
+        6
+    ]
+}

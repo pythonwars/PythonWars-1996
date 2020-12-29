@@ -1,0 +1,72 @@
+{
+  "lost_eye_l": [
+    "lost_eye_l",
+    1,
+    true
+  ],
+  "lost_eye_r": [
+    "lost_eye_r",
+    2,
+    true
+  ],
+  "lost_ear_l": [
+    "lost_ear_l",
+    4,
+    true
+  ],
+  "lost_ear_r": [
+    "lost_ear_r",
+    8,
+    true
+  ],
+  "lost_nose": [
+    "lost_nose",
+    16,
+    true
+  ],
+  "broken_nose": [
+    "broken_nose",
+    32,
+    true
+  ],
+  "broken_jaw": [
+    "broken_jaw",
+    64,
+    true
+  ],
+  "broken_skull": [
+    "broken_skull",
+    128,
+    true
+  ],
+  "lost_head": [
+    "lost_head",
+    256,
+    true
+  ],
+  "lost_tooth_1": [
+    "lost_tooth_1",
+    512,
+    true
+  ],
+  "lost_tooth_2": [
+    "lost_tooth_2",
+    1024,
+    true
+  ],
+  "lost_tooth_4": [
+    "lost_tooth_4",
+    2048,
+    true
+  ],
+  "lost_tooth_8": [
+    "lost_tooth_8",
+    4096,
+    true
+  ],
+  "lost_tooth_16": [
+    "lost_tooth_16",
+    8192,
+    true
+  ]
+}

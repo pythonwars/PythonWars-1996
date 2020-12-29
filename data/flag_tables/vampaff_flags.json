@@ -1,0 +1,97 @@
+{
+  "fangs": [
+    "fangs",
+    1,
+    true
+  ],
+  "claws": [
+    "claws",
+    2,
+    true
+  ],
+  "nightsight": [
+    "nightsight",
+    4,
+    true
+  ],
+  "flying": [
+    "flying",
+    8,
+    true
+  ],
+  "sonic": [
+    "sonic",
+    16,
+    true
+  ],
+  "changed": [
+    "changed",
+    32,
+    true
+  ],
+  "protean": [
+    "protean",
+    64,
+    true
+  ],
+  "celerity": [
+    "celerity",
+    128,
+    true
+  ],
+  "fortitude": [
+    "fortitude",
+    256,
+    true
+  ],
+  "potence": [
+    "potence",
+    512,
+    true
+  ],
+  "obfuscate": [
+    "obfuscate",
+    1024,
+    true
+  ],
+  "auspex": [
+    "auspex",
+    2048,
+    true
+  ],
+  "obtenebration": [
+    "obtenebration",
+    4096,
+    true
+  ],
+  "serpentis": [
+    "serpentis",
+    8192,
+    true
+  ],
+  "disguised": [
+    "disguised",
+    16384,
+    true
+  ],
+  "mortal": [
+    "mortal",
+    32768,
+    true
+  ],
+  "dominate": [
+    "dominate",
+    65536,
+    true
+  ],
+  "evileye": [
+    "evileye",
+    131072,
+    true
+  ],
+  "presence": [
+    "presence",
+    262144,
+    true
+  ]
+}

@@ -1,0 +1,26 @@
+#! /bin/csh -f
+
+set port = 4123
+if ( "$1" != "" ) set port="$1"
+
+nohup
+
+while( 1 )
+    if ( -e data/system/shutdown.txt ) then
+	    rm -f data/system/shutdown.txt
+    endif
+
+    set found = `netstat -an | grep ":$port " | grep -c LISTEN`
+    if ( $found > 0 ) then
+	    echo -n "PythonWars 1996 is already running."
+	    exit 0
+    endif
+
+    python3 motu.py
+
+    if ( -e data/system/shutdown.txt ) then
+	    rm -f data/system/shutdown.txt
+	    exit 0
+    endif
+    sleep 2
+end

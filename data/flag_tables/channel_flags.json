@@ -1,0 +1,62 @@
+{
+  "chat": [
+    "chat",
+    1,
+    true
+  ],
+  "immtalk": [
+    "immtalk",
+    2,
+    true
+  ],
+  "music": [
+    "music",
+    4,
+    true
+  ],
+  "question": [
+    "question",
+    8,
+    true
+  ],
+  "shout": [
+    "shout",
+    16,
+    true
+  ],
+  "yell": [
+    "yell",
+    32,
+    true
+  ],
+  "vamptalk": [
+    "vamptalk",
+    64,
+    true
+  ],
+  "howl": [
+    "howl",
+    128,
+    true
+  ],
+  "pray": [
+    "pray",
+    256,
+    true
+  ],
+  "info": [
+    "info",
+    512,
+    true
+  ],
+  "magetalk": [
+    "magetalk",
+    1024,
+    true
+  ],
+  "tell": [
+    "tell",
+    2048,
+    true
+  ]
+}

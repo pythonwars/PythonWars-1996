@@ -1,0 +1,52 @@
+{
+  "broken_ribs_1": [
+    "broken_ribs_1",
+    1,
+    true
+  ],
+  "broken_ribs_2": [
+    "broken_ribs_2",
+    2,
+    true
+  ],
+  "broken_ribs_4": [
+    "broken_ribs_4",
+    4,
+    true
+  ],
+  "broken_ribs_8": [
+    "broken_ribs_8",
+    8,
+    true
+  ],
+  "broken_ribs_16": [
+    "broken_ribs_16",
+    16,
+    true
+  ],
+  "broken_spine": [
+    "broken_spine",
+    32,
+    true
+  ],
+  "broken_neck": [
+    "broken_neck",
+    64,
+    true
+  ],
+  "cut_throat": [
+    "cut_throat",
+    128,
+    true
+  ],
+  "cut_stomach": [
+    "cut_stomach",
+    256,
+    true
+  ],
+  "cut_chest": [
+    "cut_stomach",
+    512,
+    true
+  ]
+}
