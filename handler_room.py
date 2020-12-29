@@ -441,14 +441,14 @@ def room_text(ch, argument):
                 else:
                     ch.in_room.put(item)
 
-                    if game_utils.str_cmp(rt.choutput, "copy"):
-                        handler_game.act(rt.output, ch, item, None, merc.TO_CHAR)
-                    else:
-                        handler_game.act(rt.choutput, ch, item, None, merc.TO_CHAR)
+                if game_utils.str_cmp(rt.choutput, "copy"):
+                    handler_game.act(rt.output, ch, item, None, merc.TO_CHAR)
+                else:
+                    handler_game.act(rt.choutput, ch, item, None, merc.TO_CHAR)
 
-                    if not state_checks.is_set(rt.type, merc.RT_PERSONAL):
-                        handler_game.act(rt.output, ch, item, None, merc.TO_ROOM)
-                    hop = True
+                if not state_checks.is_set(rt.type, merc.RT_PERSONAL):
+                    handler_game.act(rt.output, ch, item, None, merc.TO_ROOM)
+                hop = True
             elif rtype == merc.RT_MOBILE:
                 mob_index = instance.npc_templates[rt.power]
                 if not mob_index:

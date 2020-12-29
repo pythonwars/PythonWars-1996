@@ -65,7 +65,7 @@ def note_remove(ch, note):
 
     to_list = note.to_list
     while to_list:
-        tolist, to_one = game_utils.read_word(to_list)
+        to_list, to_one = game_utils.read_word(to_list)
 
         if to_one and not game_utils.str_cmp(ch.name, to_one):
             to_new += " " + to_one
@@ -134,7 +134,7 @@ def cmd_note(ch, argument):
             ch.send("Note too long.\n")
             return
 
-        ch.pnote.text = buf + "\n" if buf else "" + argument
+        ch.pnote.text += argument + "\n"
         ch.send("Ok.\n")
         return
 
