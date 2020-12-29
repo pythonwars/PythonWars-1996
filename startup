@@ -16,7 +16,7 @@ while( 1 )
 	    exit 0
     endif
 
-    python3 motu.py
+    python3 pywars.py
 
     if ( -e data/system/shutdown.txt ) then
 	    rm -f data/system/shutdown.txt
