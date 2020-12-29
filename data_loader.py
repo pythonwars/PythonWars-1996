@@ -224,7 +224,7 @@ def load_objects(area, parea):
         game_utils.item_flags_from_bits(wear_bits, flag_data, "wear flags")
 
         if item.item_type == merc.ITEM_LIGHT:
-            flag_data.slots.update({"right_hand, left_hand"})
+            flag_data.slots.update({"right_hand", "left_hand"})
         item.equips_to = flag_data.slots
         item.item_restrictions = flag_data.restrictions
         item.item_attributes = flag_data.attributes

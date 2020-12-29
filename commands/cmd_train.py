@@ -71,7 +71,7 @@ def cmd_train(ch, argument):
             return
 
         amount = int(arg2)
-        if arg2 not in merc.irange(1, 50):
+        if amount not in merc.irange(1, 50):
             ch.send("Please enter a value between 1 and 50.\n")
             return
 

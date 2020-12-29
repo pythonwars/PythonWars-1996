@@ -141,12 +141,3 @@ interp.register_command(
         default_arg=""
     )
 )
-interp.register_command(
-    interp.CmdType(
-        name="'",
-        cmd_fun=cmd_say,
-        position=merc.POS_MEDITATING, level=0,
-        log=merc.LOG_NORMAL, show=True,
-        default_arg=""
-    )
-)
