@@ -132,7 +132,7 @@ def cmd_tear(ch, argument):
     if victim.is_vampire():
         victim.mortalvamp()
     elif victim.special.is_set(merc.SPC_WOLFMAN):
-        victim.unwerewol()
+        victim.unwerewolf()
 
     if victim.is_mage() and victim.is_affected(merc.AFF_POLYMORPH):
         victim.cmd_unpolymorph("")
