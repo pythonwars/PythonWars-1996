@@ -1,5 +1,5 @@
-#  PythonWars copyright © 2020 by Paul Penner. All rights reserved. In order to
-#  use this codebase you must comply with all licenses.
+#  PythonWars copyright © 2020, 2021 by Paul Penner. All rights reserved.
+#  In order to use this codebase you must comply with all licenses.
 #
 #  Original Diku Mud copyright © 1990, 1991 by Sebastian Hammer,
 #  Michael Seifert, Hans Henrik Stærfeldt, Tom Madsen, and Katja Nyboe.

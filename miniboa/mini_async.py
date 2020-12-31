@@ -1,9 +1,7 @@
 # -*- coding: utf-8 -*- line endings: unix -*-
 
-#  PythonWars->MOTU-Mud copyright © 2020 by Paul Penner. All rights reserved.
-#  No claim of ownership is asserted over the Masters of the Universe brand, it
-#  is purely a fan work. No part of this codebase may be used without written
-#  permission.
+#  PythonWars copyright © 2020, 2021 by Paul Penner. All rights reserved.
+#  In order to use this codebase you must comply with all licenses.
 #
 #  Original Diku Mud copyright © 1990, 1991 by Sebastian Hammer,
 #  Michael Seifert, Hans Henrik Stærfeldt, Tom Madsen, and Katja Nyboe.
