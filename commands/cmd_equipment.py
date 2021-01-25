@@ -44,7 +44,7 @@ def cmd_equipment(ch, argument):
         if ch.can_see_item(item):
             buf += handler_item.format_item_to_char(item, ch, True) + "\n"
         else:
-            ch.send("something.\n")
+            buf += "something.\n"
         found = True
 
     if not found:
