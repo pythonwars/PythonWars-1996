@@ -284,8 +284,7 @@ def npc_update():
                 item_best.to_environment(npc.instance_id)
                 handler_game.act("$n picks $p up.", npc, item_best, None, merc.TO_ROOM)
                 handler_game.act("You pick $p up.", npc, item_best, None, merc.TO_CHAR)
-        """
-
+        
         # Wander
         door = game_utils.number_bits(5)
         if door <= 5:
@@ -310,6 +309,7 @@ def npc_update():
 
                 if not found:
                     handler_ch.move_char(npc, door)
+        """
 
 
 # Update the weather.
