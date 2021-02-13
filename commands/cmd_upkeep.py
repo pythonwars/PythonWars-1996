@@ -34,7 +34,7 @@ def cmd_upkeep(ch, argument):
     if ch.is_npc():
         return
 
-    if ch.is_vampire() or ch.special.is_set(merc.SPC_CHAMPION):
+    if ch.is_demon() or ch.special.is_set(merc.SPC_CHAMPION):
         buf = ["--------------------------------------------------------------------------------\n"]
         buf += "                              -= Demonic powers =-\n"
         buf += "--------------------------------------------------------------------------------\n"

@@ -38,7 +38,7 @@ def cmd_scry(ch, argument):
 
     if ch.is_demon() or ch.special.is_set(merc.SPC_CHAMPION):
         if not ch.dempower.is_set(merc.DEM_SCRY):
-            ch.send("You haven't been granted the gift of claws.\n")
+            ch.send("You haven't been granted the gift of scry.\n")
             return
     elif not ch.is_vampire() and not ch.itemaff.is_set(merc.ITEMA_VISION):
         ch.huh()
