@@ -470,6 +470,7 @@ class Pc(living.Living):
 
         self._last_saved = time.time()
         self.last_host = self.desc.addr() if self.desc else self.last_host
+        self.played = self.played + int(merc.current_time - self.logon)
         self.save_stub(logout)
 
         pathname = os.path.join(settings.PLAYER_DIR, self.name[0].lower(), self.name.capitalize())
