@@ -2769,6 +2769,7 @@ class Living(immortal.Immortal, Fight, Grouping, physical.Physical, environment.
         self.level = 0
         self.sex = 0
         self.played = 0
+        self.played_fake = 0
         self.logon = merc.current_time
 
         # stats
