@@ -80,7 +80,7 @@ const.register_spell(
         target=merc.TAR_IGNORE,
         minimum_position=merc.POS_STANDING,
         pgsn=None,
-        slot=const.slot(604),
+        slot=const.slot(622),
         min_mana=50,
         beats=12,
         noun_damage="",

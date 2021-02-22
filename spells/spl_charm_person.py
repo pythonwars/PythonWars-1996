@@ -74,7 +74,7 @@ const.register_spell(
         target=merc.TAR_CHAR_OFFENSIVE,
         minimum_position=merc.POS_FIGHTING,
         pgsn=None,
-        slot=const.slot(70),
+        slot=const.slot(7),
         min_mana=20,
         beats=12,
         noun_damage="charm person",
