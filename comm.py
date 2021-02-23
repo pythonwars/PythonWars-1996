@@ -129,7 +129,7 @@ def init_descriptor(d):
     #
     # Furey: added suffix check by request of Nickel of HiddenWorlds.
     for ban in instance.ban_list:
-        if game_utils.str_suffix(ban.name, d.host):
+        if game_utils.str_suffix(ban.name, d.hostname):
             d.send("Your site has been banned from this Mud.\n")
             close_socket(d)
             return
