@@ -130,6 +130,7 @@ class Items(instance.Instancer, environment.Environment, physical.Physical, inve
         self.resistance = 0
         self.timer = 0
         self.points = 0
+        self.specpower = 0
 
         self.extra_descr = []
         self.affected = []

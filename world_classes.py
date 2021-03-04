@@ -116,18 +116,18 @@ class Area(instance.Instancer, type_bypass.ObjectType, environment.Environment):
                     self.age = 0
                 self.player_chars += [player_char.instance_id]
             else:
-                raise ValueError('Player Character already in player_chars list! %d' % player_char.instance_id)
+                raise ValueError("Player Character already in player_chars list! %d" % player_char.instance_id)
         else:
-            raise KeyError('Entity not a player character, or is an NPC on area addition! %r' % type(player_char))
+            raise KeyError("Entity not a player character, or is an NPC on area addition! %r" % type(player_char))
 
     def remove_pc(self, player_char):
         if player_char.is_living and not player_char.is_npc():
             if player_char.instance_id in self.player_chars:
                 self.player_chars.remove(player_char.instance_id)
             else:
-                raise ValueError('Player Character not in player_chars list! %d' % player_char.instance_id)
+                raise ValueError("Player Character not in player_chars list! %d" % player_char.instance_id)
         else:
-            raise KeyError('Entity not a player character, or is an NPC on area removal! %r' % type(player_char))
+            raise KeyError("Entity not a player character, or is an NPC on area removal! %r" % type(player_char))
 
     def instance_setup(self):
         instance.global_instances[self.instance_id] = self
@@ -150,12 +150,12 @@ class Area(instance.Instancer, type_bypass.ObjectType, environment.Environment):
         for k, v in self.__dict__.items():
             if str(type(v)) in ("<class 'function'>", "<class 'method'>"):
                 continue
-            elif str(k) in ('_last_saved', '_md5'):
+            elif str(k) in ("_last_saved", "_md5"):
                 continue
             else:
                 tmp_dict[k] = v
 
-        cls_name = '__class__/' + __name__ + '.' + self.__class__.__name__
+        cls_name = "__class__/" + __name__ + "." + self.__class__.__name__
         return {cls_name: outer_encoder(tmp_dict)}
 
     @classmethod
@@ -163,7 +163,7 @@ class Area(instance.Instancer, type_bypass.ObjectType, environment.Environment):
         if outer_decoder is None:
             outer_decoder = json.JSONDecoder.decode
 
-        cls_name = '__class__/' + __name__ + '.' + cls.__name__
+        cls_name = "__class__/" + __name__ + "." + cls.__name__
         if cls_name in data:
             tmp_data = outer_decoder(data[cls_name])
             return cls(**tmp_data)
@@ -176,25 +176,25 @@ class Area(instance.Instancer, type_bypass.ObjectType, environment.Environment):
         else:
             top_dir = settings.AREA_DIR
             number = self.index
-        pathname = os.path.join(top_dir, '%d-%s' % (number, self.name))
+        pathname = os.path.join(top_dir, "%d-%s" % (number, self.name))
 
         os.makedirs(pathname, 0o755, True)
-        filename = os.path.join(pathname, '%d-area%s' % (number, settings.DATA_EXTN))
+        filename = os.path.join(pathname, "%d-area%s" % (number, settings.DATA_EXTN))
 
-        comm.notify('Saving {}'.format(filename), merc.CONSOLE_INFO)
+        comm.notify("Saving {}".format(filename), merc.CONSOLE_INFO)
         js = json.dumps(self, default=instance.to_json, indent=2, sort_keys=True)
-        md5 = hashlib.md5(js.encode('utf-8')).hexdigest()
+        md5 = hashlib.md5(js.encode("utf-8")).hexdigest()
         if self._md5 != md5:
             self._md5 = md5
 
-            with open(filename, 'w') as fp:
+            with open(filename, "w") as fp:
                 fp.write(js)
 
     @classmethod
     def load(cls, index: int = None, instance_id: int = None):
         if instance_id:
             if instance_id in instance.characters:
-                comm.notify('Instance {} of npc already loaded!'.format(instance_id), merc.CONSOLE_INFO)
+                comm.notify("Instance {} of npc already loaded!".format(instance_id), merc.CONSOLE_INFO)
                 return
             top_dir = settings.INSTANCE_DIR
             number = instance_id
@@ -202,7 +202,7 @@ class Area(instance.Instancer, type_bypass.ObjectType, environment.Environment):
             top_dir = settings.AREA_DIR
             number = index
 
-        target_file = '%d-area%s' % (number, settings.DATA_EXTN)
+        target_file = "%d-area%s" % (number, settings.DATA_EXTN)
 
         filename = None
         for a_path, a_directory, i_files in os.walk(top_dir):
@@ -210,10 +210,10 @@ class Area(instance.Instancer, type_bypass.ObjectType, environment.Environment):
                 filename = os.path.join(a_path, target_file)
                 break
         if not filename:
-            raise ValueError('Cannot find %s' % target_file)
-        jso = ''
+            raise ValueError("Cannot find %s" % target_file)
+        jso = ""
 
-        with open(filename, 'r+') as f:
+        with open(filename, "r+") as f:
             for line in f:
                 jso += line
 
@@ -221,7 +221,7 @@ class Area(instance.Instancer, type_bypass.ObjectType, environment.Environment):
         if isinstance(obj, Area):
             return obj
         else:
-            comm.notify('Could not load area data for {}'.format(number), merc.CONSOLE_ERROR)
+            comm.notify("Could not load area data for {}".format(number), merc.CONSOLE_ERROR)
             return None
 
 
@@ -251,7 +251,7 @@ class ExtraDescrData:
             else:
                 tmp_dict[k] = v
 
-        cls_name = '__class__/' + __name__ + '.' + self.__class__.__name__
+        cls_name = "__class__/" + __name__ + "." + self.__class__.__name__
         return {cls_name: outer_encoder(tmp_dict)}
 
     @classmethod
@@ -259,7 +259,7 @@ class ExtraDescrData:
         if outer_decoder is None:
             outer_decoder = json.JSONDecoder.decode
 
-        cls_name = '__class__/' + __name__ + '.' + cls.__name__
+        cls_name = "__class__/" + __name__ + "." + cls.__name__
         if cls_name in data:
             tmp_data = outer_decoder(data[cls_name])
             return cls(**tmp_data)
@@ -308,7 +308,7 @@ class Exit:
             else:
                 tmp_dict[k] = v
 
-        cls_name = '__class__/' + __name__ + '.' + self.__class__.__name__
+        cls_name = "__class__/" + __name__ + "." + self.__class__.__name__
         return {cls_name: outer_encoder(tmp_dict)}
 
     @classmethod
@@ -316,7 +316,7 @@ class Exit:
         if outer_decoder is None:
             outer_decoder = json.JSONDecoder.decode
 
-        cls_name = '__class__/' + __name__ + '.' + cls.__name__
+        cls_name = "__class__/" + __name__ + "." + cls.__name__
         if cls_name in data:
             tmp_data = outer_decoder(data[cls_name])
             return cls(**tmp_data)
@@ -346,7 +346,7 @@ class Note:
             else:
                 tmp_dict[k] = v
 
-        cls_name = '__class__/' + __name__ + '.' + self.__class__.__name__
+        cls_name = "__class__/" + __name__ + "." + self.__class__.__name__
         return {cls_name: outer_encoder(tmp_dict)}
 
     @classmethod
@@ -354,7 +354,7 @@ class Note:
         if outer_decoder is None:
             outer_decoder = json.JSONDecoder.decode
 
-        cls_name = '__class__/' + __name__ + '.' + cls.__name__
+        cls_name = "__class__/" + __name__ + "." + cls.__name__
         if cls_name in data:
             tmp_data = outer_decoder(data[cls_name])
             return cls(**tmp_data)
@@ -426,7 +426,7 @@ class Reset:
             else:
                 tmp_dict[k] = v
 
-        cls_name = '__class__/' + __name__ + '.' + self.__class__.__name__
+        cls_name = "__class__/" + __name__ + "." + self.__class__.__name__
         return {cls_name: outer_encoder(tmp_dict)}
 
     @classmethod
@@ -434,7 +434,7 @@ class Reset:
         if outer_decoder is None:
             outer_decoder = json.JSONDecoder.decode
 
-        cls_name = '__class__/' + __name__ + '.' + cls.__name__
+        cls_name = "__class__/" + __name__ + "." + cls.__name__
         if cls_name in data:
             tmp_data = outer_decoder(data[cls_name])
             return cls(**tmp_data)
@@ -472,7 +472,7 @@ class Shop:
             else:
                 tmp_dict[k] = v
 
-        cls_name = '__class__/' + __name__ + '.' + self.__class__.__name__
+        cls_name = "__class__/" + __name__ + "." + self.__class__.__name__
         return {cls_name: outer_encoder(tmp_dict)}
 
     @classmethod
@@ -480,7 +480,7 @@ class Shop:
         if outer_decoder is None:
             outer_decoder = json.JSONDecoder.decode
 
-        cls_name = '__class__/' + __name__ + '.' + cls.__name__
+        cls_name = "__class__/" + __name__ + "." + cls.__name__
         if cls_name in data:
             tmp_data = outer_decoder(data[cls_name])
             return cls(**tmp_data)
