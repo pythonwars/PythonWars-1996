@@ -2689,7 +2689,7 @@ def dam_message(ch, victim, dam, dt):
         object_creator.make_part(victim, "blood")
         victim.body.set_bit(merc.CUT_THROAT)
         victim.bleeding.set_bit(merc.BLEEDING_THROAT)
-    elif not ch.is_npc() and (attack1 or ch.vampaff.is_set(merc.VAM_CLAWS)):
+    elif not ch.is_npc() and (attack1 == "claw" or ch.vampaff.is_set(merc.VAM_CLAWS)):
         damp = game_utils.number_range(1, 2)
         if damp == 1:
             handler_game.act("You tear out $N's throat, showering the area with blood.", ch, None, victim, merc.TO_CHAR)
