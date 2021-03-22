@@ -572,7 +572,7 @@ def damage(ch, victim, dam, dt):
         if ch.is_affected(merc.AFF_HIDE):
             if not victim.can_see(ch):
                 dam *= 1.5
-                ch.send.o_char("You use your concealment to get a surprise attack!\n")
+                ch.send("You use your concealment to get a surprise attack!\n")
 
             ch.affected_by.rem_bit(merc.AFF_HIDE)
             handler_game.act("$n leaps from $s concealment.", ch, None, None, merc.TO_ROOM)
