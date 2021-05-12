@@ -69,7 +69,7 @@ def cmd_eat(ch, argument):
     elif itype == merc.ITEM_PILL:
         handler_magic.obj_cast_spell(item.value[1], item.value[0], ch, ch, None)
         handler_magic.obj_cast_spell(item.value[2], item.value[0], ch, ch, None)
-        handler_magic. obj_cast_spell(item.value[3], item.value[0], ch, ch, None)
+        handler_magic.obj_cast_spell(item.value[3], item.value[0], ch, ch, None)
 
         if ch.position == merc.POS_FIGHTING:
             ch.wait_state(merc.PULSE_VIOLENCE // 2)
