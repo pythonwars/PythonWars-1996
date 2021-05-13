@@ -62,8 +62,7 @@ def cmd_token(ch, argument):
     else:
         victim = None
 
-    obj_index = instance.item_templates[merc.OBJ_VNUM_PROTOPLASM]
-    if not obj_index:
+    if merc.OBJ_VNUM_PROTOPLASM not in instance.item_templates:
         ch.send("Error...missing object, please inform an Immortal.\n")
         return
 
