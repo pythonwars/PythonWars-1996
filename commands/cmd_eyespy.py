@@ -54,12 +54,11 @@ def cmd_eyespy(ch, argument):
         object_creator.make_part(ch, "eyeball")
         return
 
-    mob_index = instance.npc_templates[merc.MOB_VNUM_EYE]
-    if not mob_index:
+    if merc.MOB_VNUM_EYE not in instance.npc_templates:
         ch.send("Error - please inform an Immortal.\n")
         return
 
-    victim = object_creator.create_mobile(mob_index)
+    victim = object_creator.create_mobile(instance.npc_templates[merc.MOB_VNUM_EYE])
     ch.in_room.put(victim)
     ch.familiar = victim
     victim.wizard = ch

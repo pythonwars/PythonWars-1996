@@ -41,7 +41,7 @@ def cmd_smother(ch, argument):
         ch.send("Smother whom?\n")
         return
 
-    victim = ch.get_char_world(arg)
+    victim = ch.get_char_room(arg)
     if not victim:
         ch.not_here(arg)
         return
