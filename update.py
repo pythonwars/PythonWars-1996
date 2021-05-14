@@ -607,7 +607,7 @@ def char_update():
                 drop_out = True
 
         if ch.is_affected(merc.AFF_FLAMING) and not is_obj and not drop_out and ch.in_room:
-            if not (not ch.is_npc() and (ch.is_hero or (ch.immune.is_set(merc.IMM_HEAT) and not ch.is_vampire()))):
+            if not (not ch.is_npc() and (ch.is_hero() or (ch.immune.is_set(merc.IMM_HEAT) and not ch.is_vampire()))):
                 handler_game.act("$n's flesh burns and crisps.", ch, None, None, merc.TO_ROOM)
                 ch.send("Your flesh burns and crisps.\n")
                 dam = game_utils.number_range(10, 20)
