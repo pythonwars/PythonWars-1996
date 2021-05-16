@@ -62,12 +62,11 @@ def cmd_create(ch, argument):
             ch.send("Level should be within range 1 to 50.\n")
             return
 
-    obj_index = instance.item_templates[merc.OBJ_VNUM_PROTOPLASM]
-    if not obj_index:
+    if merc.OBJ_VNUM_PROTOPLASM not in instance.item_templates:
         ch.send("Error...missing object, please inform an Immortal.\n")
         return
 
-    item = object_creator.create_item(obj_index, level)
+    item = object_creator.create_item(instance.item_templates[merc.OBJ_VNUM_PROTOPLASM], level)
     item.item_type = itemtype
     ch.put(item)
     item.questmaker = ch.name
