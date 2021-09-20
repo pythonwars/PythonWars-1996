@@ -2904,7 +2904,7 @@ class Living(immortal.Immortal, Fight, Grouping, physical.Physical, environment.
         if looker.can_see(self):
             return self.short_descr if self.is_npc() else self.morph if self.is_affected(merc.AFF_POLYMORPH) else self.name
         else:
-            "someone"
+            return "someone"
 
     def check_blind(self):
         # noinspection PyUnresolvedReferences
