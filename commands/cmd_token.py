@@ -70,7 +70,7 @@ def cmd_token(ch, argument):
     if ch.quest < 0:
         ch.quest = 0
 
-    item = object_creator.create_item(obj_index, 1)
+    item = object_creator.create_item(instance.item_templates[merc.OBJ_VNUM_PROTOPLASM], 1)
     item.value[0] = value
     item.cost = value * 1000
     item.item_type = merc.ITEM_QUEST
