@@ -62,8 +62,7 @@ def cmd_demonarmor(ch, argument):
         ch.send("It costs 5000 points of power to create a piece of demon armour.\n")
         return
 
-    item_index = instance.item_templates[vnum]
-    if not item_index:
+    if vnum not in instance.item_templates:
         ch.send("Missing object, please inform an Immortal.\n")
         return
 

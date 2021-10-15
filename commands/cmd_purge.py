@@ -67,7 +67,7 @@ def cmd_purge(ch, argument):
         return
 
     handler_game.act("$n purges $N.", ch, None, victim, merc.TO_NOTVICT)
-    victim.extact(True)
+    victim.extract(True)
 
 
 interp.register_command(
