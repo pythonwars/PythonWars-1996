@@ -111,7 +111,7 @@ class Affects:
         elif state_checks.is_set(affect_bit, merc.AFF_WEBBED) and fight.is_safe(self, victim):
             state_checks.remove_bit(affect_bit, merc.AFF_WEBBED)
 
-        if state_checks.is_set(affect_bit, merc.AFF_CHARM) and not victim.is_affected.is_set(merc.AFF_CHARM):
+        if state_checks.is_set(affect_bit, merc.AFF_CHARM) and not victim.is_affected(merc.AFF_CHARM):
             if victim.level <= 50 and (victim.is_npc() or not victim.immune.is_set(merc.IMM_CHARM)):
                 if victim.master:
                     victim.stop_follower()
