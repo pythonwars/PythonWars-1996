@@ -50,7 +50,7 @@ def cmd_deny(ch, argument):
         ch.send("You failed.\n")
         return
 
-    if victim.trusst >= ch.trust:
+    if victim.trust >= ch.trust:
         ch.send("You failed.\n")
         return
 
