@@ -40,21 +40,19 @@ def cmd_qmake(ch, argument):
         return
 
     if game_utils.str_cmp(arg, "card"):
-        obj_index = instance.item_templates[merc.OBJ_VNUM_QUESTCARD]
-        if not obj_index:
+        if merc.OBJ_VNUM_QUESTCARD not in instance.item_templates:
             ch.send("Missing object, please inform an Immortal.\n")
             return
 
-        item = object_creator.create_item(obj_index, 0)
+        item = object_creator.create_item(instance.item_templates[merc.OBJ_VNUM_QUESTCARD], 0)
         item.quest_object()
         ch.put(item)
     elif game_utils.str_cmp(arg, "machine"):
-        obj_index = instance.item_templates[merc.OBJ_VNUM_QUESTMACHINE]
-        if not obj_index:
+        if merc.OBJ_VNUM_QUESTMACHINE not in instance.item_templates:
             ch.send("Missing object, please inform an Immortal.\n")
             return
 
-        item = object_creator.create_item(obj_index, 0)
+        item = object_creator.create_item(instance.item_templates[merc.OBJ_VNUM_QUESTMACHINE], 0)
         ch.in_room.put(item)
     else:
         ch.cmd_qmake("")
