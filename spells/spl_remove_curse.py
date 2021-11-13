@@ -55,11 +55,11 @@ def spl_remove_curse(sn, level, ch, victim, target):
 
     item = ch.get_item_carry(arg)
     if item:
-        if item.flags.noremove:
-            item.flags.noremove = False
+        if item.flags.no_remove:
+            item.flags.no_remove = False
             handler_game.act("$p flickers with energy.", ch, item, None, merc.TO_CHAR)
-        elif item.flags.nodrop:
-            item.flags.nodrop = False
+        elif item.flags.no_drop:
+            item.flags.no_drop = False
             handler_game.act("$p flickers with energy.", ch, item, None, merc.TO_CHAR)
         return
 
