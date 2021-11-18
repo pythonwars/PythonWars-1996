@@ -43,21 +43,19 @@ def crack_head(ch, item, argument):
         object_creator.make_part(victim, "brain")
         victim.morph = "the quivering brain of {}".format(victim.name)
     elif game_utils.str_cmp(arg2, "mob"):
-        mob_index = instance.npc_templates[item.value[1]]
-        if not mob_index:
+        if item.value[1] not in instance.npc_templates:
             return
 
-        victim = object_creator.create_mobile(mob_index)
+        victim = object_creator.create_mobile(instance.npc_templates[item.value[1]])
         ch.in_room.put(victim)
         object_creator.make_part(victim, "cracked_head")
         object_creator.make_part(victim, "brain")
         victim.extract(True)
     else:
-        mob_index = instance.npc_templates[30002]
-        if not mob_index:
+        if 30002 not in instance.npc_templates:
             return
 
-        victim = object_creator.create_mobile(mob_index)
+        victim = object_creator.create_mobile(instance.npc_templates[30002])
         victim.short_descr = arg2[0].upper() + arg2[1:]
         ch.in_room.put(victim)
         object_creator.make_part(victim, "cracked_head")
