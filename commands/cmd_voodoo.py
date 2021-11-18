@@ -109,7 +109,7 @@ def cmd_voodoo(ch, argument):
         fight.update_pos(victim)
 
         if victim.position == merc.POS_DEAD and not victim.is_npc():
-            ch.cmd_killperson(victim)
+            ch.killperson(victim)
             return
     else:
         ch.send("You can 'stab', 'burn' or 'throw' the doll.\n")
