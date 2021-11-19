@@ -53,8 +53,7 @@ def cmd_weaponform(ch, argument):
         ch.send("Not with all this sticky webbing on.\n")
         return
 
-    item_index = instance.item_templates[ch.powers[merc.DPOWER_OBJ_VNUM]]
-    if not item_index:
+    if ch.class_stuff[merc.CSTUFF_OBJ_VNUM] not in instance.item_templates:
         ch.send("You don't have the ability to change into a weapon.\n")
         return
 
