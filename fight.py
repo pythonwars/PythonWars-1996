@@ -2760,7 +2760,7 @@ def disarm(ch, victim):
         handler_game.act("$p leaps back into $n's hand!", victim, item, None, merc.TO_ROOM)
         return
 
-    victim.unequip('main_hand')
+    victim.unequip(item.equipped_to, silent=True, forced=True)
     victim.get(item)
     victim.in_room.put(item)
 
