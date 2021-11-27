@@ -541,9 +541,8 @@ def str_infix(astr, bstr):
     sstr2 = len(bstr)
 
     for ichar in range(1 + (sstr2 - sstr1)):
-        if c0 == bstr[ichar].lower() and astr.startswith(bstr + ichar):
+        if c0 == bstr[ichar].lower() and astr.startswith(bstr[ichar:]):
             return True
-
     return False
 
 
