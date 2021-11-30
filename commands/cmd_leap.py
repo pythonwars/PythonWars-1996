@@ -54,7 +54,7 @@ def cmd_leap(ch, argument):
         ch.huh()
         return
 
-    if item.in_room and arg:
+    if item.in_room and not arg:
         ch.send("Where do you want to leap?\n")
         return
 
