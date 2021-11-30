@@ -161,21 +161,19 @@ def cmd_pull(ch, argument):
             ch.in_room.put(mount)
             mount.cmd_look("auto")
     elif item.spectype.is_set(merc.SITEM_OBJECT):
-        obj_index = instance.item_templates[item.specpower]
-        if not obj_index:
+        if item.specpower not in instance.item_templates:
             return
 
-        item = object_creator.create_item(obj_index, ch.level)
-        if item.flags.take:
-            ch.put(item)
+        item2 = object_creator.create_item(instance.item_templates[item.specpower], ch.level)
+        if item2.flags.take:
+            ch.put(item2)
         else:
-            ch.in_room.put(item)
+            ch.in_room.put(item2)
     elif item.spectype.is_set(merc.SITEM_MOBILE):
-        mob_index = instance.npc_templates[item.specpower]
-        if not mob_index:
+        if item.specpower not in instance.npc_templates:
             return
 
-        npc = object_creator.create_mobile(mob_index)
+        npc = object_creator.create_mobile(instance.npc_templates[item.specpower])
         ch.in_room.put(npc)
     elif item.spectype.is_set(merc.SITEM_ACTION):
         ch.interpret(item.victpoweron)
