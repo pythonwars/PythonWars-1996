@@ -3665,12 +3665,12 @@ class Living(immortal.Immortal, Fight, Grouping, physical.Physical, environment.
             if item.flags.silver and item.slots.left_hand:
                 self.itemaff.set_bit(merc.ITEMA_LEFT_SILVER)
 
-    def can_equip(self, item, loc, should_replace=False, wverbose=False):
+    def can_equip(self, item, loc, should_replace=False, verbose=False):
         if item.environment:
             try:
                 item.environment.get(item)
             except:
-                return
+                return False
 
         if (item.flags.anti_evil and self.is_evil()) or (item.flags.anti_good and self.is_good()) or \
                 (item.flags.anti_neutral and self.is_neutral()):
@@ -3722,7 +3722,7 @@ class Living(immortal.Immortal, Fight, Grouping, physical.Physical, environment.
             handler_game.act("$n is zapped by $p and drops it.", self, item, None, merc.TO_ROOM)
             self.get(item)
             self.in_room.put(item)
-            return
+            return False
 
         if should_replace:
             if not self.unequip(loc):
@@ -3731,7 +3731,7 @@ class Living(immortal.Immortal, Fight, Grouping, physical.Physical, environment.
         if not self.is_npc():
             if loc in ["right_hand", "left_hand"]:
                 if item.get_weight() > const.str_app[self.stat(merc.STAT_STR)].wield:
-                    if wverbose:
+                    if verbose:
                         self.send("It is too heavy for you to wield.\n")
                     return False
                 return True
