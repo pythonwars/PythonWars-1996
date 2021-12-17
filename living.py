@@ -4049,7 +4049,7 @@ class Living(immortal.Immortal, Fight, Grouping, physical.Physical, environment.
             handler_game.act("$n slides $s left wrist into $p.", self, item, None, merc.TO_ROOM)
             handler_game.act("You slide your left wrist into $p.", self, item, None, merc.TO_CHAR)
         elif slot == "right_wrist":
-            handler_game.act("$n slides $s left wrist into $p.", self, item, None, merc.TO_ROOM)
+            handler_game.act("$n slides $s right wrist into $p.", self, item, None, merc.TO_ROOM)
             handler_game.act("You slide your right wrist into $p.", self, item, None, merc.TO_CHAR)
         elif slot == "right_hand":
             if item.item_type == merc.ITEM_LIGHT:
