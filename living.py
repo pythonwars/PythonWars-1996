@@ -3181,8 +3181,7 @@ class Living(immortal.Immortal, Fight, Grouping, physical.Physical, environment.
         if self.is_npc() or self.obj_vnum < 1:
             return
 
-        obj_index = instance.item_templates[self.obj_vnum]
-        if not obj_index:
+        if self.class_stuff[merc.CSTUFF_OBJ_VNUM] not in instance.item_templates:
             return
 
         if not self.in_room or self.in_room.vnum != merc.ROOM_VNUM_IN_OBJECT:
@@ -3192,7 +3191,7 @@ class Living(immortal.Immortal, Fight, Grouping, physical.Physical, environment.
         else:
             location = self.in_room
 
-        item = object_creator.create_item(obj_index, 50)
+        item = object_creator.create_item(instance.item_templates[self.class_stuff[merc.CSTUFF_OBJ_VNUM]], 50)
         item.chobj = self
         self.chobj = item
         location.put(item)
