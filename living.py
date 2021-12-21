@@ -3992,8 +3992,8 @@ class Living(immortal.Immortal, Fight, Grouping, physical.Physical, environment.
                 if item.value[3] == self.powers[merc.HPOWER_WPNSKILL]:
                     self.itemaff.rem_bit(merc.ITEMA_HIGHLANDER)
 
-            self.itemaff.rem_bit(merc.ITEMA_ARTIFACT)
-
+            if self.itemaff.is_set(merc.ITEMA_ARTIFACT):
+                self.itemaff.rem_bit(merc.ITEMA_ARTIFACT)
             if item.flags.silver and oldpos == "right_hand":
                 self.itemaff.rem_bit(merc.ITEMA_RIGHT_SILVER)
             if item.flags.silver and oldpos == "left_hand":
