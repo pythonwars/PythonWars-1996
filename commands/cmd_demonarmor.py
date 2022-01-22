@@ -69,7 +69,7 @@ def cmd_demonarmor(ch, argument):
     ch.powers[merc.DEMON_TOTAL] -= 5000
     ch.powers[merc.DEMON_CURRENT] -= 5000
 
-    item = object_creator.create_item(item_index, 50)
+    item = object_creator.create_item(instance.item_templates[vnum], 50)
     ch.put(item)
     handler_game.act("$p appears in your hands in a blast of flames.", ch, item, None, merc.TO_CHAR)
     handler_game.act("$p appears in $n's hands in a blast of flames.", ch, item, None, merc.TO_ROOM)
