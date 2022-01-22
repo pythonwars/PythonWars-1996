@@ -53,11 +53,11 @@ def cmd_weaponform(ch, argument):
         ch.send("Not with all this sticky webbing on.\n")
         return
 
-    if ch.class_stuff[merc.CSTUFF_OBJ_VNUM] not in instance.item_templates:
+    if ch.powers[merc.DPOWER_OBJ_VNUM] not in instance.item_templates:
         ch.send("You don't have the ability to change into a weapon.\n")
         return
 
-    item = object_creator.create_item(item_index, 60)
+    item = object_creator.create_item(instance.item_templates[ch.powers[merc.DPOWER_OBJ_VNUM]], 60)
     ch.in_room.put(item)
     handler_game.act("$n transforms into $p and falls to the ground.", ch, item, None, merc.TO_ROOM)
     handler_game.act("You transform into $p and fall to the ground.", ch, item, None, merc.TO_CHAR)

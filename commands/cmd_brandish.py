@@ -29,6 +29,7 @@ import comm
 import const
 import handler_game
 import handler_magic
+import instance
 import interp
 import merc
 
@@ -53,7 +54,8 @@ def cmd_brandish(ch, argument):
         handler_game.act("$n brandishes $p.", ch, staff, None, merc.TO_ROOM)
         handler_game.act("You brandish $p.", ch, staff, None, merc.TO_CHAR)
 
-        for vch in ch.in_room.people[:]:
+        for vch_id in ch.in_room.people[:]:
+            vch = instance.characters[vch_id]
             target = const.skill_table[sn].target
             if target in [merc.TAR_IGNORE, merc.TAR_CHAR_SELF]:
                 if vch != ch:

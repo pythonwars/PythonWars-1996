@@ -50,7 +50,9 @@ def cmd_list(ch, argument):
             return
 
         found = False
-        for pet in proomindexnext.people[:]:
+        for pet_id in proomindexnext.people[:]:
+            pet = instance.characters[pet_id]
+
             if pet.act.is_set(merc.ACT_PET):
                 if not found:
                     found = True

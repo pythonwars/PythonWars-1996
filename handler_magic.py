@@ -139,7 +139,9 @@ def obj_cast_spell(sn, level, ch, victim, obj):
     sn.spell_fun(sn, level, ch, vo, target)
 
     if sn.target == merc.TAR_CHAR_OFFENSIVE and victim != ch and instance.characters[victim.master] != ch:
-        for vch in ch.in_room.people[:]:
+        for vch_id in ch.in_room.people[:]:
+            vch = instance.characters[vch_id]
+
             if victim == vch and not victim.fighting:
                 fight.multi_hit(victim, ch, merc.TYPE_UNDEFINED)
                 break
