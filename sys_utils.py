@@ -23,7 +23,11 @@
 #  benefiting.  We hope that you share your changes too.  What goes
 #  around, comes around.
 
-from collections import Iterable
+try:
+    from collections import Iterable
+except ImportError:
+    from collections.abc import Iterable
+
 from datetime import datetime
 import itertools
 import psutil

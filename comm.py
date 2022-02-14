@@ -192,7 +192,7 @@ def check_reconnect(d, name, fconn):
                 if ch.is_npc() or ch.obj_vnum == 0:
                     handler_game.act("$n has reconnected.", ch, None, None, merc.TO_ROOM)
 
-                notify("{}@%{} reconnected.".format(ch.name, d.addrport()), merc.CONSOLE_INFO)
+                notify(f"{ch.name}@{d.addrport()} reconnected.", merc.CONSOLE_INFO)
                 d.set_connected(nanny.con_playing)
             return True
     return False
