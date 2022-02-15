@@ -294,7 +294,7 @@ def kavitem(fmt, ch, arg1=None, arg2=None, send_to=merc.TO_ROOM, min_pos=merc.PO
             act_trans["s"] = his_her[ch.sex]
 
         if obj1 and obj1.__class__ == handler_item.Items:
-            buf = "{}'s".format(obj1.short_descr)
+            buf = f"{obj1.short_descr}'s"
             act_trans["o"] = "something's" if not to.can_see_item(obj1) else "your" if (obj1.chobj and obj1.chobj == to) else buf
             act_trans["p"] = "something" if not to.can_see_item(obj1) else "you" if (obj1.chobj and obj1.chobj == to) else obj1.short_descr
 

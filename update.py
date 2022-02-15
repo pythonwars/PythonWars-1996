@@ -396,7 +396,7 @@ def weather_update():
             buf += "The lightning has stopped.\n"
             handler_game.weather_info.sky = merc.SKY_RAINING
     else:
-        comm.notify("weather_update: bad sky {}".format(handler_game.weather_info.sky), merc.CONSOLE_WARNING)
+        comm.notify(f"weather_update: bad sky {handler_game.weather_info.sky}", merc.CONSOLE_WARNING)
         handler_game.weather_info.sky = merc.SKY_CLOUDLESS
 
     if buf:
@@ -852,7 +852,7 @@ def instance_number_save():
 
         with open(settings.INSTANCE_FILE, "w") as fp:
             fp.write(str(instance.max_instance_id))
-        comm.notify("Saved the current instance number: {}".format(instance.max_instance_id,), merc.CONSOLE_INFO)
+        comm.notify(f"Saved the current instance number: {instance.max_instance_id,}", merc.CONSOLE_INFO)
 
 
 def ww_update():

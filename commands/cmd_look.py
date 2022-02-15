@@ -163,19 +163,19 @@ def cmd_look(ch, argument):
                 return
 
             if item.value[1] < item.value[0] // 5:
-                ch.send("There is a little {} liquid left in it.\n".format(const.liq_table[item.value[2]].color))
+                ch.send(f"There is a little {const.liq_table[item.value[2]].color} liquid left in it.\n")
             elif item.value[1] < item.value[0] // 4:
-                ch.send("It contains a small about of {} liquid.\n".format(const.liq_table[item.value[2]].color))
+                ch.send(f"It contains a small about of {const.liq_table[item.value[2]].color} liquid.\n")
             elif item.value[1] < item.value[0] // 3:
-                ch.send("It's about a third full of {} liquid.\n".format(const.liq_table[item.value[2]].color))
+                ch.send(f"It's about a third full of {const.liq_table[item.value[2]].color} liquid.\n")
             elif item.value[1] < item.value[0] // 2:
-                ch.send("It's about half full of {} liquid.\n".format(const.liq_table[item.value[2]].color))
+                ch.send(f"It's about half full of {const.liq_table[item.value[2]].color} liquid.\n")
             elif item.value[1] < item.value[0]:
-                ch.send("It is almost full of {} liquid.\n".format(const.liq_table[item.value[2]].color))
+                ch.send(f"It is almost full of {const.liq_table[item.value[2]].color} liquid.\n")
             elif item.value[1] == item.value[0]:
-                ch.send("It's completely full of {} liquid.\n".format(const.liq_table[item.value[2]].color))
+                ch.send(f"It's completely full of {const.liq_table[item.value[2]].color} liquid.\n")
             else:
-                ch.send("Somehow it is MORE than full of {} liquid.\n".format(const.liq_table[item.value[2]].color))
+                ch.send(f"Somehow it is MORE than full of {const.liq_table[item.value[2]].color} liquid.\n")
         elif item.item_type in [merc.ITEM_CONTAINER, merc.ITEM_CORPSE_NPC, merc.ITEM_CORPSE_PC]:
             if state_checks.is_set(item.value[1], merc.CONT_CLOSED):
                 ch.send("It is closed.\n")

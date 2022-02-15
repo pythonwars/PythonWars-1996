@@ -31,37 +31,37 @@ import merc
 
 
 def obj_score(ch, item):
-    buf = ["You are {}.\n".format(item.short_descr)]
+    buf = [f"You are {item.short_descr}.\n"]
 
     extra = item.item_attribute_names + " " + item.item_restriction_names
-    buf += "Type {}, Extra flags {}.\n".format(item.item_type, extra)
-    buf += "You weigh {} pounds and are worth {} gold coins.\n".format(item.weight, item.cost)
+    buf += f"Type {item.item_type}, Extra flags {extra}.\n"
+    buf += f"You weigh {item.weight} pounds and are worth {item.cost} gold coins.\n"
 
     if item.questmaker and item.questowner:
-        buf += "You were created by {}, and are owned by {}.\n".format(item.questmaker, item.questowner)
+        buf += f"You were created by {item.questmaker}, and are owned by {item.questowner}.\n"
     elif item.questmaker:
-        buf += "You were created by {}.\n".format(item.questmaker)
+        buf += f"You were created by {item.questmaker}.\n"
     elif item.questowner:
-        buf += "You are owned by {}.\n".format(item.questowner)
+        buf += f"You are owned by {item.questowner}.\n"
 
     itype = item.item_type
     if itype in [merc.ITEM_PILL, merc.ITEM_SCROLL, merc.ITEM_POTION]:
-        buf += "Level {} spells of:".format(item.value[0])
+        buf += f"Level {item.value[0]} spells of:"
 
         for i in item.value:
             if 0 <= i < merc.MAX_SKILL:
-                buf += " '" + const.skill_table[i].name + "'"
+                buf += f" '{const.skill_table[i].name}'"
         buf += ".\n"
     elif itype == merc.ITEM_QUEST:
-        buf += "Your quest point value is {}.\n".format(item.value[0])
+        buf += f"Your quest point value is {item.value[0]}.\n"
     elif itype in [merc.ITEM_WAND, merc.ITEM_STAFF]:
-        buf += "You have {}({}) charges of level {}".format(item.value[1], item.value[2], item.value[0])
+        buf += f"You have {item.value[1]}({item.value[2]}) charges of level {item.value[0]}"
 
         if 0 <= item.value[3] <= merc.MAX_SKILL:
-            buf += " '" + const.skill_table[item.value[3]].name + "'"
+            buf += f" '{const.skill_table[item.value[3]].name}'"
         buf += ".\n"
     elif itype == merc.ITEM_WEAPON:
-        buf += "You inflict {} to {} damage in combat (average {}).\n".format(item.value[1], item.value[2], (item.value[1] + item.value[2]) // 2)
+        buf += f"You inflict {item.value[1]} to {item.value[2]} damage in combat (average {(item.value[1] + item.value[2]) // 2}).\n"
 
         if item.value[0] >= 1000:
             itemtype = item.value[0] - ((item.value[0] // 1000) * 1000)
@@ -72,7 +72,7 @@ def obj_score(ch, item):
             level_list = [(10, " minor"), (20, " lesser"), (30, "n average"), (40, " greater"), (50, " major"), (51, " supreme")]
             for (aa, bb) in level_list:
                 if item.level < aa:
-                    buf += "You are a{} spell weapon.\n".format(bb)
+                    buf += f"You are a{bb} spell weapon.\n"
                     break
             else:
                 buf += "You are an ultimate spell weapon.\n"
@@ -92,7 +92,7 @@ def obj_score(ch, item):
             elif itemtype == 53:
                 buf += "You are dripping with a dark poison.\n"
             else:
-                buf += "You have been imbued with the power of {}.\n".format(const.skill_table[itemtype].name)
+                buf += f"You have been imbued with the power of {const.skill_table[itemtype].name}.\n"
 
         itemtype = item.value[0] // 1000 if item.value[0] >= 1000 else 0
         if itemtype > 0:
@@ -149,7 +149,7 @@ def obj_score(ch, item):
             else:
                 buf += "You are bugged...please report it.\n"
     elif itype == merc.ITEM_ARMOR:
-        buf += "Your armor class is {}.\n".format(item.value[0])
+        buf += f"Your armor class is {item.value[0]}.\n"
 
         if item.value[3] > 0:
             if item.value[3] == 4:
@@ -207,7 +207,7 @@ def obj_score(ch, item):
 
     for aff in item.affected:
         if aff.location != merc.APPLY_NONE and aff.modifier != 0:
-            buf += "You affect {} by {}.\n".format(merc.affect_loc_name(aff.location), aff.modifier)
+            buf += f"You affect {merc.affect_loc_name(aff.location)} by {aff.modifier}.\n"
     ch.send("".join(buf))
 
 
@@ -224,22 +224,20 @@ def cmd_score(ch, argument):
         buf += ch.other_age(is_self=True)
 
     if ch.trust != ch.level:
-        buf += "You are trusted at level {}.\n".format(ch.trust)
+        buf += f"You are trusted at level {ch.trust}.\n"
 
-    buf += "You have {}/{} hit, {}/{} mana, {}/{} movement, {} primal energy.\n".format(ch.hit, ch.max_hit, ch.mana, ch.max_mana, ch.move,
-                                                                                        ch.max_move, ch.practice)
-    buf += "You are carrying {}/{} items with weight {}/{} kg.\n".format(ch.carry_number, ch.can_carry_n(), ch.carry_weight, ch.can_carry_w())
-    buf += "Str: {}  Int: {}  Wis: {}  Dex: {}  Con: {}.\n".format(ch.stat(merc.STAT_STR), ch.stat(merc.STAT_INT), ch.stat(merc.STAT_WIS),
-                                                                   ch.stat(merc.STAT_DEX), ch.stat(merc.STAT_CON))
-    buf += "You have scored {} exp, and have {} gold coins.\n".format(ch.exp, ch.gold)
+    buf += f"You have {ch.hit}/{ch.max_hit} hit, {ch.mana}/{ch.max_mana} mana, {ch.move}/{ch.max_move} movement, {ch.practice} primal energy.\n"
+    buf += f"You are carrying {ch.carry_number}/{ch.can_carry_n()} items with weight {ch.carry_weight}/{ch.can_carry_w()} kg.\n"
+    buf += f"Str: {ch.stat(merc.STAT_STR)}  Int: {ch.stat(merc.STAT_INT)}  Wis: {ch.stat(merc.STAT_WIS)}  Dex: {ch.stat(merc.STAT_DEX)}  Con: {ch.stat(merc.STAT_CON)}.\n"
+    buf += f"You have scored {ch.exp} exp, and have {ch.gold} gold coins.\n"
 
     if not ch.is_npc() and (ch.is_demon() or ch.special.is_set(merc.SPC_CHAMPION)):
-        buf += "You have {} out of {} points of demonic power stored.\n".format(ch.powers[merc.DEMON_CURRENT], ch.powers[merc.DEMON_TOTAL])
+        buf += f"You have {ch.powers[merc.DEMON_CURRENT]} out of {ch.powers[merc.DEMON_TOTAL]} points of demonic power stored.\n"
 
     buf += "Autoexit: {}.  Autoloot: {}.  Autosac: {}.\n".format("yes" if (not ch.is_npc() and ch.act.is_set(merc.PLR_AUTOEXIT)) else "no",
                                                                  "yes" if (not ch.is_npc() and ch.act.is_set(merc.PLR_AUTOLOOT)) else "no",
                                                                  "yes" if (not ch.is_npc() and ch.act.is_set(merc.PLR_AUTOSAC)) else "no")
-    buf += "Wimpy set to {} hit points.\n".format(ch.wimpy)
+    buf += f"Wimpy set to {ch.wimpy} hit points.\n"
 
     pos_list = [(merc.POS_DEAD, "DEAD!!"), (merc.POS_MORTAL, "mortally wounded."), (merc.POS_INCAP, "incapacitated."),
                 (merc.POS_STUNNED, "stunned."), (merc.POS_SLEEPING, "sleeping."), (merc.POS_RESTING, "resting."),
@@ -247,25 +245,25 @@ def cmd_score(ch, argument):
                 (merc.POS_FIGHTING, "fighting.")]
     for (aa, bb) in pos_list:
         if ch.position == aa:
-            buf += "You are {}\n".format(bb)
+            buf += f"You are {bb}\n"
             break
 
-    buf += "AC: {}.  You are ".format(ch.armor)
+    buf += f"AC: {ch.armor}.  You are "
     ac_list = [(101, "naked!\n"), (80, "barely clothed.\n"), (60, "wearing clothes.\n"), (40, "slightly armored.\n"),
                (20, "somewhat armored.\n"), (0, "armored.\n"), (-50, "well armored.\n"), (-100, "strongly armored.\n"),
                (-250, "heavily armored.\n"), (-500, "superbly armored.\n"), (-749, "divinely armored.\n")]
     for (aa, bb) in ac_list:
         if ch.armor >= aa:
-            buf += bb
+            buf += f"{bb}"
             break
     else:
         buf += "ultimately armored!\n"
 
-    buf += "Hitroll: {}.  Damroll: {}.  ".format(ch.hitroll, ch.damroll)
+    buf += f"Hitroll: {ch.hitroll}.  Damroll: {ch.damroll}.  "
 
     if not ch.is_npc() and ch.is_vampire():
-        buf += "Blood: %d.\n".format(ch.blood)
-        buf += "Beast: {}.  ".format(ch.beast)
+        buf += f"Blood: {ch.blood}.\n"
+        buf += f"Beast: {ch.beast}.  "
 
         beast_list = [(0, "You have attained Golconda!\n"), (5, "You have almost reached Golconda!\n"), (10, "You are nearing Golconda!\n"),
                       (15, "You have great control over your beast.\n"), (20, "Your beast has little influence over your actions.\n"),
@@ -274,25 +272,25 @@ def cmd_score(ch, argument):
                       (90, "The power of the beast overwhelms you.\n"), (99, "You have almost lost your battle with the beast!\n")]
         for (aa, bb) in beast_list:
             if ch.beast <= aa:
-                buf += bb
+                buf += f"{bb}"
                 break
         else:
             buf += "The beast has taken over!\n"
     else:
         buf += "\n"
 
-    buf += "Alignment: {}.  You are ".format(ch.alignment)
+    buf += f"Alignment: {ch.alignment}.  You are "
     align_list = [(900, "angelic.\n"), (700, "saintly.\n"), (350, "good.\n"), (100, "kind.\n"), (-100, "neutral.\n"), (-350, "mean.\n"),
                   (-700, "evil.\n"), (-900, "demonic.\n")]
     for (aa, bb) in align_list:
         if ch.alignment > aa:
-            buf += bb
+            buf += f"{bb}"
             break
     else:
         buf += "satanic.\n"
 
     if not ch.is_npc():
-        buf += "Status: {}.  You are ".format(ch.race)
+        buf += f"Status: {ch.race}.  You are "
 
         if ch.level == 1:
             buf += "a Mortal.\n"
@@ -328,62 +326,59 @@ def cmd_score(ch, argument):
         if ch.pkill == 0:
             ss1 = "no players"
         elif ch.pkill == 1:
-            ss1 = "{} player".format(ch.pkill)
+            ss1 = f"{ch.pkill} player"
         else:
-            ss1 = "{} players".format(ch.pkill)
+            ss1 = f"{ch.pkill} players"
         if ch.pdeath == 0:
             ss2 = "no players"
         elif ch.pdeath == 1:
-            ss2 = "{} player".format(ch.pdeath)
+            ss2 = f"{ch.pdeath} player"
         else:
-            ss2 = "{} players".format(ch.pdeath)
-        buf += "You have killed {} and have been killed by {}.\n".format(ss1, ss2)
+            ss2 = f"{ch.pdeath} players"
+        buf += f"You have killed {ss1} and have been killed by {ss2}.\n"
 
         if ch.mkill == 0:
             ss1 = "no mobs"
         elif ch.mkill == 1:
-            ss1 = "{} mob".format(ch.mkill)
+            ss1 = f"{ch.mkill} mob"
         else:
-            ss1 = "{} mobs".format(ch.mkill)
+            ss1 = f"{ch.mkill} mobs"
         if ch.mdeath == 0:
             ss2 = "no mobs"
         elif ch.mdeath == 1:
-            ss2 = "{} mob".format(ch.mdeath)
+            ss2 = f"{ch.mdeath} mob"
         else:
-            ss2 = "{} mobs".format(ch.mdeath)
-        buf += "You have killed {} and have been killed by {}.\n".format(ss1, ss2)
+            ss2 = f"{ch.mdeath} mobs"
+        buf += f"You have killed {ss1} and have been killed by {ss2}.\n"
 
         if ch.quest > 0:
             if ch.quest == 1:
                 buf += "You have a single quest point.\n"
             else:
-                buf += "You have {} quest points.\n".format(ch.quest)
+                buf += f"You have {ch.quest} quest points.\n"
 
     if ch.is_affected(merc.AFF_HIDE):
         buf += "You are keeping yourself hidden from those around you.\n"
 
     if not ch.is_npc():
         if ch.is_werewolf() and ch.powers[merc.WPOWER_SILVER] > 0:
-            buf += "You have attained {} points of silver tolerance.\n".format(ch.powers[merc.WPOWER_SILVER])
+            buf += f"You have attained {ch.powers[merc.WPOWER_SILVER]} points of silver tolerance.\n"
 
         if ch.is_vampire() and ch.powers[merc.UNI_RAGE] > 0:
-            buf += "The beast is in control of your actions:  Affects Hitroll and Damroll by +{}.\n".format(ch.powers[merc.UNI_RAGE])
+            buf += f"The beast is in control of your actions:  Affects Hitroll and Damroll by +{ch.powers[merc.UNI_RAGE]}.\n"
         elif ch.special.is_set(merc.SPC_WOLFMAN) and ch.powers[merc.UNI_RAGE] > 0:
-            buf += "You are raging:  Affects Hitroll and Damroll by +{}.\n".format(ch.powers[merc.UNI_RAGE])
+            buf += f"You are raging:  Affects Hitroll and Damroll by +{ch.powers[merc.UNI_RAGE]}.\n"
         elif ch.is_demon() and ch.powers[merc.DEMON_POWER] > 0:
-            buf += "You are wearing demonic armour:  Affects Hitroll and Damroll by +{}.\n".format(ch.powers[merc.DEMON_POWER] *
-                                                                                                   ch.powers[merc.DEMON_POWER])
+            buf += f"You are wearing demonic armour:  Affects Hitroll and Damroll by +{ch.powers[merc.DEMON_POWER] * ch.powers[merc.DEMON_POWER]}.\n"
         elif ch.special.is_set(merc.SPC_CHAMPION) and ch.powers[merc.DEMON_POWER] > 0:
-            buf += "You are wearing demonic armour:  Affects Hitroll and Damroll by +{}.\n".format(ch.powers[merc.DEMON_POWER] *
-                                                                                                   ch.powers[merc.DEMON_POWER])
+            buf += f"You are wearing demonic armour:  Affects Hitroll and Damroll by +{ch.powers[merc.DEMON_POWER] * ch.powers[merc.DEMON_POWER]}.\n"
 
     if ch.affected:
         buf += "You are affected by:\n"
 
         for paf in ch.affected:
-            buf += "Spell: '{}'".format(const.skill_table[paf.type].name)
-            buf += " modifies {} by {} for {} hours with bits {}.\n".format(merc.affect_loc_name(paf.location), paf.modifier, paf.duration,
-                                                                            merc.affect_bit_name(paf.bitvector))
+            buf += f"Spell: '{const.skill_table[paf.type].name}'"
+            buf += f" modifies {merc.affect_loc_name(paf.location)} by {paf.modifier} for {paf.duration} hours with bits {merc.affect_bit_name(paf.bitvector)}.\n"
     ch.send("".join(buf))
 
 

@@ -103,8 +103,8 @@ def cmd_throw(ch, argument):
 
     victim = ch.get_char_room(arg2)
     if victim:
-        handler_game.act("$p comes flying in from the {} and lands in $N's hands.".format(rev_dir), ch, item, victim, merc.TO_NOTVICT)
-        handler_game.act("$p comes flying in from the {} and lands in your hands.".format(rev_dir), ch, item, victim, merc.TO_VICT)
+        handler_game.act(f"$p comes flying in from the {rev_dir} and lands in $N's hands.", ch, item, victim, merc.TO_NOTVICT)
+        handler_game.act(f"$p comes flying in from the {rev_dir} and lands in your hands.", ch, item, victim, merc.TO_VICT)
         ch.get(item)
         victim.put(item)
         ch.in_room.get(ch)
@@ -115,7 +115,7 @@ def cmd_throw(ch, argument):
     pexit = ch.in_room.exit[door]
     to_room = instance.rooms[pexit.to_room] if pexit else None
     if not pexit or not to_room:
-        handler_game.act("$p comes flying in from the {} and strikes $T wall.".format(rev_dir), ch, item, arg1, merc.TO_ROOM)
+        handler_game.act(f"$p comes flying in from the {rev_dir} and strikes $T wall.", ch, item, arg1, merc.TO_ROOM)
         ch.get(item)
         ch.in_room.put(item)
         ch.in_room.get(ch)
@@ -124,21 +124,21 @@ def cmd_throw(ch, argument):
 
     pexit = ch.in_room.exit[door]
     if pexit.exit_info.is_set(merc.EX_CLOSED):
-        handler_game.act("$p comes flying in from the {} and strikes the $T door.".format(rev_dir), ch, item, arg1, merc.TO_ROOM)
+        handler_game.act(f"$p comes flying in from the {rev_dir} and strikes the $T door.", ch, item, arg1, merc.TO_ROOM)
         ch.get(item)
         ch.in_room.put(item)
         ch.in_room.get(ch)
         location.put(ch)
         return
 
-    handler_game.act("$p comes flying in from the {} and carries on $T.".format(rev_dir), ch, item, arg1, merc.TO_ROOM)
+    handler_game.act(f"$p comes flying in from the {rev_dir} and carries on $T.", ch, item, arg1, merc.TO_ROOM)
     ch.in_room.get(ch)
     to_room.put(ch)
 
     victim = ch.get_char_room(arg2)
     if victim:
-        handler_game.act("$p comes flying in from the {} and lands in $N's hands.".format(rev_dir), ch, item, victim, merc.TO_NOTVICT)
-        handler_game.act("$p comes flying in from the {} and lands in your hands.".format(rev_dir), ch, item, victim, merc.TO_VICT)
+        handler_game.act(f"$p comes flying in from the {rev_dir} and lands in $N's hands.", ch, item, victim, merc.TO_NOTVICT)
+        handler_game.act(f"$p comes flying in from the {rev_dir} and lands in your hands.", ch, item, victim, merc.TO_VICT)
         ch.get(item)
         victim.put(item)
         ch.in_room.get(ch)
@@ -149,7 +149,7 @@ def cmd_throw(ch, argument):
     pexit = ch.in_room.exit[door]
     to_room = instance.rooms[pexit.to_room] if pexit else None
     if not pexit or not to_room:
-        handler_game.act("$p comes flying in from the {} and strikes $T wall.".format(rev_dir), ch, item, arg1, merc.TO_ROOM)
+        handler_game.act(f"$p comes flying in from the {rev_dir} and strikes $T wall.", ch, item, arg1, merc.TO_ROOM)
         ch.get(item)
         ch.in_room.put(item)
         ch.in_room.get(ch)
@@ -158,28 +158,28 @@ def cmd_throw(ch, argument):
 
     pexit = ch.in_room.exit[door]
     if pexit.exit_info.is_set(merc.EX_CLOSED):
-        handler_game.act("$p comes flying in from the {} and strikes the $T door.".format(rev_dir), ch, item, arg1, merc.TO_ROOM)
+        handler_game.act(f"$p comes flying in from the {rev_dir} and strikes the $T door.", ch, item, arg1, merc.TO_ROOM)
         ch.get(item)
         ch.in_room.put(item)
         ch.in_room.get(ch)
         location.put(ch)
         return
 
-    handler_game.act("$p comes flying in from the {} and carries on $T.".format(rev_dir), ch, item, arg1, merc.TO_ROOM)
+    handler_game.act(f"$p comes flying in from the {rev_dir} and carries on $T.", ch, item, arg1, merc.TO_ROOM)
     ch.in_room.get(ch)
     to_room.put(ch)
 
     victim = ch.get_char_room(arg2)
     if victim:
-        handler_game.act("$p comes flying in from the {} and lands in $N's hands.".format(rev_dir), ch, item, victim, merc.TO_NOTVICT)
-        handler_game.act("$p comes flying in from the {} and lands in your hands.".format(rev_dir), ch, item, victim, merc.TO_VICT)
+        handler_game.act(f"$p comes flying in from the {rev_dir} and lands in $N's hands.", ch, item, victim, merc.TO_NOTVICT)
+        handler_game.act(f"$p comes flying in from the {rev_dir} and lands in your hands.", ch, item, victim, merc.TO_VICT)
         ch.get(item)
         victim.put(item)
         ch.in_room.get(ch)
         location.put(ch)
         return
 
-    handler_game.act("$p comes flying in from the {} and drops at your feet.".format(rev_dir), ch, item, None, merc.TO_ROOM)
+    handler_game.act(f"$p comes flying in from the {rev_dir} and drops at your feet.", ch, item, None, merc.TO_ROOM)
     ch.get(item)
     ch.in_room.put(item)
 

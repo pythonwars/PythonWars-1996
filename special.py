@@ -373,7 +373,7 @@ def spec_guard(ch):
     if victim:
         chance = game_utils.number_range(1, 5)
         if chance == 1:
-            ch.cmd_say("It is an honour to meet you, {}!".format(victim.name))
+            ch.cmd_say(f"It is an honour to meet you, {victim.name}!")
         elif chance == 2:
             handler_game.act("You bow deeply before $N.", ch, None, victim, merc.TO_CHAR)
             handler_game.act("$n bows deeply before you.", ch, None, victim, merc.TO_VICT)
@@ -382,12 +382,12 @@ def spec_guard(ch):
             handler_game.act("You shake $N's hand.", ch, None, victim, merc.TO_CHAR)
             handler_game.act("$n shakes your hand.", ch, None, victim, merc.TO_VICT)
             handler_game.act("$n shakes $N's hand.", ch, None, victim, merc.TO_NOTVICT)
-            ch.cmd_say("It's a pleasure to see you again, {}!".format(victim.name))
+            ch.cmd_say(f"It's a pleasure to see you again, {victim.name}!")
         elif chance == 4:
             handler_game.act("You pat $N on the back.", ch, None, victim, merc.TO_CHAR)
             handler_game.act("$n pats you on the back.", ch, None, victim, merc.TO_VICT)
             handler_game.act("$n pats $N on the back.", ch, None, victim, merc.TO_NOTVICT)
-            ch.cmd_say("Greetings {}!  If you need anything, just say!".format(victim.name))
+            ch.cmd_say(f"Greetings {victim.name}!  If you need anything, just say!")
         else:
             handler_game.act("You beam a smile at $N.", ch, None, victim, merc.TO_CHAR)
             handler_game.act("$n beams a smile at you.", ch, None, victim, merc.TO_VICT)
@@ -396,7 +396,7 @@ def spec_guard(ch):
 
     if ech:
         if not ech.is_npc() and ech.race >= 25:
-            ch.cmd_say("How DARE you attack {}? You shall DIE!".format(ech.name))
+            ch.cmd_say(f"How DARE you attack {ech.name}? You shall DIE!")
             ch.cmd_rescue(ech.name)
             return True
 
@@ -656,7 +656,7 @@ def spec_clan_guardian(ch):
             instance.rooms[room_id].put(victim)
             continue
 
-        ch.cmd_shout("{} Is In DarkLight Headquarters! Attack!".format(victim.name))
+        ch.cmd_shout(f"{victim.name} Is In DarkLight Headquarters! Attack!")
         fight.multi_hit(ch, victim, "backstab")
         return True
     return False
@@ -690,7 +690,7 @@ def spec_clan_torcalta(ch):
             instance.rooms[room_id].put(victim)
             continue
 
-        ch.cmd_shout("{} Is in the Torc Alta Headquarters! Attack!".format(victim.name))
+        ch.cmd_shout(f"{victim.name} Is in the Torc Alta Headquarters! Attack!")
         fight.multi_hit(ch, victim, "punch")
         return True
     return False
@@ -724,7 +724,7 @@ def spec_clan_spiritknights(ch):
             instance.rooms[room_id].put(victim)
             continue
 
-        ch.cmd_shout("{} Is in the Spirit Knights Headquarters! Attack!".format(victim.name))
+        ch.cmd_shout(f"{victim.name} Is in the Spirit Knights Headquarters! Attack!")
         fight.multi_hit(ch, victim, "punch")
         return True
     return False
@@ -882,9 +882,9 @@ def spec_zombie_lord(ch):
         if chance == 1:
             ch.cmd_say("Foolish mortal, you think you can kill what is already dead?")
         elif chance == 2:
-            ch.cmd_say("I shall feast on your soul for this, {}".format(victim.short_descr if victim.is_npc() else victim.name))
+            ch.cmd_say(f"I shall feast on your soul for this, {victim.short_descr if victim.is_npc() else victim.name}")
         elif chance == 3:
-            ch.cmd_shout("{} shall pay for his arrogance!".format(victim.short_descr if victim.is_npc() else victim.name))
+            ch.cmd_shout(f"{victim.short_descr if victim.is_npc() else victim.name} shall pay for his arrogance!")
         elif chance == 4:
             ch.cmd_say("This fight shall be your last!")
         return True
@@ -898,9 +898,9 @@ def spec_zombie_lord(ch):
 
             victim = object_creator.create_mobile(mob_index)
             ch.in_room.put(victim)
-            victim.name = "zombie {}".format(victim.name)
-            victim.long_descr = "The zombie of {} stands here.\n".format(victim.short_descr)
-            victim.short_descr = "the zombie of {}".format(victim.short_descr)
+            victim.name = f"zombie {victim.name}"
+            victim.long_descr = f"The zombie of {victim.short_descr} stands here.\n"
+            victim.short_descr = f"the zombie of {victim.short_descr}"
             handler_game.act("$n makes a few gestures over $p.", ch, item, None, merc.TO_ROOM)
             handler_game.act("$n clambers to $s feet.", victim, None, None, merc.TO_ROOM)
             victim.powertype = "zombie"

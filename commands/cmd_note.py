@@ -98,7 +98,7 @@ def cmd_note(ch, argument):
         vnum = 0
         for note in instance.note_list:
             if is_note_to(ch, note):
-                buf += "[{:>3}] {}: {}\n".format(vnum, note.sender, note.subject)
+                buf += f"[{vnum:>3}] {note.sender}: {note.subject}\n"
                 vnum += 1
         ch.send("".join(buf))
         return
@@ -117,7 +117,7 @@ def cmd_note(ch, argument):
         vnum = 0
         for note in instance.note_list:
             if is_note_to(ch, note) and (vnum == anum or fall):
-                buf = ["[{:>3}] {}: {}\n{}\nTo: {}\n\n".format(vnum, note.sender, note.subject, note.date, note.to_list)]
+                buf = [f"[{vnum:>3}] {note.sender}: {note.subject}\n{note.date}\nTo: {note.to_list}\n\n"]
                 buf += note.text + "\n"
                 ch.send("".join(buf))
                 return
@@ -162,8 +162,8 @@ def cmd_note(ch, argument):
             ch.send("You have no note in progress.\n")
             return
 
-        ch.send("{}: {}\n"
-                "To: {}\n".format(ch.pnote.sender, ch.pnote.subject, ch.pnote.to_list))
+        ch.send(f"{ch.pnote.sender}: {ch.pnote.subject}\n"
+                f"To: {ch.pnote.to_list}\n")
         ch.send(ch.pnote.text)
         return
 

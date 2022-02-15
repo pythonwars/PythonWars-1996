@@ -67,9 +67,9 @@ def cmd_quit(ch, argument):
     else:
         handler_game.act("$n has left the game.", ch, None, None, merc.TO_ROOM)
 
-    comm.notify("{} has quit.".format(ch.name), merc.CONSOLE_INFO)
+    comm.notify(f"{ch.name} has quit.", merc.CONSOLE_INFO)
     if ch.obj_vnum == 0:
-        comm.info("{} has left the God Wars.".format(ch.name))
+        comm.info(f"{ch.name} has left the God Wars.")
 
     if ch.chobj:
         ch.chobj.extract()

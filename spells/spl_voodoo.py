@@ -67,12 +67,12 @@ def spl_voodoo(sn, level, ch, victim, target):
             part1 = aa + " " + victim.name
             break
     else:
-        ch.send("{} isn't a part of {}!\n".format(item.name, victim.name))
+        ch.send(f"{item.name} isn't a part of {victim.name}!\n")
         return
 
     part2 = item.name
     if not game_utils.str_cmp(part1, part2):
-        ch.send("But you are holding {}, not {}!\n".format(item.short_descr, victim.name))
+        ch.send(f"But you are holding {item.short_descr}, not {victim.name}!\n")
         return
 
     handler_game.act("$p vanishes from your hand in a puff of smoke.", ch, item, None, merc.TO_CHAR)
@@ -81,9 +81,9 @@ def spl_voodoo(sn, level, ch, victim, target):
     item.extract()
 
     item = object_creator.create_item(instance.item_templates[merc.OBJ_VNUM_VOODOO_DOLL], 0)
-    item.name = "{} voodoo doll".format(victim.name)
-    item.short_descr = "a voodoo doll of {}".format(victim.name)
-    item.description = "A voodoo doll of {} lies here.".format(victim.name)
+    item.name = f"{victim.name} voodoo doll"
+    item.short_descr = f"a voodoo doll of {victim.name}"
+    item.description = f"A voodoo doll of {victim.name} lies here."
     ch.put(item)
     ch.equip(item, replace=False, verbose=False)
     handler_game.act("$p appears in your hand.", ch, item, None, merc.TO_CHAR)

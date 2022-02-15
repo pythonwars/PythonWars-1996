@@ -49,7 +49,7 @@ def cmd_mfind(ch, argument):
     for mob in list(instance.npc_templates.values()):
         if fall or game_utils.is_name(arg, mob.name):
             nmatch += 1
-            buf += "[{:5}] {}\n".format(mob.vnum, mob.short_descr)
+            buf += f"[{mob.vnum:5}] {mob.short_descr}\n"
 
     if nmatch == 0:
         buf += "Nothing like that in hell, earth, or heaven.\n"

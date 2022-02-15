@@ -254,7 +254,7 @@ def cmd_pset(ch, argument):
     if game_utils.str_cmp(arg2, "purple"):
         smax = 240 if victim.is_mage() else 200
         if value not in merc.irange(4, smax):
-            ch.send("Spell range is 4 to {}.\n".format(smax))
+            ch.send(f"Spell range is 4 to {smax}.\n")
             return
 
         if ch.is_judge():
@@ -267,7 +267,7 @@ def cmd_pset(ch, argument):
     if game_utils.str_cmp(arg2, "red"):
         smax = 240 if victim.is_mage() else 200
         if value not in merc.irange(4, smax):
-            ch.send("Spell range is 4 to {}.\n".format(smax))
+            ch.send(f"Spell range is 4 to {smax}.\n")
             return
 
         if ch.is_judge():
@@ -280,7 +280,7 @@ def cmd_pset(ch, argument):
     if game_utils.str_cmp(arg2, "blue"):
         smax = 240 if victim.is_mage() else 200
         if value not in merc.irange(4, smax):
-            ch.send("Spell range is 4 to {}.\n".format(smax))
+            ch.send(f"Spell range is 4 to {smax}.\n")
             return
 
         if ch.is_judge():
@@ -293,7 +293,7 @@ def cmd_pset(ch, argument):
     if game_utils.str_cmp(arg2, "blue"):
         smax = 240 if victim.is_mage() else 200
         if value not in merc.irange(4, smax):
-            ch.send("Spell range is 4 to {}.\n".format(smax))
+            ch.send(f"Spell range is 4 to {smax}.\n")
             return
 
         if ch.is_judge():
@@ -306,7 +306,7 @@ def cmd_pset(ch, argument):
     if game_utils.str_cmp(arg2, "yellow"):
         smax = 240 if victim.is_mage() else 200
         if value not in merc.irange(4, smax):
-            ch.send("Spell range is 4 to {}.\n".format(smax))
+            ch.send(f"Spell range is 4 to {smax}.\n")
             return
 
         if ch.is_judge():

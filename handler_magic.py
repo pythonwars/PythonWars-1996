@@ -43,8 +43,8 @@ def say_spell(ch, spell):
                 "y": "l", "z": "k"}
     spell_name = game_utils.mass_replace(spell.name, syl_dict)
 
-    buf1 = "$n utters the words, '{}'.".format(spell_name)
-    buf2 = "$n utters the words, '{}'.".format(spell.name)
+    buf1 = f"$n utters the words, '{spell_name}'."
+    buf2 = f"$n utters the words, '{spell.name}'."
     """
 
     color_list = [(merc.PURPLE_MAGIC, "#M", "purple"), (merc.RED_MAGIC, "#R", "red"), (merc.BLUE_MAGIC, "#B", "blue"),
@@ -100,7 +100,7 @@ def obj_cast_spell(sn, level, ch, victim, obj):
         return
 
     if sn not in const.skill_table or not const.skill_table[sn].spell_fun:
-        comm.notify("obj_cast_spell: bad sn {}".format(sn), merc.CONSOLE_ERROR)
+        comm.notify(f"obj_cast_spell: bad sn {sn}", merc.CONSOLE_ERROR)
         return
 
     sn = const.skill_table[sn]
@@ -132,7 +132,7 @@ def obj_cast_spell(sn, level, ch, victim, obj):
         vo = obj
         target = merc.TARGET_ITEM
     else:
-        comm.notify("obj_cast_spell: bad target for sn {}".format(sn.name), merc.CONSOLE_ERROR)
+        comm.notify(f"obj_cast_spell: bad target for sn {sn.name}", merc.CONSOLE_ERROR)
         return
 
     target_name = ""

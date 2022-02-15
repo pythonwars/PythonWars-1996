@@ -80,9 +80,9 @@ def spl_bake(sn, level, ch, victim, target):
     item.value[1] = sn
     item.value[2] = sn if item.value[0] >= 25 else -1
     item.value[3] = sn if item.value[0] >= 50 else -1
-    item.name = "{} pill {} {}".format(ch.name, col, sn.name)
-    item.short_descr = "{}'s {} pill of {}".format(ch.name, col, sn.name)
-    item.description = "A {} pill is lying here.".format(col)
+    item.name = f"{ch.name} pill {col} {sn.name}"
+    item.short_descr = f"{ch.name}'s {col} pill of {sn.name}"
+    item.description = f"A {col} pill is lying here."
     handler_game.act("You bake $p.", ch, item, None, merc.TO_CHAR)
     handler_game.act("$n bakes $p.", ch, item, None, merc.TO_ROOM)
 

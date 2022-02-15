@@ -80,8 +80,8 @@ def cmd_recharge(ch, argument):
 
     item = object_creator.create_item(instance.item_templates[merc.OBJ_VNUM_PROTOPLASM], 0)
     item.name = "quest token"
-    item.short_descr = "a {} point quest token".format(value)
-    item.description = "A {} point quest token lies on the floor.".format(value)
+    item.short_descr = f"a {value:,} point quest token"
+    item.description = f"A {value:,} point quest token lies on the floor."
     item.value[0] = value
     item.level = value
     item.cost = value * 1000
@@ -95,7 +95,7 @@ def cmd_recharge(ch, argument):
         ch.score[merc.SCORE_NUM_QUEST] += 1
         ch.score[merc.SCORE_QUEST] += value
 
-    comm.info("{} has completed a quest!".format(ch.name if not ch.is_npc() else ch.short_descr))
+    comm.info(f"{ch.name if not ch.is_npc() else ch.short_descr} has completed a quest!")
     ch.save(force=True)
 
 

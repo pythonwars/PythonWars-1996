@@ -38,7 +38,7 @@ def read_tables(listener=None, loc=DATA_FLAG_DIR, extn=DATA_EXTN):
         comm.notify("Clearing all tables.", merc.CONSOLE_INFO)
 
         for tok in tables:
-            comm.notify("    Clearing {}".format(tok.name), merc.CONSOLE_INFO)
+            comm.notify(f"    Clearing {tok.name}", merc.CONSOLE_INFO)
 
             if not tok.filter:
                 tok.table.clear()
@@ -52,10 +52,10 @@ def read_tables(listener=None, loc=DATA_FLAG_DIR, extn=DATA_EXTN):
         listener.send("Tables cleared. Rebuilding...\n")
 
     for tok in tables:
-        path = "{}{}".format(os.path.join(loc, tok.name), extn)
+        path = f"{os.path.join(loc, tok.name)}{extn}"
 
         if DEBUG:
-            comm.notify("        Loading {}({})".format(tok.name, path), merc.CONSOLE_INFO)
+            comm.notify(f"        Loading {tok.name}({path})", merc.CONSOLE_INFO)
 
         if os.path.isfile(path):
             jso = ""
@@ -65,10 +65,10 @@ def read_tables(listener=None, loc=DATA_FLAG_DIR, extn=DATA_EXTN):
 
             data = json.loads(jso)
         else:
-            comm.notify("    Failed to find file {}".format(path), merc.CONSOLE_ERROR)
+            comm.notify(f"    Failed to find file {path}", merc.CONSOLE_ERROR)
 
             if listener:
-                listener.send("Failed to load {}.\n".format(path))
+                listener.send(f"Failed to load {path}.\n")
 
             continue
 

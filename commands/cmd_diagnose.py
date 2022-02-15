@@ -81,9 +81,9 @@ def check_left_arm(ch, victim):
 
     finger = "finger{}".format("" if fingers == 1 else "s")
     if fingers > 0 and victim.arm_left.is_set(merc.LOST_THUMB):
-        handler_game.act("$N has lost {} {} and $S thumb from $S left hand.".format(fingers, finger), ch, None, victim, merc.TO_CHAR)
+        handler_game.act(f"$N has lost {fingers} {finger} and $S thumb from $S left hand.", ch, None, victim, merc.TO_CHAR)
     elif fingers > 0:
-        handler_game.act("$N has lost {} {} from $S left hand.".format(fingers, finger), ch, None, victim, merc.TO_CHAR)
+        handler_game.act(f"$N has lost {fingers} {finger} from $S left hand.", ch, None, victim, merc.TO_CHAR)
     elif victim.arm_left.is_set(merc.LOST_THUMB):
         handler_game.act("$N has lost the thumb from $S left hand.", ch, None, victim, merc.TO_CHAR)
 
@@ -96,9 +96,9 @@ def check_left_arm(ch, victim):
 
     finger = "finger{}".format("" if fingers == 1 else "s")
     if fingers > 0 and victim.arm_left.is_set(merc.BROKEN_THUMB) and not victim.arm_left.is_set(merc.LOST_THUMB):
-        handler_game.act("$N has broken {} {} and $S thumb on $S left hand.".format(fingers, finger), ch, None, victim, merc.TO_CHAR)
+        handler_game.act(f"$N has broken {fingers} {finger} and $S thumb on $S left hand.", ch, None, victim, merc.TO_CHAR)
     elif fingers > 0:
-        handler_game.act("$N has broken {} {} on $S left hand.".format(fingers, finger), ch, None, victim, merc.TO_CHAR)
+        handler_game.act(f"$N has broken {fingers} {finger} on $S left hand.", ch, None, victim, merc.TO_CHAR)
     elif victim.arm_left.is_set(merc.BROKEN_THUMB) and not victim.arm_left.is_set(merc.LOST_THUMB):
         handler_game.act("$N has broken the thumb on $S left hand.", ch, None, victim, merc.TO_CHAR)
 
@@ -137,9 +137,9 @@ def check_right_arm(ch, victim):
 
     finger = "finger{}".format("" if fingers == 1 else "s")
     if fingers > 0 and victim.arm_right.is_set(merc.LOST_THUMB):
-        handler_game.act("$N has lost {} {} and $S thumb from $S right hand.".format(fingers, finger), ch, None, victim, merc.TO_CHAR)
+        handler_game.act(f"$N has lost {fingers} {finger} and $S thumb from $S right hand.", ch, None, victim, merc.TO_CHAR)
     elif fingers > 0:
-        handler_game.act("$N has lost {} {} from $S right hand.".format(fingers, finger), ch, None, victim, merc.TO_CHAR)
+        handler_game.act(f"$N has lost {fingers} {finger} from $S right hand.", ch, None, victim, merc.TO_CHAR)
     elif victim.arm_right.is_set(merc.LOST_THUMB):
         handler_game.act("$N has lost the thumb from $S right hand.", ch, None, victim, merc.TO_CHAR)
 
@@ -152,9 +152,9 @@ def check_right_arm(ch, victim):
 
     finger = "finger{}".format("" if fingers == 1 else "s")
     if fingers > 0 and victim.arm_right.is_set(merc.BROKEN_THUMB) and not victim.arm_right.is_set(merc.LOST_THUMB):
-        handler_game.act("$N has broken {} {} and $S thumb on $S right hand.".format(fingers, finger), ch, None, victim, merc.TO_CHAR)
+        handler_game.act(f"$N has broken {fingers} {finger} and $S thumb on $S right hand.", ch, None, victim, merc.TO_CHAR)
     elif fingers > 0:
-        handler_game.act("$N has broken {} {} on $S right hand.".format(fingers, finger), ch, None, victim, merc.TO_CHAR)
+        handler_game.act(f"$N has broken {fingers} {finger} on $S right hand.", ch, None, victim, merc.TO_CHAR)
     elif victim.arm_right.is_set(merc.BROKEN_THUMB) and not victim.arm_right.is_set(merc.LOST_THUMB):
         handler_game.act("$N has broken the thumb on $S right hand.", ch, None, victim, merc.TO_CHAR)
 
@@ -209,9 +209,9 @@ def check_left_leg(ch, victim):
 
     toe = "toe{}".format("" if toes == 1 else "s")
     if toes > 0 and victim.leg_left.is_set(merc.LOST_TOE_BIG):
-        handler_game.act("$N has lost {} {} and $S big toe from $S left foot.".format(toes, toe), ch, None, victim, merc.TO_CHAR)
+        handler_game.act(f"$N has lost {toes} {toe} and $S big toe from $S left foot.", ch, None, victim, merc.TO_CHAR)
     elif toes > 0:
-        handler_game.act("$N has lost {} {} from $S left foot.".format(toes, toe), ch, None, victim, merc.TO_CHAR)
+        handler_game.act(f"$N has lost {toes} {toe} from $S left foot.", ch, None, victim, merc.TO_CHAR)
     elif victim.leg_left.is_set(merc.LOST_TOE_BIG):
         handler_game.act("$N has lost the big toe from $S left foot.", ch, None, victim, merc.TO_CHAR)
 
@@ -224,9 +224,9 @@ def check_left_leg(ch, victim):
 
     toe = "toe{}".format("" if toes == 1 else "s")
     if toes > 0 and victim.leg_left.is_set(merc.BROKEN_TOE_BIG) and not victim.leg_left.is_set(merc.LOST_TOE_BIG):
-        handler_game.act("$N has broken {} {} and $S big toe from $S left foot.".format(toes, toe), ch, None, victim, merc.TO_CHAR)
+        handler_game.act(f"$N has broken {toes} {toe} and $S big toe from $S left foot.", ch, None, victim, merc.TO_CHAR)
     elif toes > 0:
-        handler_game.act("$N has broken {} {} on $S left foot.".format(toes, toe), ch, None, victim, merc.TO_CHAR)
+        handler_game.act(f"$N has broken {toes} {toe} on $S left foot.", ch, None, victim, merc.TO_CHAR)
     elif victim.leg_left.is_set(merc.BROKEN_TOE_BIG) and not victim.leg_left.is_set(merc.LOST_TOE_BIG):
         handler_game.act("$N has broken the big toe on $S left foot.", ch, None, victim, merc.TO_CHAR)
 
@@ -263,9 +263,9 @@ def check_right_leg(ch, victim):
 
     toe = "toe{}".format("" if toes == 1 else "s")
     if toes > 0 and victim.leg_right.is_set(merc.LOST_TOE_BIG):
-        handler_game.act("$N has lost {} {} and $S big toe from $S right foot.".format(toes, toe), ch, None, victim, merc.TO_CHAR)
+        handler_game.act(f"$N has lost {toes} {toe} and $S big toe from $S right foot.", ch, None, victim, merc.TO_CHAR)
     elif toes > 0:
-        handler_game.act("$N has lost {} {} from $S right foot.".format(toes, toe), ch, None, victim, merc.TO_CHAR)
+        handler_game.act(f"$N has lost {toes} {toe} from $S right foot.", ch, None, victim, merc.TO_CHAR)
     elif victim.leg_right.is_set(merc.LOST_TOE_BIG):
         handler_game.act("$N has lost the big toe from $S right foot.", ch, None, victim, merc.TO_CHAR)
 
@@ -278,9 +278,9 @@ def check_right_leg(ch, victim):
 
     toe = "toe{}".format("" if toes == 1 else "s")
     if toes > 0 and victim.leg_right.is_set(merc.BROKEN_TOE_BIG) and not victim.leg_right.is_set(merc.LOST_TOE_BIG):
-        handler_game.act("$N has broken {} {} and $S big toe on $S right foot.".format(toes, toe), ch, None, victim, merc.TO_CHAR)
+        handler_game.act(f"$N has broken {toes} {toe} and $S big toe on $S right foot.", ch, None, victim, merc.TO_CHAR)
     elif toes > 0:
-        handler_game.act("$N has broken {} {} on $S right foot.".format(toes, toe), ch, None, victim, merc.TO_CHAR)
+        handler_game.act(f"$N has broken {toes} {toe} on $S right foot.", ch, None, victim, merc.TO_CHAR)
     elif victim.leg_right.is_set(merc.BROKEN_TOE_BIG) and not victim.leg_right.is_set(merc.LOST_TOE_BIG):
         handler_game.act("$N has broken the big toe on $S right foot.", ch, None, victim, merc.TO_CHAR)
 
@@ -356,7 +356,7 @@ def cmd_diagnose(ch, argument):
             teeth += bb
 
     if teeth > 0:
-        handler_game.act("$N has had {} teeth knocked out.".format(teeth), ch, None, victim, merc.TO_CHAR)
+        handler_game.act(f"$N has had {teeth} teeth knocked out.", ch, None, victim, merc.TO_CHAR)
 
     if victim.head.is_set(merc.LOST_TONGUE):
         handler_game.act("$N has had $S tongue ripped out.", ch, None, victim, merc.TO_CHAR)
@@ -373,7 +373,7 @@ def cmd_diagnose(ch, argument):
             ribs += bb
 
     if ribs > 0:
-        handler_game.act("$N has got {} broken ribs.".format(ribs), ch, None, victim, merc.TO_CHAR)
+        handler_game.act(f"$N has got {ribs} broken ribs.", ch, None, victim, merc.TO_CHAR)
 
     if victim.body.is_set(merc.BROKEN_SPINE):
         handler_game.act("$N has got a broken spine.", ch, None, victim, merc.TO_CHAR)

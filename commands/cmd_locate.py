@@ -48,7 +48,7 @@ def cmd_locate(ch, argument):
             in_item = in_item.in_item
 
         if in_item.in_living:
-            buf += "{} created by {} and carried by {}.\n".format(item.short_descr, item.questmaker, in_item.in_living.pers(ch))
+            buf += f"{item.short_descr} created by {item.questmaker} and carried by {in_item.in_living.pers(ch)}.\n"
         else:
             buf += "{} created by {} and in {}.\n".format(item.short_descr, item.questmaker, "somewhere" if not in_item.in_room else in_item.in_room.name)
 

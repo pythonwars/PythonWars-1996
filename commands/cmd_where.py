@@ -41,7 +41,7 @@ def cmd_where(ch, argument):
         for victim in list(instance.players.values()):
             if victim.in_room and victim.in_room.area == ch.in_room.area and not victim.chobj and ch.can_see(victim):
                 found = True
-                buf += "{:<28} {}\n".format(victim.name, victim.in_room.name)
+                buf += f"{victim.name:<28} {victim.in_room.name}\n"
 
         if not found:
             buf += "None\n"
@@ -52,7 +52,7 @@ def cmd_where(ch, argument):
             if victim.in_room and victim.in_room.area == ch.in_room.area and not victim.is_affected(merc.AFF_HIDE) and not victim.is_affected(merc.AFF_SNEAK) and \
                     ch.can_see(victim) and game_utils.is_name(arg, victim.name):
                 found = True
-                ch.send("{:<28} {}\n".format(victim.pers(ch), victim.in_room.area))
+                ch.send(f"{victim.pers(ch):<28} {victim.in_room.area}\n")
                 break
 
         if not found:

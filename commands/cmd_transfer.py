@@ -47,7 +47,7 @@ def cmd_transfer(ch, argument):
                 if wch.act.is_set(merc.PLR_GODLESS) and ch.trust < merc.NO_GODLESS and not ch.extra.is_set(merc.EXTRA_ANTI_GODLESS):
                     continue
 
-                ch.cmd_transfer("{} {}".format(wch.name, arg2))
+                ch.cmd_transfer(f"{wch.name} {arg2}")
         return
 
     # Thanks to Grodyn for the optional location parameter.

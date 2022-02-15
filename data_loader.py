@@ -53,7 +53,7 @@ def load_areas():
     area = fp.readline().strip()
     while area != "$":
         afp = open(os.path.join(settings.AREA_DIR, area), "r")
-        comm.notify("Loading: {}".format(area), merc.CONSOLE_BOOT)
+        comm.notify(f"Loading: {area}", merc.CONSOLE_BOOT)
         index += 1
         load_area(afp.read(), index)
         area = fp.readline().strip()
@@ -93,7 +93,7 @@ def load_area(area, index):
         elif w == "$":
             break
         else:
-            comm.notify("load_area: bad section name ({})".format(w), merc.CONSOLE_CRITICAL)
+            comm.notify(f"load_area: bad section name ({w})", merc.CONSOLE_CRITICAL)
             sys.exit(1)
 
         area, w = game_utils.read_word(area, False)
@@ -128,7 +128,7 @@ def load_npcs(area, parea):
     while w != "0":
         vnum = int(w)
         if vnum in instance.npc_templates:
-            comm.notify("load_npcs: vnum {} duplicated.".format(vnum), merc.CONSOLE_CRITICAL)
+            comm.notify(f"load_npcs: vnum {vnum} duplicated.", merc.CONSOLE_CRITICAL)
             sys.exit(1)
 
         npc = handler_npc.Npc()
@@ -183,7 +183,7 @@ def load_objects(area, parea):
     while w != "0":
         vnum = int(w)
         if vnum in instance.item_templates:
-            comm.notify("load_objects: vnum {} duplicated.".format(vnum), merc.CONSOLE_CRITICAL)
+            comm.notify(f"load_objects: vnum {vnum} duplicated.", merc.CONSOLE_CRITICAL)
             sys.exit(1)
 
         flag_data = collections.namedtuple("item_flags", ("slots", "restrictions", "attributes", "weapon"))
@@ -299,7 +299,7 @@ def load_rooms(area, parea):
     while w != "0":
         vnum = int(w)
         if vnum in instance.room_templates:
-            comm.notify("load_rooms: duplicate vnum {}".format(vnum), merc.CONSOLE_CRITICAL)
+            comm.notify(f"load_rooms: duplicate vnum {vnum}", merc.CONSOLE_CRITICAL)
             sys.exit(1)
 
         room = handler_room.Room(None)
@@ -322,7 +322,7 @@ def load_rooms(area, parea):
             elif w in ["D0", "D1", "D2", "D3", "D4", "D5"]:  # exit
                 door = int(w[1:])
                 if door not in range(merc.MAX_DIR):
-                    comm.notify("load_rooms: vnum {} has bad door number".format(vnum), merc.CONSOLE_CRITICAL)
+                    comm.notify(f"load_rooms: vnum {vnum} has bad door number", merc.CONSOLE_CRITICAL)
                     sys.exit(1)
 
                 nexit = world_classes.Exit(None)
@@ -349,7 +349,7 @@ def load_rooms(area, parea):
                 area, rt.mob = game_utils.read_int(area)
                 room.roomtext.append(rt)
             else:
-                comm.notify("load_rooms: bad flag DEST ({})".format(w), merc.CONSOLE_CRITICAL)
+                comm.notify(f"load_rooms: bad flag DEST ({w})", merc.CONSOLE_CRITICAL)
                 sys.exit(1)
             area, w = game_utils.read_word(area, False)
 
@@ -396,6 +396,6 @@ def load_specials(area):
             area, vnum = game_utils.read_int(area)
             area, instance.npc_templates[vnum].spec_fun = game_utils.read_word(area, False)
         else:
-            comm.notify("load_specials: letter not *MS ({})".format(letter), merc.CONSOLE_CRITICAL)
+            comm.notify(f"load_specials: letter not *MS ({letter})", merc.CONSOLE_CRITICAL)
             sys.exit(1)
     return area

@@ -101,7 +101,7 @@ def cmd_say(ch, argument):
 
     handler_game.act("You $t '$T'.", ch, speak1, argument, merc.TO_CHAR)
 
-    poly = "$n {} '$T'.".format(speak2)
+    poly = f"$n {speak2} '$T'."
     if ch.in_room.vnum != merc.ROOM_VNUM_IN_OBJECT:
         handler_game.act(poly, ch, None, argument, merc.TO_ROOM)
         handler_room.room_text(ch, argument.lower())
@@ -127,7 +127,7 @@ def cmd_say(ch, argument):
         else:
             name = ch.name
         name = name[0].upper() + name[1:]
-        to.send("{} {} '{}'.\n".format(name, speak2, argument))
+        to.send(f"{name} {speak2} '{argument}'.\n")
 
     handler_room.room_text(ch, argument.lower())
 

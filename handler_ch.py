@@ -40,7 +40,7 @@ def ch_desc(d):
 
 def move_char(ch, door):
     if door not in range(merc.MAX_DIR):
-        comm.notify("move_char: bad door {}".format(door), merc.CONSOLE_ERROR)
+        comm.notify(f"move_char: bad door {door}", merc.CONSOLE_ERROR)
         return
 
     in_room = ch.in_room
@@ -150,7 +150,7 @@ def move_char(ch, door):
     # Check for mount message - KaVir
     mount = ch.mount
     if mount and ch.mounted == merc.IS_RIDING:
-        mount2 = " on {}.".format(mount.short_descr if mount.is_npc() else mount.name)
+        mount2 = f" on {mount.short_descr if mount.is_npc() else mount.name}."
     else:
         mount2 = "."
 
@@ -208,22 +208,22 @@ def move_char(ch, door):
             mount = ch.mount
             if (mount and ch.mounted == merc.IS_RIDING and mount.is_affected(merc.AFF_FLYING)) or ch.is_affected(merc.AFF_FLYING) or \
                     (not ch.is_npc() and ch.vampaff.is_set(merc.VAM_FLYING)):
-                poly = "{} flies $T{}".format(ch.morph, mount2)
+                poly = f"{ch.morph} flies $T{mount2}"
             elif mount and ch.mounted == merc.IS_RIDING:
-                poly = "{} rides $T{}".format(ch.morph, mount2)
+                poly = f"{ch.morph} rides $T{mount2}"
             else:
-                poly = "{} {} $T{}".format(ch.morph, leave, mount2)
+                poly = f"{ch.morph} {leave} $T{mount2}"
             handler_game.act(poly, victim, None, merc.dir_name[door], merc.TO_CHAR)
         elif not ch.is_affected(merc.AFF_SNEAK) and (ch.is_npc() or not ch.act.is_set(merc.PLR_WIZINVIS) and ch.invis_level < merc.LEVEL_IMMORTAL) and \
                 victim.can_see(ch):
             mount = ch.mount
             if (mount and ch.mounted == merc.IS_RIDING and mount.is_affected(merc.AFF_FLYING)) or ch.is_affected(merc.AFF_FLYING) or \
                     (not ch.is_npc() and ch.vampaff.is_set(merc.VAM_FLYING)):
-                poly = "$n flies {}{}".format(merc.dir_name[door], mount2)
+                poly = f"$n flies {merc.dir_name[door]}{mount2}"
             elif mount and ch.mounted == merc.IS_RIDING:
-                poly = "$n rides {}{}".format(merc.dir_name[door], mount2)
+                poly = f"$n rides {merc.dir_name[door]}{mount2}"
             else:
-                poly = "$n {} {}{}".format(leave, merc.dir_name[door], mount2)
+                poly = f"$n {leave} {merc.dir_name[door]}{mount2}"
             handler_game.act(poly, ch, None, victim, merc.TO_VICT)
 
     ch.in_room.get(ch)
@@ -249,22 +249,22 @@ def move_char(ch, door):
             mount = ch.mount
             if (mount and ch.mounted == merc.IS_RIDING and mount.is_affected(merc.AFF_FLYING)) or ch.is_affected(merc.AFF_FLYING) or \
                     (not ch.is_npc() and ch.vampaff.is_set(merc.VAM_FLYING)):
-                poly = "{} flies in from {}{}".format(ch.morph, buf, mount2)
+                poly = f"{ch.morph} flies in from {buf}{mount2}"
             elif mount and ch.mounted == merc.IS_RIDING:
-                poly = "{} rides in from {}{}".format(ch.morph, buf, mount2)
+                poly = f"{ch.morph} rides in from {buf}{mount2}"
             else:
-                poly = "{} {} in from {}{}".format(ch.morph, leave, buf, mount2)
+                poly = f"{ch.morph} {leave} in from {buf}{mount2}"
             handler_game.act(poly, ch, None, victim, merc.TO_VICT)
         elif not ch.is_affected(merc.AFF_SNEAK) and (ch.is_npc() or not ch.act.is_set(merc.PLR_WIZINVIS) and ch.invis_level < merc.LEVEL_IMMORTAL) and \
                 victim.can_see(ch):
             mount = ch.mount
             if (mount and ch.mounted == merc.IS_RIDING and mount.is_affected(merc.AFF_FLYING)) or ch.is_affected(merc.AFF_FLYING) or \
                     (not ch.is_npc() and ch.vampaff.is_set(merc.VAM_FLYING)):
-                poly = "$n flies in from {}{}".format(buf, mount2)
+                poly = f"$n flies in from {buf}{mount2}"
             elif mount and ch.mounted == merc.IS_RIDING:
-                poly = "$n rides in from {}{}".format(buf, mount2)
+                poly = f"$n rides in from {buf}{mount2}"
             else:
-                poly = "$n {} in from {}{}".format(leave, buf, mount2)
+                poly = f"$n {leave} in from {buf}{mount2}"
             handler_game.act(poly, ch, None, victim, merc.TO_VICT)
 
     ch.cmd_look("auto")
@@ -360,10 +360,10 @@ def show_list_to_char(clist, ch, fshort, fshownothing):
     # Output the formatted list.
     for desc, count in item_dict.items():
         if (ch.is_npc() or ch.act.is_set(merc.PLR_COMBINE)) and count > 1:
-            ch.send("({:2}) {}\n".format(count, desc))
+            ch.send(f"({count:2}) {desc}\n")
         else:
             for i in range(count):
-                ch.send("     {}\n".format(desc))
+                ch.send(f"     {desc}\n")
 
 
 def show_char_to_char_0(victim, ch):
@@ -432,30 +432,30 @@ def show_char_to_char_0(victim, ch):
 
     if not ch.is_npc() and ch.vampaff.is_set(merc.VAM_AUSPEX) and not victim.is_npc() and victim.is_vampire() and \
             victim.vampaff.is_set(merc.VAM_DISGUISED):
-        buf += "({}) ".format(victim.name)
+        buf += f"({victim.name}) "
 
     buf2 = ""
     vname = victim.short_descr if victim.is_npc() else victim.morph if victim.is_affected(merc.AFF_POLYMORPH) else victim.short_descr
 
     if victim.is_affected(merc.AFF_FLAMING):
-        buf2 += "\n...{} is engulfed in blazing flames!".format(vname)
+        buf2 += f"\n...{vname} is engulfed in blazing flames!"
 
     if not victim.is_npc() and victim.head.is_set(merc.LOST_HEAD) and victim.is_affected(merc.AFF_POLYMORPH):
         if victim.extra.is_set(merc.EXTRA_GAGGED) and victim.extra.is_set(merc.EXTRA_BLINDFOLDED):
-            buf2 += "\n...{} is gagged and blindfolded!".format(victim.morph)
+            buf2 += f"\n...{victim.morph} is gagged and blindfolded!"
         elif victim.extra.is_set(merc.EXTRA_GAGGED):
-            buf2 += "\n...{} is gagged!".format(victim.morph)
+            buf2 += f"\n...{victim.morph} is gagged!"
         elif victim.extra.is_set(merc.EXTRA_BLINDFOLDED):
-            buf2 += "\n...{} is blindfolded!".format(victim.morph)
+            buf2 += f"\n...{victim.morph} is blindfolded!"
 
     if victim.head.is_set(merc.LOST_HEAD) and victim.is_affected(merc.AFF_POLYMORPH):
-        buf += "{} is lying here.".format(victim.morph[0].upper() + victim.morph[1:])
+        buf += f"{victim.morph[0].upper() + victim.morph[1:]} is lying here."
         buf += buf2 + "\n"
         ch.send("".join(buf))
         return
 
     if victim.extra.is_set(merc.EXTRA_TIED_UP):
-        buf2 += "\n...{} is tied up".format(vname)
+        buf2 += f"\n...{vname} is tied up"
 
         if victim.extra.is_set(merc.EXTRA_GAGGED) and victim.extra.is_set(merc.EXTRA_BLINDFOLDED):
             buf2 += ", gagged and blindfolded!"
@@ -467,7 +467,7 @@ def show_char_to_char_0(victim, ch):
             buf2 += "!"
 
     if victim.is_affected(merc.AFF_WEBBED):
-        buf2 += "\n...{} is coated in a sticky web.".format(vname)
+        buf2 += f"\n...{vname} is coated in a sticky web."
 
     if not victim.is_npc() and victim.is_affected(merc.AFF_POLYMORPH):
         buf += victim.morph
@@ -495,7 +495,7 @@ def show_char_to_char_0(victim, ch):
 
     mount = victim.mounted
     if mount and victim.mounted == merc.IS_RIDING:
-        buf += " is here riding {}".format(mount.short_descr if mount.is_npc() else mount.name)
+        buf += f" is here riding {mount.short_descr if mount.is_npc() else mount.name}"
 
         if victim.position == merc.POS_FIGHTING:
             buf += ", fighting "
@@ -538,7 +538,7 @@ def show_char_to_char_0(victim, ch):
                                (merc.STANCE_SWALLOW, "swallow")]
                 for (aa, bb) in stance_list:
                     if victim.stance[0] == aa:
-                        buf += " is here, crouched in a {} fighting stance.".format(bb)
+                        buf += f" is here, crouched in a {bb} fighting stance."
                         break
                 else:
                     buf += " is here, crouched in a fighting stance."

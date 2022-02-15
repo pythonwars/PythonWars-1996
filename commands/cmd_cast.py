@@ -154,7 +154,7 @@ def cmd_cast(ch, argument):
         vo = obj
         target = merc.TARGET_ITEM
     else:
-        comm.notify("cmd_cast: bad target for sn {}".format(sn), merc.CONSOLE_ERROR)
+        comm.notify(f"cmd_cast: bad target for sn {sn}", merc.CONSOLE_ERROR)
         return
 
     if not ch.is_npc() and ch.mana < mana:

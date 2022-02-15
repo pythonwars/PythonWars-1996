@@ -75,7 +75,7 @@ def cmd_serpent(ch, argument):
     handler_game.act("$n transforms into a huge serpent.", ch, None, None, merc.TO_ROOM)
     ch.polyaff.set_bit(merc.POLY_SERPENT)
     ch.affected_by.set_bit(merc.AFF_POLYMORPH)
-    ch.morph = "{} the huge serpent".format(ch.name)
+    ch.morph = f"{ch.name} the huge serpent"
 
 
 interp.register_command(

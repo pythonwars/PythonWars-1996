@@ -48,13 +48,13 @@ def cmd_godless(ch, argument):
     if ch.act.is_set(merc.PLR_GODLESS) and game_utils.str_cmp(arg, "off"):
         ch.act.rem_bit(merc.PLR_GODLESS)
         ch.send("You now obey the gods.\n")
-        comm.info("{} now follows the whims of the gods.".format(ch.name))
+        comm.info(f"{ch.name} now follows the whims of the gods.")
     elif not ch.act.is_set(merc.PLR_GODLESS) and game_utils.str_cmp(arg, "off"):
         ch.send("But you already obey the gods!\n")
     elif not ch.act.is_set(merc.PLR_GODLESS) and game_utils.str_cmp(arg, "on"):
         ch.act.set_bit(merc.PLR_GODLESS)
         ch.send("You no longer obey the gods.\n")
-        comm.info("{} has rejected the gods.".format(ch.name))
+        comm.info(f"{ch.name} has rejected the gods.")
     elif ch.act.is_set(merc.PLR_GODLESS) and game_utils.str_cmp(arg, "on"):
         ch.send("But you have already rejected the gods!\n")
     else:

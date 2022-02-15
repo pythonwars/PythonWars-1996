@@ -73,9 +73,9 @@ def cmd_split(ch, argument):
 
     ch.gold -= amount
     ch.gold += share + extra
-    ch.send("You split {:,} gold coins.  Your share is {:,} gold coins.\n".format(amount, share + extra))
+    ch.send(f"You split {amount:,} gold coins.  Your share is {share + extra:,} gold coins.\n")
 
-    buf = "$n splits {:,} gold coins.  Your share is {:,} gold coins.".format(amount, share)
+    buf = f"$n splits {amount:,} gold coins.  Your share is {share:,} gold coins."
     for gch_id in ch.in_room.people[:]:
         gch = instance.characters[gch_id]
 

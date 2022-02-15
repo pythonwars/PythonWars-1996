@@ -47,10 +47,10 @@ def spl_soulblade(sn, level, ch, victim, target):
         wpnname = "blade"
 
     # First we name the weapon
-    item.name = "{} soul {}".format(ch.name, wpnname)
+    item.name = f"{ch.name} soul {wpnname}"
     short_descr = ch.short_descr if ch.is_npc() else ch.name
-    item.short_descr = "{}'s soul {}".format(short_descr[0].upper() + short_descr[1:], wpnname)
-    item.long_descr = "{}'s soul {} is lying here.".format(short_descr[0].upper() + short_descr[1:], wpnname)
+    item.short_descr = f"{short_descr[0].upper() + short_descr[1:]}'s soul {wpnname}"
+    item.long_descr = f"{short_descr[0].upper() + short_descr[1:]}'s soul {wpnname} is lying here."
 
     item.level = ch.level if ch.is_npc() else (ch.spl[2] // 4) if (ch.spl[2] > 4) else 1
     item.level = min(item.level, 60)

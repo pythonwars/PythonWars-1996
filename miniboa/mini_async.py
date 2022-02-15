@@ -55,14 +55,14 @@ MAX_CONNECTIONS = 500 if sys.platform == 'win32' else 1000
 # Default connection handler
 def _on_connect(client):
     # Placeholder new connection handler.
-    comm.notify("New connect: {} (D:{} - P:{})".format(client.hostname, client.fileno, client.port), merc.CONSOLE_INFO)
-    comm.notify("             {}".format(client.address), merc.CONSOLE_INFO)
+    comm.notify(f"New connect: {client.hostname} (D:{client.fileno} - P:{client.port})", merc.CONSOLE_INFO)
+    comm.notify(f"             {client.address}", merc.CONSOLE_INFO)
 
 
 # Default disconnection handler
 def _on_disconnect(client):
     # Placeholder lost connection handler.
-    comm.notify("-- Lost connection to {}".format(client.addrport()), merc.CONSOLE_INFO)
+    comm.notify(f"-- Lost connection to {client.addrport()}", merc.CONSOLE_INFO)
 
 
 class TelnetServer(object):
@@ -105,7 +105,7 @@ class TelnetServer(object):
             server_socket.bind((address, port))
             server_socket.listen(5)
         except socket.error as err:
-            comm.notify("Unable to create the server socket: {}".format(str(err)), merc.CONSOLE_ERROR)
+            comm.notify(f"Unable to create the server socket: {str(err)}", merc.CONSOLE_ERROR)
             raise
 
         self.server_socket = server_socket
@@ -166,7 +166,7 @@ class TelnetServer(object):
                                                 self.timeout)
         except select.error as err:
             # If we can't even use select(), game over man, game over
-            comm.notify("SELECT socket error '{}'".format(str(err)), merc.CONSOLE_ERROR)
+            comm.notify(f"SELECT socket error '{str(err)}'", merc.CONSOLE_ERROR)
             raise
 
         # Process socket file descriptors with data to receive
@@ -177,7 +177,7 @@ class TelnetServer(object):
                 try:
                     sock, addr_tup = self.server_socket.accept()
                 except socket.error as err:
-                    comm.notify("ACCEPT socket error '{}:{}'.".format(err.errno, err.strerror), merc.CONSOLE_ERROR)
+                    comm.notify(f"ACCEPT socket error '{err.errno}:{err.strerror}'.", merc.CONSOLE_ERROR)
                     continue
 
                 # Check for maximum connections

@@ -45,10 +45,10 @@ def cmd_ostat(ch, argument):
     nm1 = item.questmaker if item.questmaker else "None"
     nm2 = item.questowner if item.questowner else "None"
 
-    buf = ["Name: {}.\n".format(item.name)]
-    buf += "Vnum: {}.  Type: {}.\n".format(item.vnum, item.item_type)
-    buf += "Short description: {}.\nLong description: {}\n".format(item.short_descr, item.description)
-    buf += "Object creator: {}.  Object owner: {}.  Quest points: {}.\n".format(nm1, nm2, item.points)
+    buf = [f"Name: {item.name}.\n"]
+    buf += f"Vnum: {item.vnum}.  Type: {item.item_type}.\n"
+    buf += f"Short description: {item.short_descr}.\nLong description: {item.description}\n"
+    buf += f"Object creator: {nm1}.  Object owner: {nm2}.  Quest points: {item.points}.\n"
 
     if not item.quest.empty():
         buf += "Quest selections:"
@@ -58,16 +58,16 @@ def cmd_ostat(ch, argument):
                       (merc.QUEST_DAMROLL, "Dam"), (merc.QUEST_AC, "Ac")]
         for (aa, bb) in quest_list:
             if item.quest.is_set(aa):
-                buf += " " + bb
+                buf += f" {bb}"
         buf += ".\n"
 
-    buf += "Wear bits: {}.  Extra bits: {}.\n".format(item.equips_to_names, item.item_attribute_names)
-    buf += "Weight: {}/{}.\n".format(item.weight, item.get_weight())
-    buf += "Cost: {}.  Timer: {}.  Level: {}.\n".format(item.cost, item.timer, item.level)
+    buf += f"Wear bits: {item.equips_to_names}.  Extra bits: {item.item_attribute_names}.\n"
+    buf += f"Weight: {item.weight}/{item.get_weight()}.\n"
+    buf += f"Cost: {item.cost}.  Timer: {item.timer}.  Level: {item.level}.\n"
     buf += "In room: {}.  In object: {}.  Carried by: {}.\n".format(0 if not item.in_room else item.in_room.vnum,
                                                                     "(none)" if not item.in_item else item.in_item.short_descr,
                                                                     "(none)" if not item.in_living else item.in_living.name)
-    buf += "Values: {}.\n".format([v for v in item.value])
+    buf += f"Values: {[v for v in item.value]}.\n"
 
     if item.extra_descr:
         buf += "Extra description keywords: '"
@@ -75,12 +75,12 @@ def cmd_ostat(ch, argument):
         extra_descr = list(item.extra_descr)
         extra_descr.extend(item.extra_descr)
         for edd in extra_descr:
-            buf += edd.keyword + " "
+            buf += f"{edd.keyword} "
         buf += "'\n"
 
     affected = list(item.affected)
     for paf in affected:
-        buf += "Affects {} by {}.\n".format(merc.affect_loc_name(paf.location), paf.modifier)
+        buf += f"Affects {merc.affect_loc_name(paf.location)} by {paf.modifier}.\n"
     ch.send("".join(buf))
 
 

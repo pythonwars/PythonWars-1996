@@ -285,7 +285,7 @@ class Room(instance.Instancer, environment.Environment, inventory.Inventory, typ
         os.makedirs(pathname, 0o755, True)
         filename = os.path.join(pathname, "%d-room%s" % (number, settings.DATA_EXTN))
 
-        comm.notify("Saving {}".format(filename), merc.CONSOLE_INFO)
+        comm.notify(f"Saving {filename}", merc.CONSOLE_INFO)
         js = json.dumps(self, default=instance.to_json, indent=2, sort_keys=True)
         md5 = hashlib.md5(js.encode("utf-8")).hexdigest()
         if self._md5 != md5:
@@ -297,7 +297,7 @@ class Room(instance.Instancer, environment.Environment, inventory.Inventory, typ
         if self.inventory:
             for item_id in self.items[:]:
                 if item_id not in instance.items:
-                    comm.notify("Item {} is in Room {}'s inventory, but does not exist?".format(item_id, self.instance_id), merc.CONSOLE_ERROR)
+                    comm.notify(f"Item {item_id} is in Room {self.instance_id}'s inventory, but does not exist?", merc.CONSOLE_ERROR)
                     continue
 
                 item = instance.items[item_id]
@@ -307,7 +307,7 @@ class Room(instance.Instancer, environment.Environment, inventory.Inventory, typ
     def load(cls, vnum: int = None, instance_id: int = None):
         if instance_id:
             if instance_id in instance.rooms:
-                comm.notify("Instance {} of room already loaded!".format(instance_id), merc.CONSOLE_ERROR)
+                comm.notify(f"Instance {instance_id} of room already loaded!", merc.CONSOLE_ERROR)
                 return
 
             pathname = settings.INSTANCE_DIR
@@ -338,7 +338,7 @@ class Room(instance.Instancer, environment.Environment, inventory.Inventory, typ
             # Inventory is already loaded by Room's __init__ function.
             return obj
         else:
-            comm.notify("Could not load room data for {}".format(number), merc.CONSOLE_ERROR)
+            comm.notify(f"Could not load room data for {number}", merc.CONSOLE_ERROR)
             return None
 
 

@@ -40,7 +40,7 @@ def cmd_reload(ch, argument):
         buf = ["Files to be reloaded:\n"]
         for fp, pair in hotfix.modified_files.copy().items():
             found = True
-            buf += "  {}\n".format(fp)
+            buf += f"  {fp}\n"
 
         if not found:
             buf += "  (none)\n"
@@ -49,7 +49,7 @@ def cmd_reload(ch, argument):
         buf += "\nFiles that can't be reloaded:\n"
         for fp, pair in hotfix.modunrel_files.copy().items():
             found = True
-            buf += "  {}\n".format(fp)
+            buf += f"  {fp}\n"
 
         if not found:
             buf += "  (none)\n"
@@ -58,7 +58,7 @@ def cmd_reload(ch, argument):
         buf += "\nDeleted files:\n"
         for fp, pair in hotfix.deleted_files.copy().items():
             found = True
-            buf += "  {}\n".format(fp)
+            buf += f"  {fp}\n"
 
         if not found:
             buf += "  (none)\n"

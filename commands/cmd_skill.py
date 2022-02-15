@@ -85,22 +85,22 @@ def cmd_skill(ch, argument):
 
     if ch == victim:
         if dtype1 == 0 and dtype2 == 0:
-            buf1 = "You are {} at unarmed combat.\n".format(bufskill1)
+            buf1 = f"You are {bufskill1} at unarmed combat.\n"
         else:
             if dtype1 != 0:
-                buf1 = "You are {} with {}.\n".format(bufskill1, wield1.short_descr)
+                buf1 = f"You are {bufskill1} with {wield1.short_descr}.\n"
 
             if dtype2 != 0:
-                buf2 = "You are {} with {}.\n".format(bufskill2, wield2.short_descr)
+                buf2 = f"You are {bufskill2} with {wield2.short_descr}.\n"
     else:
         if dtype1 == 0 and dtype2 == 0:
-            buf1 = "{} is {} at unarmed combat.\n".format(victim.name, bufskill1)
+            buf1 = f"{victim.name} is {bufskill1} at unarmed combat.\n"
         else:
             if dtype1 != 0:
-                buf1 = "{} is {} with {}.\n".format(victim.name, bufskill1, wield1.short_descr)
+                buf1 = f"{victim.name} is {bufskill1} with {wield1.short_descr}.\n"
 
             if dtype2 != 0:
-                buf2 = "{} is {} with {}.\n".format(victim.name, bufskill2, wield2.short_descr)
+                buf2 = f"{victim.name} is {bufskill2} with {wield2.short_descr}.\n"
 
     if buf1:
         ch.send(buf1)

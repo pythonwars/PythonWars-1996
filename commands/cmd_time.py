@@ -58,8 +58,8 @@ def cmd_time(ch, argument):
         12 if (handler_game.time_info.hour % 12 == 0) else handler_game.time_info.hour % 12,
         "pm" if handler_game.time_info.hour >= 12 else "am",
         day_name[day % 7], day, suf, month_name[handler_game.time_info.month]))
-    ch.send("God Wars started up at {}\n".format(sys_utils.systimestamp(merc.boot_time)))
-    ch.send("The system time is {}\n".format(sys_utils.systimestamp(merc.current_time)))
+    ch.send(f"God Wars started up at {sys_utils.systimestamp(merc.boot_time)}\n")
+    ch.send(f"The system time is {sys_utils.systimestamp(merc.current_time)}\n")
 
 
 interp.register_command(

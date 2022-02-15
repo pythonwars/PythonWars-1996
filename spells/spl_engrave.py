@@ -80,9 +80,9 @@ def spl_engrave(sn, level, ch, victim, target):
     item.value[1] = (item.value[0] // 10) + 1
     item.value[2] = (item.value[0] // 10) + 1
     item.value[3] = sn
-    item.name = "{} staff {} {}".format(ch.name, col, sn.name)
-    item.short_descr = "{}'s {} staff of {}".format(ch.name, col, sn.name)
-    item.description = "A {} staff is lying here.".format(col)
+    item.name = f"{ch.name} staff {col} {sn.name}"
+    item.short_descr = f"{ch.name}'s {col} staff of {sn.name}"
+    item.description = f"A {col} staff is lying here."
     item.flags.take = True
     item.hold = True
     handler_game.act("You engrave $p.", ch, item, None, merc.TO_CHAR)

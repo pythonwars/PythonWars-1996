@@ -136,20 +136,20 @@ def cmd_who(ch, argument):
 
         if game_utils.str_cmp(wch.ch_class.name, "demon"):
             if wch.special.is_set(merc.SPC_DEMON_LORD):
-                kav = ". {}Demon Lord{}".format(openb, closeb)
+                kav = f". {openb}Demon Lord{closeb}"
             else:
                 if wch.special.is_set(merc.SPC_PRINCE):
                     kav = ". {}Demon Prince{}{}".format(openb, "ss" if wch.sex == merc.SEX_FEMALE else "",
                                                         closeb)
                 elif wch.special.is_set(merc.SPC_SIRE):
-                    kav = ". {}Demon{}".format(openb, closeb)
+                    kav = f". {openb}Demon{closeb}"
                 else:
-                    kav = ". {}Champion of {}{}".format(openb, wch.lord, closeb)
+                    kav = f". {openb}Champion of {wch.lord}{closeb}"
         elif game_utils.str_cmp(wch.ch_class.name, "vampire"):
             if wch.powers[merc.UNI_GEN] == 1:
-                kav = ". {}Master Vampire{}".format(openb, closeb)
+                kav = f". {openb}Master Vampire{closeb}"
             elif wch.powers[merc.UNI_GEN] == 2:
-                kav = ". {}Founder of {}{}".format(openb, wch.clan, closeb)
+                kav = f". {openb}Founder of {wch.clan}{closeb}"
             elif wch.special.is_set(merc.SPC_PRINCE):
                 kav = ". {}{} Prince{}{}".format(openb, wch.clan,
                                                  "ss" if wch.sex == merc.SEX_FEMALE else "", closeb)
@@ -164,28 +164,28 @@ def cmd_who(ch, argument):
                     clanname = wch.clan
 
                 if wch.powers[merc.UNI_GEN] == 2:
-                    kav = ". {}{} Antediluvian{}".format(openb, clanname, closeb)
+                    kav = f". {openb}{clanname} Antediluvian{closeb}"
                 else:
                     rank_list = [(merc.AGE_NEONATE, "Neonate"), (merc.AGE_ANCILLA, "Ancilla"), (merc.AGE_ELDER, "Elder"),
                                  (merc.AGE_METHUSELAH, "Methuselah")]
                     for (aa, bb) in rank_list:
                         if wch.rank == aa:
-                            kav = ". {}{} {}{}".format(openb, clanname, bb, closeb)
+                            kav = f". {openb}{clanname} {bb}{closeb}"
                             break
                     else:
-                        kav = ". {}{} Childe{}".format(openb, clanname, closeb)
+                        kav = f". {openb}{clanname} Childe{closeb}"
         elif game_utils.str_cmp(wch.name, "werewolf"):
             if wch.powers[merc.UNI_GEN] == 1:
-                kav = ". {}Master Werewolf{}".format(openb, closeb)
+                kav = f". {openb}Master Werewolf{closeb}"
             elif wch.clan:
                 if wch.powers[merc.UNI_GEN] == 2:
-                    kav = ". {}{} Chief{}".format(openb, wch.clan, closeb)
+                    kav = f". {openb}{wch.clan} Chief{closeb}"
                 elif wch.special.is_set(merc.SPC_PRINCE):
-                    kav = ". {}{} Shaman{}".format(openb, wch.clan, closeb)
+                    kav = f". {openb}{wch.clan} Shaman{closeb}"
                 else:
-                    kav = ". {}{}{}".format(openb, wch.clan, closeb)
+                    kav = f". {openb}{wch.clan}{closeb}"
             else:
-                kav = ". {}Ronin{}".format(openb, closeb)
+                kav = f". {openb}Ronin{closeb}"
         elif game_utils.str_cmp(wch.ch_class.name, "mage"):
             mage_list = [(merc.RED_MAGIC, "Red"), (merc.BLUE_MAGIC, "Blue"), (merc.GREEN_MAGIC, "Green"), (merc.YELLOW_MAGIC, "Yellow")]
             for (aa, bb) in mage_list:
@@ -196,17 +196,17 @@ def cmd_who(ch, argument):
                 mage_col = "Purple"
 
             if wch.level == merc.LEVEL_APPRENTICE:
-                kav = ". {}{} Apprentice{}".format(openb, mage_col, closeb)
+                kav = f". {openb}{mage_col} Apprentice{closeb}"
             elif wch.level == merc.LEVEL_MAGE:
-                kav = ". {}{} Mage{}".format(openb, mage_col, closeb)
+                kav = f". {openb}{mage_col} Mage{closeb}"
             else:
-                kav = ". {}{} Archmage{}".format(openb, mage_col, closeb)
+                kav = f". {openb}{mage_col} Archmage{closeb}"
         elif game_utils.str_cmp(wch.ch_class.name, "highlander"):
-            kav = ". {}Highlander{}".format(openb, closeb)
+            kav = f". {openb}Highlander{closeb}"
         else:
             kav = "."
 
-        class_str += "{} {}{}{}\n".format(title, wch.name, wch.title, kav)
+        class_str += f"{title} {wch.name}{wch.title}{kav}\n"
 
     buf = ["--------------------------------------------------------------------------------\n"]
     buf += class_str
@@ -215,7 +215,7 @@ def cmd_who(ch, argument):
     if nmatch == 1:
         buf += "You are the only visible player connected!\n"
     else:
-        buf += "There are a total of {} visible players connected.\n".format(nmatch)
+        buf += f"There are a total of {nmatch} visible players connected.\n"
 
     buf += "--------------------------------------------------------------------------------\n"
     ch.send("".join(buf))

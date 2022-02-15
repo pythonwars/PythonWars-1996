@@ -267,31 +267,31 @@ def save():
         json.dump({"max_instance_id": max_instance_id, "data": tmp_dict}, fp, default=to_json, indent=2, sort_keys=True)
 
     data_save_time = time.time()
-    comm.notify("Saving area data... {:,} areas".format(len(areas)), merc.CONSOLE_BOOT)
+    comm.notify(f"Saving area data... {len(areas):,} areas", merc.CONSOLE_BOOT)
     for i in areas:
         areas[i].save(force=True)
-    comm.notify("Areas saved in {:.3f} seconds".format(time.time() - data_save_time), merc.CONSOLE_BOOT)
+    comm.notify(f"Areas saved in {time.time() - data_save_time:.3f} seconds", merc.CONSOLE_BOOT)
 
     data_save_time = time.time()
-    comm.notify("Saving room data... {:,} rooms".format(len(rooms)), merc.CONSOLE_BOOT)
+    comm.notify(f"Saving room data... {len(rooms):,} rooms", merc.CONSOLE_BOOT)
     for i in rooms:
         rooms[i].save(force=True)
-    comm.notify("Rooms saved in {:.3f} seconds".format(time.time() - data_save_time), merc.CONSOLE_BOOT)
+    comm.notify(f"Rooms saved in {time.time() - data_save_time:.3f} seconds", merc.CONSOLE_BOOT)
 
     data_save_time = time.time()
-    comm.notify("Saving NPC data... {:,} npcs".format(len(npcs)), merc.CONSOLE_BOOT)
+    comm.notify(f"Saving NPC data... {len(npcs):,} npcs", merc.CONSOLE_BOOT)
     for i in npcs:
         npcs[i].save(force=True)
-    comm.notify("NPCs saved in {:.3f} seconds".format(time.time() - data_save_time), merc.CONSOLE_BOOT)
+    comm.notify(f"NPCs saved in {time.time() - data_save_time:.3f} seconds", merc.CONSOLE_BOOT)
 
     data_save_time = time.time()
-    comm.notify("Saving player data... {:,} players".format(len(players)), merc.CONSOLE_BOOT)
+    comm.notify(f"Saving player data... {len(players):,} players", merc.CONSOLE_BOOT)
     for i in players:
         players[i].save(force=True)
-    comm.notify("Players saved in {:.3f} seconds".format(time.time() - data_save_time), merc.CONSOLE_BOOT)
+    comm.notify(f"Players saved in {time.time() - data_save_time:.3f} seconds", merc.CONSOLE_BOOT)
 
     data_save_time = time.time()
-    comm.notify("Saving item data... {:,} items".format(len(items)), merc.CONSOLE_BOOT)
+    comm.notify(f"Saving item data... {len(items):,} items", merc.CONSOLE_BOOT)
     for i in items:
         it = items[i]
         if it.in_living is not None:
@@ -301,7 +301,7 @@ def save():
         if it.in_item is not None:
             continue
         it.save(force=True)
-    comm.notify("Items saved in {:.3f} seconds".format(time.time() - data_save_time), merc.CONSOLE_BOOT)
+    comm.notify(f"Items saved in {time.time() - data_save_time:.3f} seconds", merc.CONSOLE_BOOT)
 
 
 def load():

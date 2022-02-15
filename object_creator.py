@@ -134,7 +134,7 @@ def create_item(item_template, level, prev_instance_id: int = None):
                             merc.ITEM_QUESTCARD, merc.ITEM_QUESTMACHINE, merc.ITEM_SYMBOL, merc.ITEM_BOOK, merc.ITEM_PAGE, merc.ITEM_TOOL]:
         pass
     else:
-        comm.notify("create_item: bad item_type {} ({})".format(item_template.vnum, item.item_type), merc.CONSOLE_WARNING)
+        comm.notify(f"create_item: bad item_type {item_template.vnum} ({item.item_type})", merc.CONSOLE_WARNING)
 
     item_template.count += 1
     return item

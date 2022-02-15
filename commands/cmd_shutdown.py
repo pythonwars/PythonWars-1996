@@ -37,7 +37,7 @@ import settings
 
 # noinspection PyUnusedLocal
 def cmd_shutdown(ch, argument):
-    buf = "Shutdown by {}.".format(ch.name)
+    buf = f"Shutdown by {ch.name}."
     ch.cmd_echo(buf)
     game_utils.append_file(ch, settings.SHUTDOWN_FILE, buf)
     comm.done = True

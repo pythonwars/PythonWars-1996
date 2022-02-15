@@ -74,7 +74,7 @@ def cmd_read(ch, argument):
         if not item.victpoweruse:
             ch.send("The book is untitled.\n")
         else:
-            ch.send("The book is titled '{}'.\n".format(item.victpoweruse))
+            ch.send(f"The book is titled '{item.victpoweruse}'.\n")
         return
 
     if item.value[2] == 0:
@@ -86,10 +86,10 @@ def cmd_read(ch, argument):
             return
 
         for page in merc.irange(1, item.value[3]):
-            buf += "Page {}:".format(page)
+            buf += f"Page {page}:"
             buf += ch.show_page(item, page, True)
     else:
-        buf = ["Page {}:".format(item.value[2])]
+        buf = [f"Page {item.value[2]}:"]
         buf += ch.show_page(item, item.value[2], False)
     ch.send("".join(buf))
 

@@ -35,7 +35,7 @@ def cmd_wizhelp(ch, argument):
     col = 0
     for key, cmd in interp.cmd_table.items():
         if merc.LEVEL_HERO <= cmd.level <= ch.trust and cmd.show:
-            buf += "{:<12}".format(key)
+            buf += f"{key:<12}"
 
             col += 1
             if col % 6 == 0:

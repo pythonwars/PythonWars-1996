@@ -77,7 +77,7 @@ def process_output(self):
         elif ch.act.is_set(merc.PLR_PROMPT):
             if ch.head.is_set(merc.LOST_HEAD) or ch.extra.is_set(merc.EXTRA_OSWITCH):
                 exp_str = handler_pc.Pc.col_scale(ch.exp, ch.exp, 1000)
-                buf = "<[{}X] [?H ?M ?V]> ".format(exp_str)
+                buf = f"<[{exp_str}X] [?H ?M ?V]> "
             elif ch.position == merc.POS_FIGHTING:
                 victim = ch.fighting
                 if victim.max_hit > 0:
@@ -99,13 +99,13 @@ def process_output(self):
                 hit_str = handler_pc.Pc.col_scale(ch.hit, ch.hit, ch.max_hit)
                 mana_str = handler_pc.Pc.col_scale(ch.mana, ch.mana, ch.max_mana)
                 move_str = handler_pc.Pc.col_scale(ch.move, ch.move, ch.max_move)
-                buf = "<[{}] [{}H {}M {}V]> ".format(cond, hit_str, mana_str, move_str)
+                buf = f"<[{cond}] [{hit_str}H {mana_str}M {move_str}V]> "
             else:
                 hit_str = handler_pc.Pc.col_scale(ch.hit, ch.hit, ch.max_hit)
                 mana_str = handler_pc.Pc.col_scale(ch.mana, ch.mana, ch.max_mana)
                 move_str = handler_pc.Pc.col_scale(ch.move, ch.move, ch.max_move)
                 exp_str = handler_pc.Pc.col_scale(ch.exp, ch.exp, 1000)
-                buf = "<[{}] [{}H {}M {}V]> ".format(exp_str, hit_str, mana_str, move_str)
+                buf = f"<[{exp_str}] [{hit_str}H {mana_str}M {move_str}V]> "
             ch.send(buf)
 
     if self.snoop_by:
@@ -116,7 +116,7 @@ def process_output(self):
 def init_descriptor(d):
     """ Gain control over process output without messing with miniboa.
     """
-    notify("Sock.sinaddr: {}".format(d.address), merc.CONSOLE_INFO)
+    notify(f"Sock.sinaddr: {d.address}", merc.CONSOLE_INFO)
 
     d.set_connected = MethodType(set_connected, d)
     d.is_connected = MethodType(is_connected, d)
@@ -167,7 +167,7 @@ def check_playing(d, name):
             handler_game.act("$n doubles over in agony and $s eyes roll up into $s head.\n"
                              "..$n's body has been taken over by another spirit!", d.character, None, None, merc.TO_ROOM)
             dold.character = None
-            notify("Kicking off old connection {}@{}".format(d.character.name, d.addrport()), merc.CONSOLE_INFO)
+            notify(f"Kicking off old connection {d.character.name}@{d.addrport()}", merc.CONSOLE_INFO)
             close_socket(dold)  # Slam the old connection into the ether
             return True
     return False
@@ -214,7 +214,7 @@ def check_kickoff(d, name, fconn):
                 ch.timer = 0
                 ch.send("You take over your body, which was already in use.\n")
                 handler_game.act("...$n's body has been taken over by another spirit!", ch, None, None, merc.TO_ROOM)
-                notify("{}@{} kicking off old link.".format(ch.name, d.addrport()), merc.CONSOLE_INFO)
+                notify(f"{ch.name}@{d.addrport()} kicking off old link.", merc.CONSOLE_INFO)
                 d.set_connected(nanny.con_playing)
             return True
     return False
@@ -239,7 +239,7 @@ def close_socket(d):
 
     ch = d.character
     if ch:
-        notify("Closing link to {}.".format(ch.name), merc.CONSOLE_INFO)
+        notify(f"Closing link to {ch.name}.", merc.CONSOLE_INFO)
 
         if d.is_connected(nanny.con_playing):
             if ch.is_npc() or ch.obj_vnum == 0:
@@ -312,10 +312,10 @@ def bust_a_prompt(ch):
 
     act_trans = OrderedDict()
     act_trans["%a"] = "#C{}#n".format("good" if ch.is_good() else "evil" if ch.is_evil() else "neutral")
-    act_trans["%A"] = "#C{}#n".format(ch.alignment)
-    act_trans["%b"] = "#C{}#n".format(ch.beast)
+    act_trans["%A"] = f"#C{ch.alignment}#n"
+    act_trans["%b"] = f"#C{ch.beast}#n"
     act_trans["%B"] = "{}".format(ch.blood if (not ch.is_npc() and ch.is_vampire()) else "0")
-    act_trans["%c"] = "{}".format(ch.armor)
+    act_trans["%c"] = f"{ch.armor}"
 
     victim = ch.fighting
     if not victim:
@@ -360,15 +360,15 @@ def bust_a_prompt(ch):
             else:
                 buf = "#CPerfect#n"
     act_trans["%F"] = buf
-    act_trans["%g"] = "#C{}#n".format(ch.gold)
+    act_trans["%g"] = f"#C{ch.gold}#n"
 
-    buf = "{:,}".format(ch.hit)
-    act_trans["%h"] = "{}".format(handler_pc.Pc.col_scale(buf, ch.hit, ch.max_hit))
-    act_trans["%H"] = "#C{:,}#n".format(ch.max_hit)
+    buf = f"{ch.hit:,}"
+    act_trans["%h"] = f"{handler_pc.Pc.col_scale(buf, ch.hit, ch.max_hit)}"
+    act_trans["%H"] = f"#C{ch.max_hit:,}#n"
 
-    buf = "{:,}".format(ch.mana)
-    act_trans["%m"] = "{}".format(handler_pc.Pc.col_scale(buf, ch.mana, ch.max_mana))
-    act_trans["%M"] = "#C{}#n".format(ch.max_mana)
+    buf = f"{ch.mana:,}"
+    act_trans["%m"] = f"{handler_pc.Pc.col_scale(buf, ch.mana, ch.max_mana)}"
+    act_trans["%M"] = f"#C{ch.max_mana}#n"
 
     victim = ch.fighting
     if not victim:
@@ -398,12 +398,12 @@ def bust_a_prompt(ch):
             buf = buf[0].upper() + buf[1:]
     act_trans["%N"] = buf
 
-    buf = "{}".format(ch.hitroll)
-    act_trans["%p"] = "{}".format(handler_pc.Pc.col_scale(buf, ch.hitroll, 200))
-    buf = "{}".format(ch.damroll)
-    act_trans["%P"] = "{}".format(handler_pc.Pc.col_scale(buf, ch.damroll, 200))
+    buf = f"{ch.hitroll}"
+    act_trans["%p"] = f"{handler_pc.Pc.col_scale(buf, ch.hitroll, 200)}"
+    buf = f"{ch.damroll}"
+    act_trans["%P"] = f"{handler_pc.Pc.col_scale(buf, ch.damroll, 200)}"
 
-    act_trans["%q"] = "#C{}#n".format(ch.quest)
+    act_trans["%q"] = f"#C{ch.quest}#n"
     act_trans["%r"] = "#C{}#n".format(ch.in_room.name if ch.in_room else " ")
     act_trans["%R"] = "{}".format("#r{}#n".format(ch.powers[merc.UNI_RAGE]) if (not ch.is_npc() and (ch.is_werewolf() or ch.is_vampire())) else "0")
 
@@ -415,14 +415,14 @@ def bust_a_prompt(ch):
     else:
         buf = "Supreme God"
     act_trans["%s"] = buf
-    act_trans["%S"] = "{}".format(ch.race)
+    act_trans["%S"] = f"{ch.race}"
 
-    buf = "{:,}".format(ch.move)
-    act_trans["%v"] = "{}".format(handler_pc.Pc.col_scale(buf, ch.move, ch.max_move))
-    act_trans["%V"] = "#C{}#n".format(ch.max_move)
+    buf = f"{ch.move:,}"
+    act_trans["%v"] = f"{handler_pc.Pc.col_scale(buf, ch.move, ch.max_move)}"
+    act_trans["%V"] = f"#C{ch.max_move}#n"
 
-    buf = "{:,}".format(ch.exp)
-    act_trans["%x"] = "{}".format(handler_pc.Pc.col_scale(buf, ch.exp, 1000))
+    buf = f"{ch.exp:,}"
+    act_trans["%x"] = f"{handler_pc.Pc.col_scale(buf, ch.exp, 1000)}"
     act_trans["%%"] = "%"
 
     msg = game_utils.mass_replace(prompt, act_trans)
@@ -450,7 +450,7 @@ def game_loop(server):
         print("Do not run the Mud as root user!  This is a security risk!")
 
         with open(settings.SHUTDOWN_FILE, "w") as fp:
-            fp.write("Mud started as root ({}). Shutting down now.\n".format(uid))
+            fp.write(f"Mud started as root ({uid}). Shutting down now.\n")
 
         assert(uid != 0)
 
@@ -488,7 +488,7 @@ def game_loop(server):
         perf = "Bad, very bad"
 
     results = ("------------------------[ Statistic ]------------------------",
-               " Port     : {:6}    Boot Time: {:.3f}    Perform  : {:6}".format(server.port, final, perf),
+               f" Port     : {server.port:6}    Boot Time: {final:.3f}    Perform  : {perf:6}",
                "-------------------------------------------------------------"
                )
     spaces = "\n" + " " * 51
@@ -509,7 +509,7 @@ def game_loop(server):
             if nap_time > 0.0:
                 time.sleep(nap_time)
             else:
-                notify("Exceeded pulse time by {:.3f} seconds!".format(abs(nap_time)), merc.CONSOLE_WARNING)
+                notify(f"Exceeded pulse time by {abs(nap_time):.3f} seconds!", merc.CONSOLE_WARNING)
 
 
 def log_string(string):
@@ -544,7 +544,7 @@ def notify(msg, console=merc.CONSOLE_INFO):
         if not msg or len(msg) < 1:
             buf = "[*****] -----------------------------------------------------------------------"
         else:
-            buf = "[*****] {}".format(msg)
+            buf = f"[*****] {msg}"
 
         log_string(buf)
         return
@@ -560,7 +560,7 @@ def notify(msg, console=merc.CONSOLE_INFO):
             pstr = "Unknown"
 
     t = time.strftime("%I:%M:%S%p", time.localtime())
-    buf = "<: {} : {:^10} : {} :>".format(t, pstr, game_utils.colorstrip(msg))
+    buf = f"<: {t} : {pstr:^10} : {game_utils.colorstrip(msg)} :>"
     log_string(buf)
 
     for d in instance.descriptor_list:
@@ -570,7 +570,7 @@ def notify(msg, console=merc.CONSOLE_INFO):
 
 
 def info(pstr):
-    buf = "-> Info: {}".format(pstr)
+    buf = f"-> Info: {pstr}"
 
     for fpl in instance.players.values():
         if fpl.desc and not fpl.channels.is_set(merc.CHANNEL_INFO):

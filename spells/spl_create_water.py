@@ -49,7 +49,7 @@ def spl_create_water(sn, level, ch, victim, target):
         item.value[1] += water
 
         if not game_utils.is_name("water", item.name):
-            item.name = "{} water".format(item.name)
+            item.name = f"{item.name} water"
 
         handler_game.act("$p is filled.", ch, item, None, merc.TO_CHAR)
 

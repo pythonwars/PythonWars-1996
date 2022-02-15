@@ -1680,7 +1680,7 @@ def hurt_person(ch, victim, dam):
         group_gain(ch, victim)
 
         if not victim.is_npc():
-            comm.notify("{} killed by {} at {}".format(victim.name, ch.short_descr if ch.is_npc() else ch.name, victim.in_room.vnum), merc.CONSOLE_INFO)
+            comm.notify(f"{victim.name} killed by {ch.short_descr if ch.is_npc() else ch.name} at {victim.in_room.vnum}", merc.CONSOLE_INFO)
 
             # Dying penalty:
             # 1/2 your current exp.
@@ -2249,7 +2249,7 @@ def behead(victim):
     victim.carry_number = 0
     victim.head.set_bit(merc.LOST_HEAD)
     victim.affected_by.set_bit(merc.AFF_POLYMORPH)
-    victim.morph = "the severed head of {}".format(victim.name)
+    victim.morph = f"the severed head of {victim.name}"
     victim.cmd_call("all")
     victim.save(force=True)
 
@@ -2270,7 +2270,7 @@ def group_gain(ch, victim):
             members += 1
 
     if members == 0:
-        comm.notify("group_gain: members {}".format(members), merc.CONSOLE_WARNING)
+        comm.notify(f"group_gain: members {members}", merc.CONSOLE_WARNING)
         members = 1
 
     for gch_id in ch.in_room.people[:]:
@@ -2279,11 +2279,11 @@ def group_gain(ch, victim):
             continue
 
         xp = xp_compute(gch, victim) // members
-        gch.send("You receive {:,} experience points.\n".format(xp))
+        gch.send(f"You receive {xp:,} experience points.\n")
 
         mount = gch.mount
         if mount:
-            mount.send("You receive {:,} experience points.\n".format(xp))
+            mount.send(f"You receive {xp:,} experience points.\n")
         update.gain_exp(gch, xp)
 
         for item_id in ch.equipped.values():
@@ -2380,13 +2380,13 @@ def dam_message(ch, victim, dam, dt):
 
         if dt == merc.TYPE_HIT and not ch.vampaff.is_set(merc.VAM_CLAWS):
             if dam == 0:
-                buf1 = "$n{} $N{}".format(vp, punct)
-                buf2 = "You{} $N{}".format(vs, punct)
-                buf3 = "$n{} you{}".format(vp, punct)
+                buf1 = f"$n{vp} $N{punct}"
+                buf2 = f"You{vs} $N{punct}"
+                buf3 = f"$n{vp} you{punct}"
             else:
-                buf1 = "$n hits $N{}{}".format(vp, punct)
-                buf2 = "You hit $N{}{}".format(vs, punct)
-                buf3 = "$n hits you{}{}".format(vp, punct)
+                buf1 = f"$n hits $N{vp}{punct}"
+                buf2 = f"You hit $N{vs}{punct}"
+                buf3 = f"$n hits you{vp}{punct}"
         else:
             if dt == merc.TYPE_HIT and not ch.is_npc() and ch.vampaff.is_set(merc.VAM_CLAWS):
                 attack1 = const.attack_table[dt - merc.TYPE_HIT + 5].noun
@@ -2401,24 +2401,24 @@ def dam_message(ch, victim, dam, dt):
                 attack1 = const.attack_table[dt - merc.TYPE_HIT].noun
                 attack2 = const.attack_table[dt - merc.TYPE_HIT].noun
             else:
-                comm.notify("dam_message: bad dt {}".format(dt), merc.CONSOLE_WARNING)
+                comm.notify(f"dam_message: bad dt {dt}", merc.CONSOLE_WARNING)
                 dt = merc.TYPE_HIT
                 attack1 = const.attack_table[0].name
                 attack2 = const.attack_table[0].name
 
             if dam == 0:
-                buf1 = "$n's {}{} $N{}".format(attack1, vp, punct)
-                buf2 = "Your {}{} $N{}".format(attack1, vp, punct)
-                buf3 = "$n's {}{} you{}".format(attack1, vp, punct)
+                buf1 = f"$n's {attack1}{vp} $N{punct}"
+                buf2 = f"Your {attack1}{vp} $N{punct}"
+                buf3 = f"$n's {attack1}{vp} you{punct}"
             else:
                 if type(dt) == const.skill_type:
-                    buf1 = "$n's {} strikes $N{}{}".format(attack2, vp, punct)
-                    buf2 = "Your {} strikes $N{}{}".format(attack1, vp, punct)
-                    buf3 = "$n's {} strikes you{}{}".format(attack2, vp, punct)
+                    buf1 = f"$n's {attack2} strikes $N{vp}{punct}"
+                    buf2 = f"Your {attack1} strikes $N{vp}{punct}"
+                    buf3 = f"$n's {attack2} strikes you{vp}{punct}"
                 else:
-                    buf1 = "$n {} $N{}{}".format(attack2, vp, punct)
-                    buf2 = "You {} $N{}{}".format(attack1, vp, punct)
-                    buf3 = "$n {} you{}{}".format(attack2, vp, punct)
+                    buf1 = f"$n {attack2} $N{vp}{punct}"
+                    buf2 = f"You {attack1} $N{vp}{punct}"
+                    buf3 = f"$n {attack2} you{vp}{punct}"
                     critical = True
 
             # Check for weapon resistance - KaVir
@@ -2494,7 +2494,7 @@ def dam_message(ch, victim, dam, dt):
     elif merc.TYPE_HIT <= dt < merc.TYPE_HIT + len(const.attack_table):
         attack1 = const.attack_table[dt - merc.TYPE_HIT].noun
     else:
-        comm.notify("dam_message: bad dt {}".format(dt), merc.CONSOLE_WARNING)
+        comm.notify(f"dam_message: bad dt {dt}", merc.CONSOLE_WARNING)
         dt = merc.TYPE_HIT
         attack1 = const.attack_table[0].noun
 
@@ -2731,7 +2731,7 @@ def dam_message(ch, victim, dam, dt):
         handler_game.act("$n places $s weapon on $N's head and suck out $S brains.", ch, None, victim, merc.TO_NOTVICT)
         handler_game.act("$n places $s weapon on your head and suck out your brains.", ch, None, victim, merc.TO_VICT)
     else:
-        comm.notify("dam_message: bad dt {}".format(dt), merc.CONSOLE_WARNING)
+        comm.notify(f"dam_message: bad dt {dt}", merc.CONSOLE_WARNING)
 
 
 # Disarm a creature.
@@ -3050,9 +3050,9 @@ def special_hurl(ch, victim):
     pexit = ch.in_room.exit[door]
     to_room = instance.rooms[pexit.to_room] if pexit else None
     if not pexit or not to_room:
-        handler_game.act("$n hurls $N into the {} wall.".format(direction), ch, None, victim, merc.TO_NOTVICT)
-        handler_game.act("You hurl $N into the {} wall.".format(direction), ch, None, victim, merc.TO_CHAR)
-        handler_game.act("$n hurls you into the {} wall.".format(direction), ch, None, victim, merc.TO_VICT)
+        handler_game.act(f"$n hurls $N into the {direction} wall.", ch, None, victim, merc.TO_NOTVICT)
+        handler_game.act(f"You hurl $N into the {direction} wall.", ch, None, victim, merc.TO_CHAR)
+        handler_game.act(f"$n hurls you into the {direction} wall.", ch, None, victim, merc.TO_VICT)
         dam = game_utils.number_range(ch.level, ch.level * 4)
         victim.hit -= dam
         update_pos(victim)
@@ -3072,9 +3072,9 @@ def special_hurl(ch, victim):
         pexit.exit_info.rem_bit(merc.EX_LOCKED)
         pexit.exit_info.rem_bit(merc.EX_CLOSED)
 
-        handler_game.act("$n hurls $N {}.".format(direction), ch, None, victim, merc.TO_NOTVICT)
-        handler_game.act("You hurl $N {}.".format(direction), ch, None, victim, merc.TO_CHAR)
-        handler_game.act("$n hurls you {}, smashing you through the {}.".format(direction, pexit.keyword), ch, None, victim, merc.TO_VICT)
+        handler_game.act(f"$n hurls $N {direction}.", ch, None, victim, merc.TO_NOTVICT)
+        handler_game.act(f"You hurl $N {direction}.", ch, None, victim, merc.TO_CHAR)
+        handler_game.act(f"$n hurls you {direction}, smashing you through the {pexit.keyword}.", ch, None, victim, merc.TO_VICT)
         handler_game.act("There is a loud crash as $n smashes through the {}.", victim, None, pexit.keyword, merc.TO_ROOM)
 
         to_room = instance.rooms[pexit.to_room] if pexit else None

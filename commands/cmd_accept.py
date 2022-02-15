@@ -79,7 +79,7 @@ def cmd_accept(ch, argument):
         handler_game.act("$n accepts your offer of marriage.", ch, None, victim, merc.TO_VICT)
         ch.save(force=True)
         victim.save(force=True)
-        comm.info("{} and {} are now engaged!".format(ch.name, victim.name))
+        comm.info(f"{ch.name} and {victim.name} are now engaged!")
         return
 
     ch.send("I don't think that would be a very good idea...\n")

@@ -40,17 +40,17 @@ def spl_identify(sn, level, ch, victim, target):
     if extra and item.item_restriction_names:
         extra += ", "
     extra += item.item_restriction_names
-    buf = ["Object '{}' is type {}, extra flags {}.\nWeight is {}, value is {}.\n".format(item.name, item.item_type, extra, item.weight, item.cost)]
+    buf = [f"Object '{item.name}' is type {item.item_type}, extra flags {extra}.\nWeight is {item.weight}, value is {item.cost}.\n"]
 
     if item.points > 0 and item.item_type not in [merc.ITEM_QUEST, merc.ITEM_PAGE]:
-        buf += "Quest point value is {}.\n".format(item.points)
+        buf += f"Quest point value is {item.points}.\n"
 
     if item.questmaker and item.questowner:
-        buf += "This object was created by {}, and is owned by {}.\n".format(item.questmaker, item.questowner)
+        buf += f"This object was created by {item.questmaker}, and is owned by {item.questowner}.\n"
     elif item.questmaker:
-        buf += "This object was created by {}.\n".format(item.questmaker)
+        buf += f"This object was created by {item.questmaker}.\n"
     elif item.questowner:
-        buf += "This object is owned by {}.\n".format(item.questowner)
+        buf += f"This object is owned by {item.questowner}.\n"
 
     if item.flags.enchanted:
         buf += "This item has been enchanted.\n"
@@ -65,24 +65,24 @@ def spl_identify(sn, level, ch, victim, target):
 
     itype = item.item_type
     if itype in [merc.ITEM_PILL, merc.ITEM_SCROLL, merc.ITEM_POTION]:
-        buf += "Level {} spells of:".format(item.value[0])
+        buf += f"Level {item.value[0]} spells of:"
 
         for i in item.value:
             if 0 <= i < merc.MAX_SKILL:
-                buf += " '" + const.skill_table[i].name + "'"
+                buf += f" '{const.skill_table[i].name}'"
         buf += ".\n"
     elif itype == merc.ITEM_QUEST:
-        buf += "Quest point value is {}.\n".format(item.value[0])
+        buf += f"Quest point value is {item.value[0]}.\n"
     elif itype == merc.ITEM_QUESTCARD:
-        buf += "Quest completion reward is {} quest points.\n".format(item.level)
+        buf += f"Quest completion reward is {item.level} quest points.\n"
     elif itype in [merc.ITEM_WAND, merc.ITEM_STAFF]:
-        buf += "Has {}({}) charges of level {}".format(item.value[1], item.value[2], item.value[0])
+        buf += f"Has {item.value[1]}({item.value[2]}) charges of level {item.value[0]}"
 
         if 0 <= item.value[3] <= merc.MAX_SKILL:
-            buf += " '" + const.skill_table[item.value[3]].name + "'"
+            buf += f" '{const.skill_table[item.value[3]].name}'"
         buf += ".\n"
     elif itype == merc.ITEM_WEAPON:
-        buf += "Damage is {} to {} (average {}).\n".format(item.value[1], item.value[2], (item.value[1] + item.value[2]) // 2)
+        buf += f"Damage is {item.value[1]} to {item.value[2]} (average {(item.value[1] + item.value[2]) // 2}).\n"
 
         if item.value[0] >= 1000:
             itemtype = item.value[0] - ((item.value[0] // 1000) * 1000)
@@ -93,10 +93,10 @@ def spl_identify(sn, level, ch, victim, target):
             level_list = [(10, " minor"), (20, " lesser"), (30, "n average"), (40, " greater"), (50, " major"), (51, " supreme")]
             for (aa, bb) in level_list:
                 if item.level < aa:
-                    buf += "{} is a{} spell weapon.\n".format(item.short_descr[0].upper() + item.short_descr[1:], bb)
+                    buf += f"{item.short_descr[0].upper() + item.short_descr[1:]} is a{bb} spell weapon.\n"
                     break
             else:
-                buf += "{} is an ultimate spell weapon.\n".format(item.short_descr[0].upper() + item.short_descr[1:])
+                buf += f"{item.short_descr[0].upper() + item.short_descr[1:]} is an ultimate spell weapon.\n"
 
             if itemtype == 1:
                 buf += "This weapon is dripping with corrosive acid.\n"
@@ -113,7 +113,7 @@ def spl_identify(sn, level, ch, victim, target):
             elif itemtype == 53:
                 buf += "This weapon is dripping with a dark poison.\n"
             else:
-                buf += "This weapon has been imbued with the power of {}.\n".format(const.skill_table[itemtype].name)
+                buf += f"This weapon has been imbued with the power of {const.skill_table[itemtype].name}.\n"
 
         itemtype = item.value[0] // 1000 if item.value[0] >= 1000 else 0
         if itemtype > 0:
@@ -170,7 +170,7 @@ def spl_identify(sn, level, ch, victim, target):
             else:
                 buf += "This item is bugged...please report it.\n"
     elif itype == merc.ITEM_ARMOR:
-        buf += "Armor class is {}.\n".format(item.value[0])
+        buf += f"Armor class is {item.value[0]}.\n"
 
         if item.value[3] > 0:
             if item.value[3] == 4:
@@ -228,7 +228,7 @@ def spl_identify(sn, level, ch, victim, target):
 
     for aff in item.affected:
         if aff.location != merc.APPLY_NONE and aff.modifier != 0:
-            buf += "Affects {} by {}.\n".format(merc.affect_loc_name(aff.location), aff.modifier)
+            buf += f"Affects {merc.affect_loc_name(aff.location)} by {aff.modifier}.\n"
     ch.send("".join(buf))
 
 

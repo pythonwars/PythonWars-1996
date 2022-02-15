@@ -70,15 +70,15 @@ def spl_mount(sn, level, ch, victim, target):
 
     if ch.is_good():
         victim.name = "mount white horse pegasus"
-        victim.short_descr = "{}'s white pegasus".format(ch.name)
+        victim.short_descr = f"{ch.name}'s white pegasus"
         victim.long_descr = "A beautiful white pegasus stands here.\n"
     elif ch.is_evil():
         victim.name = "mount griffin"
-        victim.short_descr = "{}'s griffin".format(ch.name)
+        victim.short_descr = f"{ch.name}'s griffin"
         victim.long_descr = "A vicious looking griffin stands here.\n"
     else:
         victim.name = "mount black horse nightmare"
-        victim.short_descr = "{}'s black nightmare".format(ch.name)
+        victim.short_descr = f"{ch.name}'s black nightmare"
         victim.long_descr = "A large black demonic horse stands here.\n"
 
     ch.in_room.put(victim)

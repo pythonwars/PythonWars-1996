@@ -57,25 +57,14 @@ def boot_db():
 
     results = (
         "------------------------[ Templates ]------------------------",
-        " Areas    : {:6,}    NPCs     : {:6,}    Items    : {:6,}".format(world_classes.Area.template_count,
-                                                                           handler_npc.Npc.template_count,
-                                                                           handler_item.Items.template_count),
-        " Rooms    : {:6,}    Shops    : {:6,}".format(handler_room.Room.template_count, len(instance.shop_templates)),
-        " Total    : {:6,}".format(world_classes.Area.template_count + handler_npc.Npc.template_count +
-                                   handler_item.Items.template_count + handler_room.Room.template_count +
-                                   len(instance.shop_templates)),
+        f" Areas    : {world_classes.Area.template_count:6,}    NPCs     : {handler_npc.Npc.template_count:6,}    Items    : {handler_item.Items.template_count:6,}",
+        f" Rooms    : {handler_room.Room.template_count:6,}    Shops    : {len(instance.shop_templates):6,}",
+        f" Total    : {world_classes.Area.template_count + handler_npc.Npc.template_count + handler_item.Items.template_count + handler_room.Room.template_count + len(instance.shop_templates):6,}",
         "------------------------[ Instances ]------------------------",
-        " Areas    : {:6,}    NPCs     : {:6,}    Items    : {:6,}".format(world_classes.Area.instance_count,
-                                                                           handler_npc.Npc.instance_count,
-                                                                           handler_item.Items.instance_count),
-        " Rooms    : {:6,}    Resets   : {:6,}    Helps    : {:6,}".format(handler_room.Room.instance_count,
-                                                                           world_classes.Reset.load_count,
-                                                                           len(instance.help_list)),
-        " Socials  : {:6,}    Notes    : {:6,}".format(len(const.social_table), len(instance.note_list)),
-        " Total    : {:6,}".format(world_classes.Area.instance_count + handler_npc.Npc.instance_count +
-                                   handler_item.Items.instance_count + handler_room.Room.instance_count +
-                                   world_classes.Reset.load_count + len(instance.note_list) + len(instance.help_list) +
-                                   len(const.social_table)),
+        f" Areas    : {world_classes.Area.instance_count:6,}    NPCs     : {handler_npc.Npc.instance_count:6,}    Items    : {handler_item.Items.instance_count:6,}",
+        f" Rooms    : {handler_room.Room.instance_count:6,}    Resets   : {world_classes.Reset.load_count:6,}    Helps    : {len(instance.help_list):6,}",
+        f" Socials  : {len(const.social_table):6,}    Notes    : {len(instance.note_list):6,}",
+        f" Total    : {world_classes.Area.instance_count + handler_npc.Npc.instance_count + handler_item.Items.instance_count + handler_room.Room.instance_count + world_classes.Reset.load_count + len(instance.note_list) + len(instance.help_list) + len(const.social_table):6,}",
         "------------------------[ Snap Shot ]------------------------"
     )
     spaces = "\n" + " " * 51
@@ -98,7 +87,7 @@ def init_instance():
         comm.notify("First run, or problem with the instance, setting to 6000", merc.CONSOLE_WARNING)
         instance.max_instance_id = 6000
     else:
-        comm.notify("Global Instance Tracker, instances thus far: {}".format(instance.max_instance_id), merc.CONSOLE_INFO)
+        comm.notify(f"Global Instance Tracker, instances thus far: {instance.max_instance_id}", merc.CONSOLE_INFO)
 
 
 def fix_exits():
@@ -106,7 +95,7 @@ def fix_exits():
         for e in r.template_exit[:]:
             if e and type(e.template_to_room) == int:
                 if e.template_to_room not in instance.room_templates:
-                    comm.notify("fix_exits: Failed to find to_room for {}: {}".format(r.template_vnum, e.template_to_room), merc.CONSOLE_ERROR)
+                    comm.notify(f"fix_exits: Failed to find to_room for {r.template_vnum}: {e.template_to_room}", merc.CONSOLE_ERROR)
                     e.template_to_room = None
                     r.template_exit.remove(e)
                 else:
@@ -141,13 +130,13 @@ def area_update():
 
 def m_reset(preset, last, level, npc):
     if preset.arg1 not in instance.npc_templates.keys():
-        comm.notify("m_reset: 'M': bad vnum {}".format(preset.arg1), merc.CONSOLE_WARNING)
+        comm.notify(f"m_reset: 'M': bad vnum {preset.arg1}", merc.CONSOLE_WARNING)
         return last, level, npc
     else:
         npc_template = instance.npc_templates[preset.arg1]
 
     if preset.arg3 not in instance.room_templates.keys():
-        comm.notify("reset_area: 'R': bad vnum {}".format(preset.arg3), merc.CONSOLE_WARNING)
+        comm.notify(f"reset_area: 'R': bad vnum {preset.arg3}", merc.CONSOLE_WARNING)
         return last, level, npc
     else:
         room_instance_id = instance.instances_by_room[preset.arg3][0]
@@ -181,13 +170,13 @@ def m_reset(preset, last, level, npc):
 
 def o_reset(parea, preset, last, level, npc):
     if preset.arg1 not in instance.item_templates.keys():
-        comm.notify("o_reset: 'O': bad vnum {}".format(preset.arg1), merc.CONSOLE_WARNING)
+        comm.notify(f"o_reset: 'O': bad vnum {preset.arg1}", merc.CONSOLE_WARNING)
         return last, level, npc
     else:
         item_template = instance.item_templates[preset.arg1]
 
     if preset.arg3 not in instance.room_templates.keys():
-        comm.notify("o_reset: 'R': bad vnum {}".format(preset.arg3), merc.CONSOLE_WARNING)
+        comm.notify(f"o_reset: 'R': bad vnum {preset.arg3}", merc.CONSOLE_WARNING)
         return last, level, npc
     else:
         room_instance_id = instance.instances_by_room[preset.arg3][0]
@@ -206,13 +195,13 @@ def o_reset(parea, preset, last, level, npc):
 
 def p_reset(parea, preset, last, level, npc):
     if preset.arg1 not in instance.item_templates.keys():
-        comm.notify("p_reset: 'P': bad vnum {}".format(preset.arg1), merc.CONSOLE_WARNING)
+        comm.notify(f"p_reset: 'P': bad vnum {preset.arg1}", merc.CONSOLE_WARNING)
         return last, level, npc
     else:
         item_template = instance.item_templates[preset.arg1]
 
     if preset.arg3 not in instance.item_templates.keys():
-        comm.notify("p_reset: 'P': bad vnum {}".format(preset.arg3), merc.CONSOLE_WARNING)
+        comm.notify(f"p_reset: 'P': bad vnum {preset.arg3}", merc.CONSOLE_WARNING)
         return last, level, npc
     else:
         item_to_template = instance.item_templates[preset.arg3]
@@ -234,7 +223,7 @@ def p_reset(parea, preset, last, level, npc):
 
 def g_e_reset(preset, last, level, npc):
     if preset.arg1 not in instance.item_templates.keys():
-        comm.notify("g_e_reset: 'E' or 'G': bad vnum {}".format(preset.arg1), merc.CONSOLE_WARNING)
+        comm.notify(f"g_e_reset: 'E' or 'G': bad vnum {preset.arg1}", merc.CONSOLE_WARNING)
         return last, level, npc
     else:
         item_template = instance.item_templates[preset.arg1]
@@ -243,7 +232,7 @@ def g_e_reset(preset, last, level, npc):
         return last, level, npc
 
     if not npc:
-        comm.notify("g_e_reset: 'E' or 'G': None mob for vnum {}".format(preset.arg1), merc.CONSOLE_WARNING)
+        comm.notify(f"g_e_reset: 'E' or 'G': None mob for vnum {preset.arg1}", merc.CONSOLE_WARNING)
         last = False
         return last, level, npc
 
@@ -276,7 +265,7 @@ def g_e_reset(preset, last, level, npc):
 
 def d_reset(preset, last, level, npc):
     if preset.arg1 not in instance.room_templates.keys():
-        comm.notify("d_reset: 'D': bad vnum {}".format(preset.arg1), merc.CONSOLE_WARNING)
+        comm.notify(f"d_reset: 'D': bad vnum {preset.arg1}", merc.CONSOLE_WARNING)
         return last, level, npc
     else:
         room_instance_id = instance.instances_by_room[preset.arg1][0]
@@ -301,7 +290,7 @@ def d_reset(preset, last, level, npc):
 
 def r_reset(preset, last, level, npc):
     if preset.arg1 not in instance.room_templates.keys():
-        comm.notify("r_reset: 'R': bad vnum {}".format(preset.arg1), merc.CONSOLE_WARNING)
+        comm.notify(f"r_reset: 'R': bad vnum {preset.arg1}", merc.CONSOLE_WARNING)
         return last, level, npc
     else:
         room_instance_id = instance.instances_by_room[preset.arg1][0]
@@ -334,7 +323,7 @@ def reset_area(parea):
         elif preset.command == "R":
             last, level, npc = r_reset(preset, last, level, npc)
         else:
-            comm.notify("reset_area: bad command ({})".format(preset.command), merc.CONSOLE_CRITICAL)
+            comm.notify(f"reset_area: bad command ({preset.command})", merc.CONSOLE_CRITICAL)
             sys.exit(1)
 
 

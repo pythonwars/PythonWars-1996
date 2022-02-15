@@ -181,7 +181,7 @@ class Area(instance.Instancer, type_bypass.ObjectType, environment.Environment):
         os.makedirs(pathname, 0o755, True)
         filename = os.path.join(pathname, "%d-area%s" % (number, settings.DATA_EXTN))
 
-        comm.notify("Saving {}".format(filename), merc.CONSOLE_INFO)
+        comm.notify(f"Saving {filename}", merc.CONSOLE_INFO)
         js = json.dumps(self, default=instance.to_json, indent=2, sort_keys=True)
         md5 = hashlib.md5(js.encode("utf-8")).hexdigest()
         if self._md5 != md5:
@@ -194,7 +194,7 @@ class Area(instance.Instancer, type_bypass.ObjectType, environment.Environment):
     def load(cls, index: int = None, instance_id: int = None):
         if instance_id:
             if instance_id in instance.characters:
-                comm.notify("Instance {} of npc already loaded!".format(instance_id), merc.CONSOLE_INFO)
+                comm.notify(f"Instance {instance_id} of npc already loaded!", merc.CONSOLE_INFO)
                 return
             top_dir = settings.INSTANCE_DIR
             number = instance_id
@@ -221,7 +221,7 @@ class Area(instance.Instancer, type_bypass.ObjectType, environment.Environment):
         if isinstance(obj, Area):
             return obj
         else:
-            comm.notify("Could not load area data for {}".format(number), merc.CONSOLE_ERROR)
+            comm.notify(f"Could not load area data for {number}", merc.CONSOLE_ERROR)
             return None
 
 
@@ -287,7 +287,7 @@ class Exit:
                 self.to_room = None
             elif self.to_room_vnum not in instance.instances_by_room:
                 self.is_broken = True
-                comm.notify("Exit: bad to_room_vnum {}".format(self.to_room_vnum), merc.CONSOLE_ERROR)
+                comm.notify(f"Exit: bad to_room_vnum {self.to_room_vnum}", merc.CONSOLE_ERROR)
             else:
                 self.to_room = None
 
@@ -364,7 +364,7 @@ class Note:
     def save(cls):
         with open(settings.NOTE_FILE, "w") as fp:
             for note in instance.note_list:
-                buf = "{}~\n{}~\n{}~\n{}~\n{}~\n\n".format(note.sender, note.date, note.to_list, note.subject, note.text)
+                buf = f"{note.sender}~\n{note.date}~\n{note.to_list}~\n{note.subject}~\n{note.text}~\n\n"
                 fp.write(buf)
 
     @classmethod

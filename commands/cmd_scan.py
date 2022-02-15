@@ -73,11 +73,11 @@ def spydirection(ch, argument):
             continue
 
         if vch.is_npc():
-            buf = "   {}\n".format(vch.short_descr)
+            buf = f"   {vch.short_descr}\n"
         elif vch.is_affected(merc.AFF_POLYMORPH):
-            buf = "   {} (Player)\n".format(vch.morph)
+            buf = f"   {vch.morph} (Player)\n"
         else:
-            buf = "   {} (Player)\n".format(vch.name)
+            buf = f"   {vch.name} (Player)\n"
         ch.send(buf)
         is_empty = False
 

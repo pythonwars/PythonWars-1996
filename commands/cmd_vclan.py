@@ -44,17 +44,15 @@ def cmd_vclan(ch, argument):
         ch.send("But you don't belong to any clan!\n")
         return
 
-    buf = ["The {} clan:\n".format(ch.clan)]
+    buf = [f"The {ch.clan} clan:\n"]
     buf += "[      Name      ] [ Gen ] [ Hits  % ] [ Mana  % ] [ Move  % ] [  Exp  ] [Blood]\n"
 
     for gch in list(instance.players.values()):
         if not gch.is_vampire() or not game_utils.str_cmp(ch.clan, gch.clan):
             continue
 
-        buf += "[{:<16}] [  {}  ] [{:<6}{:3}] [{:<6}{:3}] [{:<6}{:3}] [{:7}] [ {:3} ]\n".format(ch.name, ch.powers[merc.UNI_GEN], gch.hit,
-                                                                                                (gch.hit * 100 // gch.max_hit), gch.mana,
-                                                                                                (gch.mana * 100 // gch.max_mana), gch.move,
-                                                                                                (gch.move * 100 // gch.max_move), gch.exp, gch.blood)
+        buf += f"[{ch.name:<16}] [  {ch.powers[merc.UNI_GEN]}  ] [{gch.hit:<6}{(gch.hit * 100 // gch.max_hit):3}] " \
+               f"[{gch.mana:<6}{(gch.mana * 100 // gch.max_mana):3}] [{gch.move:<6}{(gch.move * 100 // gch.max_move):3}] [{gch.exp:7}] [ {gch.blood:3} ]\n"
     ch.send("".join(buf))
 
 

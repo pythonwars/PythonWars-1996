@@ -51,7 +51,7 @@ def cmd_token(ch, argument):
         return
 
     if ch.quest < value and not ch.is_judge():
-        ch.send("You only have {:,} quest points left to put into tokens.\n".format(ch.quest))
+        ch.send(f"You only have {ch.quest:,} quest points left to put into tokens.\n")
         return
 
     if arg2:
@@ -76,8 +76,8 @@ def cmd_token(ch, argument):
     item.item_type = merc.ITEM_QUEST
     item.questmaker = ch.name
     item.name = "quest token"
-    item.short_descr = "a {:,} point quest token".format(value)
-    item.description = "A {:,} point quest token lies on the floor.".format(value)
+    item.short_descr = f"a {value:,} point quest token"
+    item.description = f"A {value:,} point quest token lies on the floor."
     ch.put(item)
 
     if victim and victim != ch:

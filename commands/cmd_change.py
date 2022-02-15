@@ -73,7 +73,7 @@ def cmd_change(ch, argument):
         ch.polyaff.set_bit(merc.POLY_BAT)
         ch.vampaff.set_bit(merc.VAM_CHANGED)
         ch.affected_by.set_bit(merc.AFF_POLYMORPH)
-        ch.morph = "{} the vampire bat".format(ch.name)
+        ch.morph = f"{ch.name} the vampire bat"
     elif game_utils.str_cmp(arg, "wolf"):
         if ch.is_affected(merc.AFF_POLYMORPH):
             ch.send("You can only polymorph from human form.\n")
@@ -97,7 +97,7 @@ def cmd_change(ch, argument):
         ch.polyaff.set_bit(merc.POLY_WOLF)
         ch.affected_by.set_bit(merc.AFF_POLYMORPH)
         ch.vampaff.set_bit(merc.VAM_CHANGED)
-        ch.morph = "{} the dire wolf".format(ch.name)
+        ch.morph = f"{ch.name} the dire wolf"
     elif game_utils.str_cmp(arg, "mist"):
         if ch.is_affected(merc.AFF_POLYMORPH):
             ch.send("You can only polymorph from human form.\n")
@@ -134,7 +134,7 @@ def cmd_change(ch, argument):
         ch.polyaff.set_bit(merc.VAM_CHANGED)
         ch.affected_by.set_bit(merc.AFF_POLYMORPH)
         ch.affected_by.set_bit(merc.AFF_ETHEREAL)
-        ch.morph = "{} the white mist".format(ch.name)
+        ch.morph = f"{ch.name} the white mist"
     elif game_utils.str_cmp(arg, "human"):
         if not ch.is_affected(merc.AFF_POLYMORPH):
             ch.send("You are already in human form.\n")

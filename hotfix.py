@@ -50,7 +50,7 @@ def init_file(path, modules, silent=False, reload=True):
         untrack_files[path] = [os.path.getmtime(path), modules]
 
     if not silent:
-        comm.notify("    Tracking {}".format(path), merc.CONSOLE_INFO)
+        comm.notify(f"    Tracking {path}", merc.CONSOLE_INFO)
 
 
 def init_directory(path, silent=False):
@@ -58,7 +58,7 @@ def init_directory(path, silent=False):
     files = [f for f in ddir if not f.startswith("__")]
 
     if not silent:
-        comm.notify("Tracking {:,} files in {}".format(len(files), path), merc.CONSOLE_INFO)
+        comm.notify(f"Tracking {len(files):,} files in {path}", merc.CONSOLE_INFO)
 
     for file in files:
         full_path = os.path.join(path, file)
@@ -123,16 +123,16 @@ def poll_files():
         try:
             if mod != os.path.getmtime(fp):
                 # File has been modified.
-                comm.notify("{} has been modified".format(fp), merc.CONSOLE_INFO)
+                comm.notify(f"{fp} has been modified", merc.CONSOLE_INFO)
                 tracked_files[fp][0] = os.path.getmtime(fp)
                 modified_files[fp] = [os.path.getmtime(fp), modules]
         except FileNotFoundError:
             deleted_files[fp] = tracked_files[fp]
             del tracked_files[fp]
 
-            if modified_files[fp]:
+            if fp in modified_files:
                 del modified_files[fp]
-            comm.notify("{} file is missing.".format(fp), merc.CONSOLE_WARNING)
+            comm.notify(f"{fp} file is missing.", merc.CONSOLE_WARNING)
 
     for fp, pair in untrack_files.items():
         mod, modules = pair
@@ -140,29 +140,29 @@ def poll_files():
         try:
             if mod != os.path.getmtime(fp):
                 # Unreloadable file has been modified.
-                comm.notify("{} (unreloadable) has been modified".format(fp), merc.CONSOLE_INFO)
+                comm.notify(f"{fp} (unreloadable) has been modified", merc.CONSOLE_INFO)
                 untrack_files[fp][0] = os.path.getmtime(fp)
                 modunrel_files[fp] = [os.path.getmtime(fp), modules]
         except FileNotFoundError:
             deleted_files[fp] = untrack_files[fp]
             del untrack_files[fp]
 
-            if modunrel_files[fp]:
+            if fp in modunrel_files:
                 del modunrel_files[fp]
-            comm.notify("{} (unreloadable) file is missing.".format(fp), merc.CONSOLE_EXCEPTION)
+            comm.notify(f"{fp} (unreloadable) file is missing.", merc.CONSOLE_EXCEPTION)
 
 
 def reload_files(ch):
     for fp, pair in modified_files.copy().items():
         mod, modules = pair
 
-        comm.notify("Reloading {}".format(fp), merc.CONSOLE_INFO)
+        comm.notify(f"Reloading {fp}", merc.CONSOLE_INFO)
         for m in modules:
             try:
                 merc.copy_time = int(time.time())
                 importlib.reload(m)
             except Exception:
                 ch.send(traceback.format_exc())
-                comm.notify("Failed to reload {}".format(fp), merc.CONSOLE_EXCEPTION)
+                comm.notify(f"Failed to reload {fp}", merc.CONSOLE_EXCEPTION)
 
         del modified_files[fp]

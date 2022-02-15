@@ -42,7 +42,7 @@ def draw(ch, right_hand):
     scabbard = "right_scabbard" if right_hand else "left_scabbard"
     scabbard = ch.get_eq(scabbard)
     if not scabbard:
-        ch.send("Your {} scabbard is empty.\n".format(hand))
+        ch.send(f"Your {hand} scabbard is empty.\n")
         return
 
     handler_game.act("You draw $p from your left scabbard.", ch, scabbard, None, merc.TO_CHAR)

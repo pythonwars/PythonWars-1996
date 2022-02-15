@@ -38,11 +38,9 @@ def cmd_report(ch, argument):
     move_str = handler_pc.Pc.col_scale(ch.move, ch.move, ch.max_move)
     exp_str = handler_pc.Pc.col_scale(ch.exp, ch.exp, 1000)
 
-    ch.send("You report: {}/#C{}#n hp {}/#C{}#n mana {}/#C{}#n mv {} xp.\n".format(hit_str, ch.max_hit, mana_str, ch.max_mana, move_str, ch.max_move,
-                                                                                   exp_str))
-    buf = "$n reports: {}/#C{}#n hp {}/#C{}#n mana {}/#C{}#n mv {} xp.".format(hit_str, ch.max_hit, mana_str, ch.max_mana, move_str, ch.max_move,
-                                                                               exp_str)
-    handler_game.act(buf, ch, None, None, merc.TO_ROOM, merc.POS_DEAD)
+    buf = f"{hit_str}/#C{ch.max_hit:,}#n hp {mana_str}/#C{ch.max_mana:,}#n mana {move_str}/#C{ch.max_move:,}#n mv {exp_str} xp.\n"
+    ch.send(f"You report: {buf}")
+    handler_game.act(f"$n reports: {buf}", ch, None, None, merc.TO_ROOM, merc.POS_DEAD)
 
 
 interp.register_command(

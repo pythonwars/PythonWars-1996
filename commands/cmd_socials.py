@@ -36,7 +36,7 @@ def cmd_socials(ch, argument):
     col = 0
 
     for key, social in const.social_table.items():
-        buf += "{:<12}".format(social.name)
+        buf += f"{social.name:<12}"
 
         col += 1
         if col % 6 == 0:

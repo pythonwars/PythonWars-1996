@@ -67,11 +67,11 @@ def cmd_command(ch, argument):
         return
 
     if victim.is_npc():
-        buf = "I think {} wants to {}".format(victim.short_descr, argument)
+        buf = f"I think {victim.short_descr} wants to {argument}"
     elif not victim.is_npc() and victim.is_affected(merc.AFF_POLYMORPH):
-        buf = "I think {} wants to {}".format(victim.morph, argument)
+        buf = f"I think {victim.morph} wants to {argument}"
     else:
-        buf = "I think {} wants to {}".format(victim.name, argument)
+        buf = f"I think {victim.name} wants to {argument}"
     ch.cmd_say(buf)
 
     if victim.is_npc() and victim.level >= (ch.spl[merc.RED_MAGIC] // 8):

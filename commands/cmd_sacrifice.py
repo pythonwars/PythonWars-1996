@@ -55,13 +55,13 @@ def cmd_sacrifice(ch, argument):
     expgain = item.cost // 100
     expgain = state_checks.urange(1, expgain, 50)
     ch.exp += expgain
-    handler_game.act("You drain {} exp of energy from $p.".format(expgain), ch, item, None, merc.TO_CHAR)
+    handler_game.act(f"You drain {expgain} exp of energy from $p.", ch, item, None, merc.TO_CHAR)
     handler_game.act("$p disintegrates into a fine powder.", ch, item, None, merc.TO_CHAR)
     handler_game.act("$n drains the energy from $p.", ch, item, None, merc.TO_ROOM)
     handler_game.act("$p disintegrates into a fine powder.", ch, item, None, merc.TO_ROOM)
 
     if item.points > 0 and not ch.is_npc() and item.item_type != merc.ITEM_PAGE:
-        handler_game.act("You receive a refund of {} quest points from $p.".format(item.points), ch, item, None, merc.TO_CHAR)
+        handler_game.act(f"You receive a refund of {item.points} quest points from $p.", ch, item, None, merc.TO_CHAR)
         ch.quest += item.points
     item.extract()
 

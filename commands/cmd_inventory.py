@@ -78,19 +78,19 @@ def cmd_inventory(ch, argument):
                 return
 
             if item.value[1] < item.value[0] // 5:
-                buf = "There is a little {} liquid left in you.\n".format(const.liq_table[item.value[2]].color)
+                buf = f"There is a little {const.liq_table[item.value[2]].color} liquid left in you.\n"
             elif item.value[1] < item.value[0] // 4:
-                buf = "You contain a small about of {} liquid.\n".format(const.liq_table[item.value[2]].color)
+                buf = f"You contain a small about of {const.liq_table[item.value[2]].color} liquid.\n"
             elif item.value[1] < item.value[0] // 3:
-                buf = "You're about a third full of {} liquid.\n".format(const.liq_table[item.value[2]].color)
+                buf = f"You're about a third full of {const.liq_table[item.value[2]].color} liquid.\n"
             elif item.value[1] < item.value[0] // 2:
-                buf = "You're about half full of {} liquid.\n".format(const.liq_table[item.value[2]].color)
+                buf = f"You're about half full of {const.liq_table[item.value[2]].color} liquid.\n"
             elif item.value[1] < item.value[0]:
-                buf = "You are almost full of {} liquid.\n".format(const.liq_table[item.value[2]].color)
+                buf = f"You are almost full of {const.liq_table[item.value[2]].color} liquid.\n"
             elif item.value[1] == item.value[0]:
-                buf = "You're completely full of {} liquid.\n".format(const.liq_table[item.value[2]].color)
+                buf = f"You're completely full of {const.liq_table[item.value[2]].color} liquid.\n"
             else:
-                buf = "Somehow you are MORE than full of {} liquid.\n".format(const.liq_table[item.value[2]].color)
+                buf = f"Somehow you are MORE than full of {const.liq_table[item.value[2]].color} liquid.\n"
             ch.send(buf)
         elif item.item_type in [merc.ITEM_CONTAINER, merc.ITEM_CORPSE_NPC, merc.ITEM_CORPSE_PC]:
             handler_game.act("$p contain:", ch, item, None, merc.TO_CHAR)

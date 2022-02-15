@@ -51,9 +51,9 @@ def spl_minor_creation(sn, level, ch, victim, target):
 
     item = object_creator.create_item(instance.item_templates[merc.OBJ_VNUM_PROTOPLASM], 0)
     item.item_type = itemtype
-    item.name = "{} {}".format(ch.name, itemkind)
-    item.short_descr = "{}'s {}".format(ch.name, itemkind)
-    item.description = "{}'s {} lies here.".format(ch.name, itemkind)
+    item.name = f"{ch.name} {itemkind}"
+    item.short_descr = f"{ch.name}'s {itemkind}"
+    item.description = f"{ch.name}'s {itemkind} lies here."
     item.weight = 10
     item.questmaker = ch.name
     ch.put(item)

@@ -38,12 +38,10 @@ def cmd_group(ch, argument):
     if not arg:
         leader = ch.leader if ch.leader else ch
 
-        buf = ["{}'s group:\n".format(leader.pers(ch))]
+        buf = [f"{leader.pers(ch)}'s group:\n"]
         for gch in list(instance.characters.values()):
             if gch.is_same_group(ch):
-                buf += "[{:<16}] {:4}/{:4} hp {:4}/{:4} mana {:4}/{:4} mv {:5} xp\n".format(gch.pers(ch).capitalize(), gch.hit, gch.max_hit,
-                                                                                            gch.mana, gch.max_mana, gch.move, gch.max_move,
-                                                                                            gch.exp)
+                buf += f"[{gch.pers(ch).capitalize():<16}] {gch.hit:4}/{gch.max_hit:4} hp {gch.mana:4}/{gch.max_mana:4} mana {gch.move:4}/{gch.max_move:4} mv {gch.exp:5} xp\n"
         ch.send("".join(buf))
         return
 

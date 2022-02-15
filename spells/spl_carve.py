@@ -80,9 +80,9 @@ def spl_carve(sn, level, ch, victim, target):
     item.value[1] = (item.value[0] // 5) + 1
     item.value[2] = (item.value[0] // 5) + 1
     item.value[3] = sn
-    item.name = "{} wand {} {}".format(ch.name, col, sn.name)
-    item.short_descr = "{}'s {} wand of {}".format(ch.name, col, sn.name)
-    item.description = "A {} wand is lying here.".format(col)
+    item.name = f"{ch.name} wand {col} {sn.name}"
+    item.short_descr = f"{ch.name}'s {col} wand of {sn.name}"
+    item.description = f"A {col} wand is lying here."
     item.flags.take = True
     item.hold = True
     handler_game.act("You carve $p.", ch, item, None, merc.TO_CHAR)

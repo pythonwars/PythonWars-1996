@@ -58,7 +58,7 @@ def cmd_pray(ch, argument):
         if ch.powers[merc.DEMON_CURRENT] == 1:
             ch.send("You receive a single point of energy.\n")
         else:
-            ch.send("You receive {:,} points of energy.\n".format(ch.powers[merc.DEMON_CURRENT]))
+            ch.send(f"You receive {ch.powers[merc.DEMON_CURRENT]:,} points of energy.\n")
 
         handler_game.act("$n is briefly surrounded by a halo of energy.", victim, None, None, merc.TO_ROOM)
         victim.powers[merc.DEMON_CURRENT] += ch.powers[merc.DEMON_CURRENT]

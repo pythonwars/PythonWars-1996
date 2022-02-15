@@ -52,7 +52,7 @@ def cmd_empty(ch, argument):
 
         liquid = item.value[2]
         if liquid not in const.liq_table:
-            comm.notify("cmd_drink: bad liquid number {}".format(liquid), merc.CONSOLE_WARNING)
+            comm.notify(f"cmd_empty: bad liquid number {liquid}", merc.CONSOLE_WARNING)
             liquid = item.value[2] = "water"
 
         handler_game.act("$n empties $T from $p.", ch, item, const.liq_table[liquid].name, merc.TO_ROOM)

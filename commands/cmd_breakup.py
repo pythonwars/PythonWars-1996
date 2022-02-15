@@ -75,7 +75,7 @@ def cmd_breakup(ch, argument):
         handler_game.act("$n breaks off $s engagement with you.", ch, None, victim, merc.TO_VICT)
         ch.save(force=True)
         victim.save(force=True)
-        comm.info("{} and {} have broken up!".format(ch.name, victim.name))
+        comm.info(f"{ch.name} and {victim.name} have broken up!")
 
     ch.send("You are not engaged to them.\n")
 

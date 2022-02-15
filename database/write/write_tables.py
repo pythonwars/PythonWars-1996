@@ -41,11 +41,11 @@ def write_tables(listener=None, loc=DATA_FLAG_DIR, extn=DATA_EXTN):
     os.makedirs(loc, 0o755, True)
 
     for tok in tables:
-        path = "{}{}".format(os.path.join(loc, tok.name), extn)
-        comm.notify("        Writing {}({})".format(tok.name, path), merc.CONSOLE_INFO)
+        path = f"{os.path.join(loc, tok.name)}{extn}"
+        comm.notify(f"        Writing {tok.name}({path})", merc.CONSOLE_INFO)
 
         if listener:
-            listener.send("\t{}\n".format(tok.name))
+            listener.send(f"\t{tok.name}\n")
 
         write_table(path, tok)
 

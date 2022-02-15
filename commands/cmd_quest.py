@@ -68,15 +68,14 @@ def cmd_quest(ch, argument):
             return
 
         if ch.quest < value:
-            ch.send("You don't have the required {} quest points.\n".format(value))
+            ch.send(f"You don't have the required {value} quest points.\n")
             return
 
-        obj_index = instance.item_templates[merc.OBJ_VNUM_PROTOPLASM]
-        if not obj_index:
+        if merc.OBJ_VNUM_PROTOPLASM not in instance.item_templates:
             ch.send("Error...missing object, please inform an Immortal.\n")
             return
 
-        item = object_creator.create_item(obj_index, 25)
+        item = object_creator.create_item(instance.item_templates[merc.OBJ_VNUM_PROTOPLASM], 25)
         item.weight = 1
         item.cost = 1000
         item.item_type = add
@@ -192,7 +191,7 @@ def cmd_quest(ch, argument):
 
         if item.item_type == merc.ITEM_ARMOR and (value + item.value[0]) > 15:
             if item.value[0] < 15:
-                ch.send("The armor class can be increased by {}.\n".format(15 - item.value[0]))
+                ch.send(f"The armor class can be increased by {15 - item.value[0]}.\n")
             else:
                 ch.send("The armor class cannot be increased any further.\n")
             return
@@ -224,7 +223,7 @@ def cmd_quest(ch, argument):
 
         if item.item_type == merc.ITEM_WEAPON and (value + item.value[1]) > 10:
             if item.value[1] < 10:
-                ch.send("The minimum damage can be increased by {}.\n".format(10 - item.value[1]))
+                ch.send(f"The minimum damage can be increased by {10 - item.value[1]}.\n")
             else:
                 ch.send("The minimum damage cannot be increased any further.\n")
             return
@@ -256,7 +255,7 @@ def cmd_quest(ch, argument):
 
         if item.item_type == merc.ITEM_WEAPON and (value + item.value[2]) > 20:
             if item.value[2] < 20:
-                ch.send("The maximum damage can be increased by {}.\n".format(20 - item.value[2]))
+                ch.send(f"The maximum damage can be increased by {20 - item.value[2]}.\n")
             else:
                 ch.send("The maximum damage cannot be increased any further.\n")
             return
@@ -373,21 +372,21 @@ def cmd_quest(ch, argument):
                 return
 
             if ch.quest < add:
-                ch.send("Sorry, you need {} quest points to set that flag.\n".format(add))
+                ch.send(f"Sorry, you need {add} quest points to set that flag.\n")
                 return
 
             ch.quest -= add
             item.flags.silver = True
         elif value:
             if ch.quest < remove:
-                ch.send("Sorry, you need {} quest points to remove that flag.\n".format(remove))
+                ch.send(f"Sorry, you need {remove} quest points to remove that flag.\n")
                 return
 
             ch.quest -= remove
             value = False
         else:
             if ch.quest < add:
-                ch.send("Sorry, you need {} quest points to set that flag.\n".format(add))
+                ch.send(f"Sorry, you need {add} quest points to set that flag.\n")
                 return
 
             ch.quest -= add
@@ -619,7 +618,7 @@ def cmd_quest(ch, argument):
             return
 
         if value + item.level > 50:
-            ch.send("You can only add {} more spell power to this weapon.\n".format(50 - item.level))
+            ch.send(f"You can only add {50 - item.level} more spell power to this weapon.\n")
             return
 
         if ch.quest < value:
@@ -964,7 +963,7 @@ def cmd_quest(ch, argument):
             ch.send("Please enter ACTIVATE, TWIST, PRESS or PULL.\n")
             return
 
-        ch.send("{} flag set.\n".format(arg3[0].upper() + arg3[1:].lower()))
+        ch.send(f"{arg3[0].upper() + arg3[1:].lower()} flag set.\n")
         return
 
     if game_utils.str_cmp(arg2, ["you-out", "you-wear"]):

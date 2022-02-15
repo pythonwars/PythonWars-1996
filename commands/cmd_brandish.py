@@ -45,7 +45,7 @@ def cmd_brandish(ch, argument):
 
     sn = staff.value[3]
     if not sn or not const.skill_table[sn].spell_fun:
-        comm.notify("cmd_brandish: bad sn {}".format(sn), merc.CONSOLE_ERROR)
+        comm.notify(f"cmd_brandish: bad sn {sn}", merc.CONSOLE_ERROR)
         return
 
     ch.wait_state(merc.PULSE_VIOLENCE * 2)
@@ -67,7 +67,7 @@ def cmd_brandish(ch, argument):
                 if not vch.is_npc() if ch.is_npc() else vch.is_npc():
                     continue
             else:
-                comm.notify("cmd_brandish: bad target for sn {}".format(sn), merc.CONSOLE_ERROR)
+                comm.notify(f"cmd_brandish: bad target for sn {sn}", merc.CONSOLE_ERROR)
                 return
 
             handler_magic.obj_cast_spell(staff.value[3], staff.value[0], ch, vch, None)

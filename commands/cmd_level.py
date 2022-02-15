@@ -40,7 +40,7 @@ def cmd_level(ch, argument):
                   ("Blast", merc.WPN_BLAST), ("Pound", merc.WPN_POUND), ("Crush", merc.WPN_CRUSH), ("Grep", merc.WPN_GREP), ("Bite", merc.WPN_BITE),
                   ("Pierce", merc.WPN_PIERCE), ("Suck", merc.WPN_SUCK), ("Unarmed", merc.WPN_UNARMED)]
     for (aa, bb) in level_list:
-        buf += "{:8}: {:<4}  ".format(aa, ch.wpn[bb])
+        buf += f"{aa:8}: {ch.wpn[bb]:<4}  "
 
         col += 1
         if col % 5 == 0:
@@ -54,7 +54,7 @@ def cmd_level(ch, argument):
                   ("Bull", merc.STANCE_BULL), ("Mantis", merc.STANCE_MANTIS), ("Dragon", merc.STANCE_DRAGON), ("Tiger", merc.STANCE_TIGER),
                   ("Monkey", merc.STANCE_MONKEY), ("Swallow", merc.STANCE_SWALLOW)]
     for (aa, bb) in level_list:
-        buf += "{:8}: {:<4}".format(aa, ch.stance[bb])
+        buf += f"{aa:8}: {ch.stance[bb]:<4}"
 
         col += 1
         if col % 5 == 0:
@@ -67,7 +67,7 @@ def cmd_level(ch, argument):
     level_list = [("Purple", merc.PURPLE_MAGIC), ("Blue", merc.BLUE_MAGIC), ("Red", merc.RED_MAGIC), ("Green", merc.GREEN_MAGIC),
                   ("Yellow", merc.YELLOW_MAGIC)]
     for (aa, bb) in level_list:
-        buf += "{:8}: {:<4}".format(aa, ch.spl[bb])
+        buf += "{aa:8}: {ch.spl[bb]:<4}"
 
         col += 1
         if col % 5 == 0:

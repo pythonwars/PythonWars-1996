@@ -80,9 +80,9 @@ def spl_scribe(sn, level, ch, victim, target):
     item.value[1] = sn
     item.value[2] = sn if item.value[0] >= 25 else -1
     item.value[3] = sn if item.value[0] >= 50 else -1
-    item.name = "{} scroll {} {}".format(ch.name, col, sn.name)
-    item.short_descr = "{}'s {} scroll of {}".format(ch.name, col, sn.name)
-    item.description = "A {} scroll is lying here.".format(col)
+    item.name = f"{ch.name} scroll {col} {sn.name}"
+    item.short_descr = f"{ch.name}'s {col} scroll of {sn.name}"
+    item.description = f"A {col} scroll is lying here."
     handler_game.act("You scribe $p.", ch, item, None, merc.TO_CHAR)
     handler_game.act("$n scribes $p.", ch, item, None, merc.TO_ROOM)
 

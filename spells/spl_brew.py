@@ -80,9 +80,9 @@ def spl_brew(sn, level, ch, victim, target):
     item.value[1] = sn
     item.value[2] = sn if item.value[0] >= 25 else -1
     item.value[3] = sn if item.value[0] >= 50 else -1
-    item.name = "{} potion {} {}".format(ch.name, col, sn.name)
-    item.short_descr = "{}'s {} potion of {}".format(ch.name, col, sn.name)
-    item.description = "A {} potion is lying here.".format(col)
+    item.name = f"{ch.name} potion {col} {sn.name}"
+    item.short_descr = f"{ch.name}'s {col} potion of {sn.name}"
+    item.description = f"A {col} potion is lying here."
     handler_game.act("You brew $p.", ch, item, None, merc.TO_CHAR)
     handler_game.act("$n brews $p.", ch, item, None, merc.TO_ROOM)
 

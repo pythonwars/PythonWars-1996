@@ -47,7 +47,7 @@ def spl_locate_object(sn, level, ch, victim, target):
             in_item = in_item.in_item
 
         if in_item.in_living and ch.can_see(in_item.in_living):
-            buf = "{} is carried by {}.\n".format(item.short_descr, in_item.in_living.pers(ch))
+            buf = f"{item.short_descr} is carried by {in_item.in_living.pers(ch)}.\n"
         else:
             buf = "{} is in {}.\n".format(item.short_descr, "somewhere" if not in_item.in_room else in_item.in_room.name)
         ch.send(buf[0].upper() + buf[1:])

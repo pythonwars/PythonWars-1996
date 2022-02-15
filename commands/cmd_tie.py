@@ -56,7 +56,7 @@ def cmd_tie(ch, argument):
     handler_game.act("$n quickly ties up $N.", ch, None, victim, merc.TO_ROOM)
     victim.send("You have been tied up!\n")
     victim.extra.set_bit(merc.EXTRA_TIED_UP)
-    comm.info("{} has been tied up by {}.".format(victim.name, ch.name))
+    comm.info(f"{victim.name} has been tied up by {ch.name}.")
 
 
 interp.register_command(

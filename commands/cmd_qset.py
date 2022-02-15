@@ -153,7 +153,7 @@ def cmd_qset(ch, argument):
         for (aa, bb) in sitem_list:
             if game_utils.str_cmp(arg3, aa):
                 item.spectype.tog_bit(bb)
-                ch.send("{} flag toggled.\n".format(arg3.capitalize()))
+                ch.send(f"{arg3.capitalize()} flag toggled.\n")
                 return
         else:
             ch.send("No such flag to set.\n")

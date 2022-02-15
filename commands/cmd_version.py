@@ -34,8 +34,8 @@ VERSION_NUMBER = 1
 # noinspection PyUnusedLocal
 def cmd_version(ch, argument):
     ch.send("\n*************************************\n"
-            "PythonWars 1996 Version Number :- {}\n"
-            "*************************************\n".format(VERSION_NUMBER))
+            f"PythonWars 1996 Version Number :- {VERSION_NUMBER}\n"
+            "*************************************\n")
 
 
 interp.register_command(

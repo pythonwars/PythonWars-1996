@@ -59,7 +59,7 @@ def cmd_inconnu(ch, argument):
     ch.clan = ""
     ch.exp -= 1000000
     ch.send("You are now an Inconnu.\n")
-    comm.info("{} is now an Inconnu!".format(ch.name))
+    comm.info(f"{ch.name} is now an Inconnu!")
     ch.special.set_bit(merc.SPC_INCONNU)
 
 

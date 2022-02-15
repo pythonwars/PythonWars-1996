@@ -36,8 +36,8 @@ import merc
 def spl_ventriloquate(sn, level, ch, victim, target):
     handler_magic.target_name, speaker = game_utils.read_word(handler_magic.target_name)
 
-    buf1 = "{} says '{}'.\n".format(speaker, handler_magic.target_name)
-    buf2 = "Someone makes {} say '{}'.\n".format(speaker, handler_magic.target_name)
+    buf1 = f"{speaker} says '{handler_magic.target_name}'.\n"
+    buf2 = f"Someone makes {speaker} say '{handler_magic.target_name}'.\n"
 
     for vch_id in ch.in_room.people[:]:
         vch = instance.characters[vch_id]

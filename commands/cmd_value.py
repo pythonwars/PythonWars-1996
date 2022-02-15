@@ -58,7 +58,7 @@ def cmd_value(ch, argument):
         handler_game.act("$n looks uninterested in $p.", keeper, item, ch, merc.TO_VICT)
         return
 
-    handler_game.act("$n tells you 'I'll give you {:,} gold coins for $p'.".format(cost), keeper, item, ch, merc.TO_VICT)
+    handler_game.act(f"$n tells you 'I'll give you {cost:,} gold coins for $p'.", keeper, item, ch, merc.TO_VICT)
     ch.reply = keeper
 
 

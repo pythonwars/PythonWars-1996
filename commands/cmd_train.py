@@ -54,7 +54,7 @@ def cmd_train(ch, argument):
     is_ok = False
 
     if not arg1:
-        ch.send("You have {:,} experience points.\n".format(ch.exp))
+        ch.send(f"You have {ch.exp:,} experience points.\n")
         arg1 = "foo"
 
     isok_list = ["str", "int", "wis", "dex", "con", "hp", "mana", "move", "primal"]
@@ -76,7 +76,7 @@ def cmd_train(ch, argument):
             return
 
         if amount > 1:
-            ch.cmd_train("{} {}".format(arg1, amount - 1))
+            ch.cmd_train(f"{arg1} {amount - 1}")
             last = False
 
     cost = 200
@@ -142,7 +142,7 @@ def cmd_train(ch, argument):
 
                 ch.exp -= immcost
                 ch.immune.set_bit(bb)
-                ch.send("You are now {}.\n".format(cc))
+                ch.send(f"You are now {cc}.\n")
                 return
         else:
             buf = ["You can train the following:\n"]
@@ -172,21 +172,21 @@ def cmd_train(ch, argument):
                 buf += "Become an avatar - 1000 exp.\n"
 
             if ch.max_hit < 30000:
-                buf += "Hp               - {} exp per point.\n".format(ch.max_hit - ch.perm_stat[merc.STAT_CON])
+                buf += f"Hp               - {ch.max_hit - ch.perm_stat[merc.STAT_CON]} exp per point.\n"
 
             if ch.max_mana < 30000:
-                buf += "Mana             - {} exp per point.\n".format(ch.max_mana - ch.perm_stat[merc.STAT_WIS])
+                buf += f"Mana             - {ch.max_mana - ch.perm_stat[merc.STAT_WIS]} exp per point.\n"
 
             if ch.max_move < 30000:
-                buf += "Move             - {} exp per point.\n".format(ch.max_move - ch.perm_stat[merc.STAT_CON])
+                buf += f"Move             - {ch.max_move - ch.perm_stat[merc.STAT_CON]} exp per point.\n"
 
             if ch.practice < 100:
-                buf += "Primal           - {} exp per point of primal energy.\n".format(primal)
+                buf += f"Primal           - {primal} exp per point of primal energy.\n"
 
             if ch.powers[merc.WPOWER_SILVER] < 100 and ch.is_werewolf():
-                buf += "Silver tolerance - {} exp per point of tolerance.\n".format(silver)
+                buf += f"Silver tolerance - {silver} exp per point of tolerance.\n"
 
-            buf += "Natural resistances and immunities - {} exp each.\n".format(immcost)
+            buf += f"Natural resistances and immunities - {immcost} exp each.\n"
 
             # Weapon resistance affects
             buf += "Weapon resistances:"
@@ -278,7 +278,7 @@ def cmd_train(ch, argument):
 
     if game_utils.str_cmp(arg1, "avatar"):
         handler_game.act("You become an avatar!", ch, None, None, merc.TO_CHAR)
-        comm.info("{} has become an avatar!".format(ch.name))
+        comm.info(f"{ch.name} has become an avatar!")
 
         if ch.level < ch.trust:
             ch.level = ch.trust

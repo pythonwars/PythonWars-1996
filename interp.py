@@ -70,4 +70,4 @@ def register_command(entry: CmdType):
     cmd_table[entry.name] = entry
 
     if settings.DEBUG:
-        comm.notify("    {} registered in command table.".format(entry.name), merc.CONSOLE_INFO)
+        comm.notify(f"    {entry.name} registered in command table.", merc.CONSOLE_INFO)

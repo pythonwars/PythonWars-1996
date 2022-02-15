@@ -42,15 +42,15 @@ def cmd_qstat(ch, argument):
         ch.send("You are not carrying that item.\n")
         return
 
-    buf = ["Object {}.\n".format(item.short_descr)]
-    buf += "Owner when worn: {}\n".format(item.chpoweron)
-    buf += "Other when worn: {}\n".format(item.victpoweron)
-    buf += "Owner when removed: {}\n".format(item.chpoweroff)
-    buf += "Other when removed: {}\n".format(item.victpoweroff)
-    buf += "Owner when used: {}\n".format(item.chpoweruse)
-    buf += "Other when used: {}\n".format(item.victpoweruse)
-    buf += "Type: {}.\n".format(repr(item.spectype))
-    buf += "Power: {}.\n".format(item.specpower)
+    buf = [f"Object {item.short_descr}.\n"]
+    buf += f"Owner when worn: {item.chpoweron}\n"
+    buf += f"Other when worn: {item.victpoweron}\n"
+    buf += f"Owner when removed: {item.chpoweroff}\n"
+    buf += f"Other when removed: {item.victpoweroff}\n"
+    buf += f"Owner when used: {item.chpoweruse}\n"
+    buf += f"Other when used: {item.victpoweruse}\n"
+    buf += f"Type: {repr(item.spectype)}.\n"
+    buf += f"Power: {item.specpower}.\n"
     ch.send("".join(buf))
 
 

@@ -85,37 +85,36 @@ def cmd_readaura(ch, argument):
     buf = []
 
     if victim.is_npc():
-        buf += "{} is an NPC.\n".format(victim.short_descr)
+        buf += f"{victim.short_descr} is an NPC.\n"
     else:
         level_list = [(12, "Implementor"), (11, "High Judge"), (10, "Judge"), (9, "Enforcer"), (8, "Quest Maker"), (7, "Builder")]
         for (aa, bb) in level_list:
             if victim.level >= aa:
-                buf += "{} is an {}.\n".format(victim.name, bb)
+                buf += f"{victim.name} is an {bb}.\n"
                 break
         else:
             if victim.level >= 3:
-                buf += "{} is an Avatar.\n".format(victim.name)
+                buf += f"{victim.name} is an Avatar.\n"
             else:
-                buf += "{} is a Mortal.\n".format(victim.name)
+                buf += f"{victim.name} is a Mortal.\n"
 
     if not victim.is_npc():
-        buf += "Str:{}, Int:{}, Wis:{}, Dex:{}, Con:{}.\n".format(victim.stat(merc.STAT_STR), victim.stat(merc.STAT_INT), victim.stat(merc.STAT_WIS),
-                                                                  victim.stat(merc.STAT_DEX), victim.stat(merc.STAT_CON))
+        buf += f"Str:{victim.stat(merc.STAT_STR)}, Int:{victim.stat(merc.STAT_INT)}, Wis:{victim.stat(merc.STAT_WIS)}, Dex:{victim.stat(merc.STAT_DEX)}, Con:{victim.stat(merc.STAT_CON)}.\n"
 
-    buf += "Hp:{}/{}, Mana:{}/{}, Move:{}/{}.\n".format(victim.hit, victim.max_hit, victim.mana, victim.max_mana, victim.move, victim.max_move)
+    buf += f"Hp:{victim.hit}/{victim.max_hit}, Mana:{victim.mana}/{victim.max_mana}, Move:{victim.move}/{victim.max_move}.\n"
 
     if not victim.is_npc():
-        buf += "Hitroll:{}, Damroll:{}, AC:{}.\n".format(victim.hitroll, victim.damroll, victim.armor)
+        buf += f"Hitroll:{victim.hitroll}, Damroll:{victim.damroll}, AC:{victim.armor}.\n"
     else:
-        buf += "AC:{}.\n".format(victim.armor)
+        buf += f"AC:{victim.armor}.\n"
 
     if not victim.is_npc():
-        buf += "Status:{}, ".format(victim.race)
+        buf += f"Status:{victim.race}, "
 
         if victim.is_npc():
-            buf += "Blood:{}, ".format(victim.blood)
+            buf += f"Blood:{victim.blood}, "
 
-    buf += "Alignment:{}.\n".format(victim.alignment)
+    buf += f"Alignment:{victim.alignment}.\n"
 
     if not victim.is_npc() and victim.is_vampire():
         buf += "Disciplines:"

@@ -55,7 +55,7 @@ def spl_polymorph(sn, level, ch, victim, target):
         aff = handler_game.AffectData(type=sn, duration=game_utils.number_range(3, 5), location=merc.APPLY_POLY, modifier=merc.POLY_FROG,
                                       bitvector=merc.AFF_POLYMORPH)
         ch.affect_join(aff)
-        ch.morph = "{} the frog".format(ch.name)
+        ch.morph = f"{ch.name} the frog"
     elif game_utils.str_cmp(handler_magic.target_name, "fish"):
         if not ch.is_npc() and ch.stance[0] != -1:
             ch.cmd_stance("")
@@ -70,7 +70,7 @@ def spl_polymorph(sn, level, ch, victim, target):
         aff = handler_game.AffectData(type=sn, duration=game_utils.number_range(3, 5), location=merc.APPLY_POLY, modifier=merc.POLY_FISH,
                                       bitvector=merc.AFF_POLYMORPH)
         ch.affect_join(aff)
-        ch.morph = "{} the fish".format(ch.name)
+        ch.morph = f"{ch.name} the fish"
     elif game_utils.str_cmp(handler_magic.target_name, "raven"):
         if not ch.is_npc() and ch.stance[0] != -1:
             ch.cmd_stance("")
@@ -92,7 +92,7 @@ def spl_polymorph(sn, level, ch, victim, target):
         aff.location = merc.APPLY_POLY
         aff.modifier = merc.POLY_RAVEN
         ch.affect_join(aff)
-        ch.morph = "{} the raven".format(ch.name)
+        ch.morph = f"{ch.name} the raven"
     else:
         ch.send("You can polymorph into a frog, a fish, or an raven.\n")
 

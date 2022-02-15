@@ -41,9 +41,8 @@ def cmd_fightstyle(ch, argument):
                 "[ 6] Headbutt  [ 7]*Disarm    [ 8] Bite      [ 9]*Dirt      [10] Grapple\n"
                 "[11] Punch     [12]*Gouge     [13] Rip       [14]*Stamp     [15] Backfist\n"
                 "[16] Jumpkick  [17] Spinkick  [18] Hurl      [19] Sweep     [20] Charge\n"
-                "Selected options: 1:[{}] 2:[{}] 3:[{}] 4:[{}] 5:[{}] 6:[{}] 7:[{}] 8:[{}]\n\n"
-                "* This has been coded (others are not yet in).\n".format(ch.cmbt[0], ch.cmbt[1], ch.cmbt[2], ch.cmbt[3], ch.cmbt[4], ch.cmbt[5],
-                                                                          ch.cmbt[6], ch.cmbt[7]))
+                f"Selected options: 1:[{ch.cmbt[0]}] 2:[{ch.cmbt[1]}] 3:[{ch.cmbt[2]}] 4:[{ch.cmbt[3]}] 5:[{ch.cmbt[4]}] 6:[{ch.cmbt[5]}] 7:[{ch.cmbt[6]}] 8:[{ch.cmbt[7]}]\n\n"
+                "* This has been coded (others are not yet in).\n")
         return
 
     value = int(arg1) if arg1.isdigit() else -1
@@ -63,7 +62,7 @@ def cmd_fightstyle(ch, argument):
         return
 
     ch.cmbt[value - 1] = selection
-    ch.send("Combat option {} now set to {} ({})\n".format(value, arg2, ch.cmbt[0]))
+    ch.send(f"Combat option {value} now set to {arg2} ({ch.cmbt[0]})\n")
 
 
 interp.register_command(

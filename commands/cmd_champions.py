@@ -45,7 +45,7 @@ def cmd_champions(ch, argument):
         return
 
     lord = ch.name if ch.is_demon() else ch.lord
-    buf = ["The champions of {}:\n".format(lord)]
+    buf = [f"The champions of {lord}:\n"]
     buf += "[      Name      ] [ Hits ] [ Mana ] [ Move ] [  Exp  ] [       Power        ]\n"
 
     for gch in list(instance.players.values()):
@@ -53,9 +53,7 @@ def cmd_champions(ch, argument):
             continue
 
         if game_utils.str_cmp(ch.lord, lord) or game_utils.str_cmp(ch.name, lord):
-            buf += "[{:<16}] [{:<6}] [{:<6}] [{:<6}] [{:7}] [ {:<9}{:9} ]\n".format(gch.name, gch.hit, gch.mana, gch.move, gch.exp,
-                                                                                    gch.powers[merc.DEMON_CURRENT], gch.powers[merc.DEMON_TOTAL])
-
+            buf += f"[{gch.name:<16}] [{gch.hit:<6}] [{gch.mana:<6}] [{gch.move:<6}] [{gch.exp:7}] [ {gch.powers[merc.DEMON_CURRENT]:<9}{gch.powers[merc.DEMON_TOTAL]:9} ]\n"
     ch.send("".join(buf))
 
 

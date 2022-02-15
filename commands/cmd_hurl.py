@@ -143,7 +143,7 @@ def cmd_hurl(ch, argument):
         pexit.exit_info.rem_bit(merc.EX_CLOSED)
         handler_game.act("$n hoists $N in the air and hurls $M $t.", ch, direction, victim, merc.TO_NOTVICT)
         handler_game.act("You hoist $N in the air and hurl $M $t.", ch, direction, victim, merc.TO_CHAR)
-        handler_game.act("$n hurls you $t, smashing you through the {}.".format(pexit.keyword), ch, direction, victim, merc.TO_VICT)
+        handler_game.act(f"$n hurls you $t, smashing you through the {pexit.keyword}.", ch, direction, victim, merc.TO_VICT)
         handler_game.act("There is a loud crash as $n smashes through the $d.", victim, None, pexit.keyword, merc.TO_ROOM)
 
         to_room = pexit.to_room

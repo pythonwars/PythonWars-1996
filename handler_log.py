@@ -83,29 +83,26 @@ def char_parse_exception(error_object, *args, ch):  # Parser for exceptions with
     merc.GDF = False
     wrap_call = inspect.getinnerframes(sys.exc_info()[2])
     if ch.level == merc.MAX_LEVEL:
-        ch.send("An Exception Occurred: \n%s %s\n\n" % (type(error_object), str(error_object)))
-    comm.notify("Exception: {} {}".format(type(error_object), str(error_object)), merc.CONSOLE_DEBUG)
+        ch.send(f"An Exception Occurred:\n{type(error_object)} {str(error_object)}\n\n")
+    comm.notify(f"Exception: {type(error_object)} {str(error_object)}", merc.CONSOLE_DEBUG)
     for call_info in reversed(wrap_call):
         local_calls = call_info[0].f_locals
         if "_logged__tracer_var_" in local_calls:
             continue
         if ch.level == merc.MAX_LEVEL:
-            ch.send("--Frame Trace-- \nFile: %s \nFunction: %s \nLine: %d \nCode: %s "
-                    % (call_info[1], call_info[3], call_info[2], call_info[4][0].lstrip()))
-            ch.send("\n")
-        comm.notify("--Frame Trace--nFile: {}\nFunction: {}\nLine: {:,}\nCode: {} ".format(call_info[1], call_info[3], call_info[2],
-                                                                                           call_info[4][0].lstrip()), merc.CONSOLE_DEBUG)
+            ch.send(f"--Frame Trace--\nFile: {call_info[1]}\nFunction: {call_info[3]}\nLine: {call_info[2]:,}\nCode: {call_info[4][0].lstrip()}\n")
+        comm.notify(f"--Frame Trace--nFile: {call_info[1]}\nFunction: {call_info[3]}\nLine: {call_info[2]:,}\nCode: {call_info[4][0].lstrip()}", merc.CONSOLE_DEBUG)
         comm.notify("Local Env Variables: ", merc.CONSOLE_DEBUG)
         for k, v in local_calls.items():
             levtrace = value_to_str(v)
-            comm.notify("{} : {}".format(k, levtrace), merc.CONSOLE_DEBUG)
+            comm.notify(f"{k} : {levtrace}", merc.CONSOLE_DEBUG)
 
 
 # noinspection PyUnresolvedReferences
 def noch_parse_exception(error_object, *args):
     merc.GDF = False
     wrap_call = inspect.getinnerframes(sys.exc_info()[2])
-    comm.notify("Exception: {} {}".format(type(error_object), str(error_object)), merc.CONSOLE_DEBUG)
+    comm.notify(f"Exception: {type(error_object)} {str(error_object)}", merc.CONSOLE_DEBUG)
     for call_info in reversed(wrap_call):
         local_calls = call_info[0].f_locals
         if "_logged__tracer_var_" in local_calls:
@@ -117,7 +114,7 @@ def noch_parse_exception(error_object, *args):
 
         for k, v in local_calls.items():
             levtrace = value_to_str(v)
-            comm.notify("{} : {}".format(k, levtrace), merc.CONSOLE_DEBUG)
+            comm.notify(f"{k} : {levtrace}", merc.CONSOLE_DEBUG)
 
 
 class Logged(object):

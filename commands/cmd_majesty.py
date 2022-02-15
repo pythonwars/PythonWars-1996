@@ -65,12 +65,12 @@ def cmd_majesty(ch, argument):
 
     if not arg1 or not arg2:
         buf = ["You have the following stats:\n"]
-        buf += "Hitroll: {}, Actual: {}.\n".format(ch.fake_hit, ch.hitroll)
-        buf += "Damroll: {}, Actual: {}.\n".format(ch.fake_dam, ch.damroll)
-        buf += "Armour: {}, Actual: {}.\n".format(ch.fake_ac, ch.armor)
-        buf += "Hp: {}, Actual: {}.\n".format(ch.fake_hp, ch.hit)
-        buf += "Mana: {}, Actual: {}.\n".format(ch.fake_mana, ch.mana)
-        buf += "Move: {}, Actual: {}.\n".format(ch.fake_move, ch.move)
+        buf += f"Hitroll: {ch.fake_hit}, Actual: {ch.hitroll}.\n"
+        buf += f"Damroll: {ch.fake_dam}, Actual: {ch.damroll}.\n"
+        buf += f"Armour: {ch.fake_ac}, Actual: {ch.armor}.\n"
+        buf += f"Hp: {ch.fake_hp}, Actual: {ch.hit}.\n"
+        buf += f"Mana: {ch.fake_mana}, Actual: {ch.mana}.\n"
+        buf += f"Move: {ch.fake_move}, Actual: {ch.move}.\n"
         ch.send("".join(buf))
         return
 

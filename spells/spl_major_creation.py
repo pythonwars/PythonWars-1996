@@ -142,10 +142,10 @@ def spl_major_creation(sn, level, ch, victim, target):
     item.item_type = itemtype
 
     if itemtype == merc.ITEM_SYMBOL:
-        buf = "{} {}".format(itemkind, itemname)
+        buf = f"{itemkind} {itemname}"
         item.value[vn] = itempower
     else:
-        buf = "{}".format(itemkind)
+        buf = f"{itemkind}"
 
     if itemtype == merc.ITEM_TOOL:
         item.value[0] = merc.TOOL_PEN
@@ -160,11 +160,11 @@ def spl_major_creation(sn, level, ch, victim, target):
     item.name = buf
 
     if itemtype == merc.ITEM_SYMBOL:
-        item.short_descr = "a {} of {}".format(itemkind, itemname)
+        item.short_descr = f"a {itemkind} of {itemname}"
     else:
-        item.short_descr = "a {}".format(itemkind)
+        item.short_descr = f"a {itemkind}"
 
-    item.description = "A {} lies here.".format(itemkind)
+    item.description = f"A {itemkind} lies here."
     item.questmaker = ch.name
     ch.put(item)
     handler_game.act("$p suddenly appears in your hands.", ch, item, None, merc.TO_CHAR)

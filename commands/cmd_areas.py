@@ -36,7 +36,7 @@ def cmd_areas(ch, argument):
     col = 0
 
     for area in list(instance.areas.values()):
-        buf += "{:<39}".format(area.name)
+        buf += f"{area.name:<39}"
 
         col += 1
         if col % 2 == 0:

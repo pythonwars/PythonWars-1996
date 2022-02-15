@@ -110,11 +110,11 @@ def cmd_upkeep(ch, argument):
 
         if ch.vampaff.is_set(merc.VAM_DISGUISED):
             if ch.beast == 0:
-                buf += "You are disguised as {}...no upkeep.\n".format(ch.morph)
+                buf += f"You are disguised as {ch.morph}...no upkeep.\n"
             elif ch.beast == 100:
-                buf += "You are disguised as {}...upkeep 10-20.\n".format(ch.morph)
+                buf += f"You are disguised as {ch.morph}...upkeep 10-20.\n"
             else:
-                buf += "You are disguised as {}...upkeep 5-10.\n".format(ch.name)
+                buf += f"You are disguised as {ch.name}...upkeep 5-10.\n"
 
         if ch.immune.is_set(merc.IMM_SHIELDED):
             if ch.beast == 0:
@@ -176,11 +176,11 @@ def cmd_upkeep(ch, argument):
                 poly = "mist"
 
             if ch.beast == 0:
-                buf += "You have changed into {} form...no upkeep.\n".format(poly)
+                buf += f"You have changed into {poly} form...no upkeep.\n"
             elif ch.beast == 100:
-                buf += "You have changed into {} form...upkeep 10-20.\n".format(poly)
+                buf += f"You have changed into {poly} form...upkeep 10-20.\n"
             else:
-                buf += "You have changed into {} form...upkeep 5-10.\n".format(poly)
+                buf += f"You have changed into {poly} form...upkeep 5-10.\n"
 
         if ch.polyaff.is_set(merc.POLY_SERPENT):
             if ch.beast == 0:

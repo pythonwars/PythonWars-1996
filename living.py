@@ -766,7 +766,7 @@ class Fight:
             value = instance.characters.get(value, None)  # Ensure fighting exists.
         if value and not isinstance(value, Fight):
             # noinspection PyUnresolvedReferences
-            comm.notify("Instance fighting non combat. {} fighting {}".format(self.name, value.name), merc.CONSOLE_ERROR)
+            comm.notify(f"Instance fighting non combat. {self.name} fighting {value.name}", merc.CONSOLE_ERROR)
             return
 
         if value:
@@ -1391,17 +1391,17 @@ class Fight:
 
             buf2 = "finger{}".format("" if count1 == 1 else "s")
             if count1 > 0 and count2 > 0:
-                handler_game.act("Your skillful blow cuts off {} {} and the thumb from $N's left hand.".format(count1, buf2), self, None, victim, merc.TO_CHAR)
-                handler_game.act("$n's skillful blow cuts off {} {} and the thumb from $N's left hand.".format(count1, buf2), self, None, victim, merc.TO_NOTVICT)
-                handler_game.act("$n's skillful blow cuts off {} {} and the thumb from your left hand.".format(count1, buf2), self, None, victim, merc.TO_VICT)
+                handler_game.act(f"Your skillful blow cuts off {count1} {buf2} and the thumb from $N's left hand.", self, None, victim, merc.TO_CHAR)
+                handler_game.act(f"$n's skillful blow cuts off {count1} {buf2} and the thumb from $N's left hand.", self, None, victim, merc.TO_NOTVICT)
+                handler_game.act(f"$n's skillful blow cuts off {count1} {buf2} and the thumb from your left hand.", self, None, victim, merc.TO_VICT)
 
                 item = victim.get_eq("left_hand")
                 if item:
                     victim.take_item(item)
             elif count1 > 0:
-                handler_game.act("Your skillful blow cuts off {} {} from $N's left hand.".format(count1, buf2), self, None, victim, merc.TO_CHAR)
-                handler_game.act("$n's skillful blow cuts off {} {} from $N's left hand.".format(count1, buf2), self, None, victim, merc.TO_NOTVICT)
-                handler_game.act("$n's skillful blow cuts off {} {} from your left hand.".format(count1, buf2), self, None, victim, merc.TO_VICT)
+                handler_game.act(f"Your skillful blow cuts off {count1} {buf2} from $N's left hand.", self, None, victim, merc.TO_CHAR)
+                handler_game.act(f"$n's skillful blow cuts off {count1} {buf2} from $N's left hand.", self, None, victim, merc.TO_NOTVICT)
+                handler_game.act(f"$n's skillful blow cuts off {count1} {buf2} from your left hand.", self, None, victim, merc.TO_VICT)
 
                 item = victim.get_eq("left_hand")
                 if item:
@@ -1470,17 +1470,17 @@ class Fight:
 
             buf2 = "finger{}".format("" if count1 == 1 else "s")
             if count1 > 0 and count2 > 0:
-                handler_game.act("Your skillful breaks %d %s and the thumb on $N's left hand.".format(count1, buf2), self, None, victim, merc.TO_CHAR)
-                handler_game.act("$n's skillful blow breaks %d %s and the thumb on $N's left hand.".format(count1, buf2), self, None, victim, merc.TO_NOTVICT)
-                handler_game.act("$n's skillful blow breaks %d %s and the thumb on your left hand.".format(count1, buf2), self, None, victim, merc.TO_VICT)
+                handler_game.act(f"Your skillful breaks {count1} {buf2} and the thumb on $N's left hand.", self, None, victim, merc.TO_CHAR)
+                handler_game.act(f"$n's skillful blow breaks {count1} {buf2} and the thumb on $N's left hand.", self, None, victim, merc.TO_NOTVICT)
+                handler_game.act(f"$n's skillful blow breaks {count1} {buf2} and the thumb on your left hand.", self, None, victim, merc.TO_VICT)
 
                 item = victim.get_eq("left_hand")
                 if item:
                     victim.take_item(item)
             elif count1 > 0:
-                handler_game.act("Your skillful blow breaks %d %s on $N's left hand.".format(count1, buf2), self, None, victim, merc.TO_CHAR)
-                handler_game.act("$n's skillful blow breaks %d %s on $N's left hand.".format(count1, buf2), self, None, victim, merc.TO_NOTVICT)
-                handler_game.act("$n's skillful blow breaks %d %s on your left hand.".format(count1, buf2), self, None, victim, merc.TO_VICT)
+                handler_game.act(f"Your skillful blow breaks {count1} {buf2} on $N's left hand.", self, None, victim, merc.TO_CHAR)
+                handler_game.act(f"$n's skillful blow breaks {count1} {buf2} on $N's left hand.", self, None, victim, merc.TO_NOTVICT)
+                handler_game.act(f"$n's skillful blow breaks {count1} {buf2} on your left hand.", self, None, victim, merc.TO_VICT)
 
                 item = victim.get_eq("left_hand")
                 if item:
@@ -1555,17 +1555,17 @@ class Fight:
 
             buf2 = "finger{}".format("" if count1 == 1 else "s")
             if count1 > 0 and count2 > 0:
-                handler_game.act("Your skillful blow cuts off {} {} and the thumb from $N's right hand.".format(count1, buf2), self, None, victim, merc.TO_CHAR)
-                handler_game.act("$n's skillful blow cuts off {} {} and the thumb from $N's right hand.".format(count1, buf2), self, None, victim, merc.TO_NOTVICT)
-                handler_game.act("$n's skillful blow cuts off {} {} and the thumb from your right hand.".format(count1, buf2), self, None, victim, merc.TO_VICT)
+                handler_game.act(f"Your skillful blow cuts off {count1} {buf2} and the thumb from $N's right hand.", self, None, victim, merc.TO_CHAR)
+                handler_game.act(f"$n's skillful blow cuts off {count1} {buf2} and the thumb from $N's right hand.", self, None, victim, merc.TO_NOTVICT)
+                handler_game.act(f"$n's skillful blow cuts off {count1} {buf2} and the thumb from your right hand.", self, None, victim, merc.TO_VICT)
 
                 item = victim.get_eq("right_hand")
                 if item:
                     victim.take_item(item)
             elif count1 > 0:
-                handler_game.act("Your skillful blow cuts off {} {} from $N's right hand.".format(count1, buf2), self, None, victim, merc.TO_CHAR)
-                handler_game.act("$n's skillful blow cuts off {} {} from $N's right hand.".format(count1, buf2), self, None, victim, merc.TO_NOTVICT)
-                handler_game.act("$n's skillful blow cuts off {} {} from your right hand.".format(count1, buf2), self, None, victim, merc.TO_VICT)
+                handler_game.act(f"Your skillful blow cuts off {count1} {buf2} from $N's right hand.", self, None, victim, merc.TO_CHAR)
+                handler_game.act(f"$n's skillful blow cuts off {count1} {buf2} from $N's right hand.", self, None, victim, merc.TO_NOTVICT)
+                handler_game.act(f"$n's skillful blow cuts off {count1} {buf2} from your right hand.", self, None, victim, merc.TO_VICT)
 
                 item = victim.get_eq("right_hand")
                 if item:
@@ -1634,17 +1634,17 @@ class Fight:
 
             buf2 = "finger{}".format("" if count1 == 1 else "s")
             if count1 > 0 and count2 > 0:
-                handler_game.act("Your skillful breaks %d %s and the thumb on $N's right hand.".format(count1, buf2), self, None, victim, merc.TO_CHAR)
-                handler_game.act("$n's skillful blow breaks %d %s and the thumb on $N's right hand.".format(count1, buf2), self, None, victim, merc.TO_NOTVICT)
-                handler_game.act("$n's skillful blow breaks %d %s and the thumb on your right hand.".format(count1, buf2), self, None, victim, merc.TO_VICT)
+                handler_game.act(f"Your skillful breaks {count1} {buf2} and the thumb on $N's right hand.", self, None, victim, merc.TO_CHAR)
+                handler_game.act(f"$n's skillful blow breaks {count1} {buf2} and the thumb on $N's right hand.", self, None, victim, merc.TO_NOTVICT)
+                handler_game.act(f"$n's skillful blow breaks {count1} {buf2} and the thumb on your right hand.", self, None, victim, merc.TO_VICT)
 
                 item = victim.get_eq("right_hand")
                 if item:
                     victim.take_item(item)
             elif count1 > 0:
-                handler_game.act("Your skillful blow breaks %d %s on $N's right hand.".format(count1, buf2), self, None, victim, merc.TO_CHAR)
-                handler_game.act("$n's skillful blow breaks %d %s on $N's right hand.".format(count1, buf2), self, None, victim, merc.TO_NOTVICT)
-                handler_game.act("$n's skillful blow breaks %d %s on your right hand.".format(count1, buf2), self, None, victim, merc.TO_VICT)
+                handler_game.act(f"Your skillful blow breaks {count1} {buf2} on $N's right hand.", self, None, victim, merc.TO_CHAR)
+                handler_game.act(f"$n's skillful blow breaks {count1} {buf2} on $N's right hand.", self, None, victim, merc.TO_NOTVICT)
+                handler_game.act(f"$n's skillful blow breaks {count1} {buf2} on your right hand.", self, None, victim, merc.TO_VICT)
 
                 item = victim.get_eq("right_hand")
                 if item:
@@ -1946,9 +1946,9 @@ class Fight:
                 bodyloc -= 1
                 victim.body.set_bit(merc.BROKEN_RIBS_1)
 
-            handler_game.act("Your skillful blow breaks {} of $N's ribs!".format(broken), self, None, victim, merc.TO_CHAR)
-            handler_game.act("$n's skillful blow breaks {} of $N's ribs!".format(broken), self, None, victim, merc.TO_NOTVICT)
-            handler_game.act("$n's skillful blow breaks {} of your ribs!".format(broken), self, None, victim, merc.TO_VICT)
+            handler_game.act(f"Your skillful blow breaks {broken} of $N's ribs!", self, None, victim, merc.TO_CHAR)
+            handler_game.act(f"$n's skillful blow breaks {broken} of $N's ribs!", self, None, victim, merc.TO_NOTVICT)
+            handler_game.act(f"$n's skillful blow breaks {broken} of your ribs!", self, None, victim, merc.TO_VICT)
         elif critical == 23:
             bodyloc = 0
             broken = game_utils.number_range(1, 3)
@@ -2008,9 +2008,9 @@ class Fight:
                 bodyloc -= 1
                 victim.head.set_bit(merc.LOST_TOOTH_1)
 
-            handler_game.act("Your skillful blow knocks out {} of $N's teeth!".format(broken), self, None, victim, merc.TO_CHAR)
-            handler_game.act("$n's skillful blow knocks out {} of $N's teeth!".format(broken), self, None, victim, merc.TO_NOTVICT)
-            handler_game.act("$n's skillful blow knocks out {} of your teeth!".format(broken), self, None, victim, merc.TO_VICT)
+            handler_game.act(f"Your skillful blow knocks out {broken} of $N's teeth!", self, None, victim, merc.TO_CHAR)
+            handler_game.act(f"$n's skillful blow knocks out {broken} of $N's teeth!", self, None, victim, merc.TO_NOTVICT)
+            handler_game.act(f"$n's skillful blow knocks out {broken} of your teeth!", self, None, victim, merc.TO_VICT)
 
             if broken >= 1:
                 object_creator.make_part(victim, "tooth")
@@ -2057,9 +2057,9 @@ class Fight:
             return
 
         if self == victim:
-            handler_game.act("You are {} the {} stance.".format(bufskill, stancename), self, None, victim, merc.TO_CHAR)
+            handler_game.act(f"You are {bufskill} the {stancename} stance.", self, None, victim, merc.TO_CHAR)
         else:
-            handler_game.act("$N is {} the {} stance.".format(bufskill, stancename), self, None, victim, merc.TO_CHAR)
+            handler_game.act(f"$N is {bufskill} the {stancename} stance.", self, None, victim, merc.TO_CHAR)
 
     # Improve ability at a certain spell type.  KaVir.
     def improve_spl(self, dtype):
@@ -2095,7 +2095,7 @@ class Fight:
         else:
             return
 
-        self.send("#WYou are now {} {} magic.#n\n".format(bufskill, buftype))
+        self.send(f"#WYou are now {bufskill} {buftype} magic.#n\n")
 
     def improve_wpn(self, dtype, right_hand):
         # noinspection PyUnresolvedReferences
@@ -2143,9 +2143,9 @@ class Fight:
             return
 
         if not wield or dtype == 0:
-            buf = "#WYou are now {} at unarmed combat.#n\n".format(bufskill)
+            buf = f"#WYou are now {bufskill} at unarmed combat.#n\n"
         else:
-            buf = "#WYou are now {} with {}.#n\n".format(bufskill, wield.short_descr)
+            buf = f"#WYou are now {bufskill} with {wield.short_descr}.#n\n"
         self.send(buf)
 
     def improve_stance(self):
@@ -2193,7 +2193,7 @@ class Fight:
         else:
             return
 
-        self.send("#WYou are now {} the {} stance.#n\n".format(bufskill, stancename))
+        self.send(f"#WYou are now {bufskill} the {stancename} stance.#n\n")
 
 
 class ClassStuff:
@@ -2436,7 +2436,7 @@ class ClassStuff:
         self.affected_by.set_bit(merc.AFF_POLYMORPH)
         self.vampaff.set_bit(merc.VAM_DISGUISED)
         # noinspection PyUnresolvedReferences
-        self.morph = "{} the werewolf".format(self.name)
+        self.morph = f"{self.name} the werewolf"
         self.powers[merc.UNI_RAGE] += 25
         if self.powers[merc.WPOWER_WOLF] > 3:
             self.powers[merc.UNI_RAGE] += 100
@@ -2642,22 +2642,22 @@ class Communication:
     # Generic channel function.
     def talk_channel(self, argument, channel, verb):
         if not argument:
-            self.send("{} what?\n".format(verb.upper()))
+            self.send(f"{verb.upper()} what?\n")
             return
 
         # noinspection PyUnresolvedReferences
         if self.head.is_set(merc.LOST_TONGUE):
-            self.send("You can't {} without a tongue!\n".format(verb))
+            self.send(f"You can't {verb} without a tongue!\n")
             return
 
         # noinspection PyUnresolvedReferences
         if self.extra.is_set(merc.EXTRA_GAGGED):
-            self.send("You can't {} with a gag on!\n".format(verb))
+            self.send(f"You can't {verb} with a gag on!\n")
             return
 
         # noinspection PyUnresolvedReferences
         if not self.is_npc() and self.sentances.is_set(merc.SENT_SILENCE):
-            self.send("You can't {}.\n".format(verb))
+            self.send(f"You can't {verb}.\n")
             return
 
         self.channels.rem_bit(channel)
@@ -2692,9 +2692,9 @@ class Communication:
                 buf2 = "[$n] $t."
             handler_game.act(buf1, self, argument, None, merc.TO_CHAR, merc.POS_DEAD)
         else:
-            self.send("You {} '{}'.\n".format(verb, argument))
-            buf1 = "$n {}s '$t'.".format(verb)
-            buf2 = "$n {}s '$t'.".format(verb)
+            self.send(f"You {verb} '{argument}'.\n")
+            buf1 = f"$n {verb}s '$t'."
+            buf2 = f"$n {verb}s '$t'."
 
         for vch in list(instance.players.values()):
             if vch == self or vch.channels.is_set(channel):
@@ -2885,17 +2885,17 @@ class Living(immortal.Immortal, Fight, Grouping, physical.Physical, environment.
 
     def miss_obj(self, vnum, function):
         self.send("Missing object, please inform an Immortal.\n")
-        comm.notify("{}: missing vnum ##{}".format(function, vnum), merc.CONSOLE_WARNING)
+        comm.notify(f"{function}: missing vnum ##{vnum}", merc.CONSOLE_WARNING)
 
     def miss_mob(self, vnum, function):
         self.send("Missing mobile, please inform an Immortal.\n")
-        comm.notify("{}: missing vnum ##{}".format(function, vnum), merc.CONSOLE_WARNING)
+        comm.notify(f"{function}: missing vnum ##{vnum}", merc.CONSOLE_WARNING)
 
     def not_here(self, argument):
         if not argument:
             self.send("They aren't here.\n")
         else:
-            self.send("You couldn't find '{}'.\n".format(argument))
+            self.send(f"You couldn't find '{argument}'.\n")
 
     def get_age(self):
         return 17 + (self.played + int(time.time() - self.logon)) // 72000
@@ -3086,7 +3086,7 @@ class Living(immortal.Immortal, Fight, Grouping, physical.Physical, environment.
     def paradox(self):
         self.send("The sins of your past strike back!\n"
                   "The paradox has come for your soul!\n")
-        comm.info("{} is struck by a paradox.".format(self.name))
+        comm.info(f"{self.name} is struck by a paradox.")
         self.hit = -10
         fight.update_pos(self)
         # noinspection PyUnresolvedReferences
@@ -3158,11 +3158,11 @@ class Living(immortal.Immortal, Fight, Grouping, physical.Physical, environment.
             return
 
         if not self.is_judge() and item.points + cost > qmax:
-            self.send("You are limited to {} quest points per item.\n".format(qmax))
+            self.send(f"You are limited to {qmax:,} quest points per item.\n")
             return
 
         if is_quest and self.quest < cost:
-            self.send("That costs {} quest points, while you only have {}.\n".format(cost, self.quest))
+            self.send(f"That costs {cost:,} quest points, while you only have {self.quest:,}.\n")
             return
 
         item.quest.set_bit(quest)
@@ -3226,7 +3226,7 @@ class Living(immortal.Immortal, Fight, Grouping, physical.Physical, environment.
     # Extract a char from the world.
     def extract(self, fpull):
         if not self.in_room:
-            comm.notify("extract: {} not in room".format(self.name), merc.CONSOLE_WARNING)
+            comm.notify(f"extract: {self.name} not in room", merc.CONSOLE_WARNING)
             return
 
         if fpull:

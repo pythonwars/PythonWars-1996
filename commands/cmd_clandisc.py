@@ -64,9 +64,9 @@ def cmd_clandisc(ch, argument):
         for (aa, bb) in disc_list:
             if ch.vampaff.is_set(aa) and not ch.vamppass.is_set(aa):
                 found = True
-                buf += " {}".format(bb)
+                buf += f" {bb}"
             elif ch.vampaff.is_set(aa):
-                buf += " {}".format(bb.upper())
+                buf += f" {bb.upper()}"
                 found = True
 
         if not found:
@@ -75,7 +75,7 @@ def cmd_clandisc(ch, argument):
         ch.send("".join(buf))
 
         if clancount < clanmax:
-            buf += "It will cost you {} primal to gain another discipline.\n".format(cost)
+            buf += f"It will cost you {cost} primal to gain another discipline.\n"
 
         if cost > ch.practice:
             ch.send("".join(buf))
@@ -87,7 +87,7 @@ def cmd_clandisc(ch, argument):
                      (merc.VAM_AUSPEX, "Auspex"), (merc.VAM_DOMINATE, "Dominate"), (merc.VAM_PRESENCE, "Presence")]
         for (aa, bb) in disc_list:
             if not ch.vampaff.is_set(aa):
-                buf += " {}".format(bb)
+                buf += f" {bb}"
         ch.send("".join(buf))
         return
 

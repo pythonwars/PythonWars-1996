@@ -109,8 +109,8 @@ def cmd_decapitate(ch, argument):
             ch.powers[merc.DEMON_TOTAL] += victim.race * 1000
 
     if victim.race < 1 and ch.race > 0:
-        comm.info("{} has been decapitated by {} for no status.".format(victim.name, ch.name))
-        comm.notify("{} decapitated by {} at {} for no status.".format(victim.name, ch.name, victim.in_room.vnum), merc.CONSOLE_INFO)
+        comm.info(f"{victim.name} has been decapitated by {ch.name} for no status.")
+        comm.notify(f"victim.name{} decapitated by {ch.name} at {victim.in_room.vnum} for no status.", merc.CONSOLE_INFO)
 
         if victim.is_vampire():
             victim.mortalvamp()
@@ -157,8 +157,8 @@ def cmd_decapitate(ch, argument):
     victim.pdeath += 1
     victim.powers[merc.UNI_RAGE] = 0
     victim.level = 2
-    comm.info("{} has been decapitated by {}.".format(victim.name, ch.name))
-    comm.notify("{} decapitated by {} at {}.".format(victim.name, ch.name, victim.in_room.vnum), merc.CONSOLE_INFO)
+    comm.info(f"{victim.name} has been decapitated by {ch.name}.")
+    comm.notify(f"{victim.name} decapitated by {ch.name} at {victim.in_room.vnum}.", merc.CONSOLE_INFO)
 
 
 interp.register_command(

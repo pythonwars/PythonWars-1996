@@ -199,7 +199,7 @@ class TelnetClient(object):
         return cmd
 
     def show_terminal_type(self):
-        return "Terminal Type set to {} ({} columns, {} rows)\n".format(self.terminal_type, self.columns, self.rows)
+        return f"Terminal Type set to {self.terminal_type} ({self.columns} columns, {self.rows} rows)\n"
 
     def clear_screen(self, top):
         if top:
@@ -233,14 +233,14 @@ class TelnetClient(object):
         """
         Return the client's IP address and port number as string.
         """
-        return "{}:{}".format(self.address if ip else self.hostname, self.port)
+        return f"{self.address if ip else self.hostname}:{self.port}"
 
     def addr(self, ip=True):
         """
         Return the client's IP address as string.
         :return:
         """
-        return "{}".format(self.address if ip else self.hostname)
+        return f"{self.address if ip else self.hostname}"
 
     def idle(self, seconds=True):
         """
@@ -325,7 +325,7 @@ class TelnetClient(object):
                 # convert to ansi before sending
                 sent = self.sock.send(bytes(self.send_buffer, "latin1"))
             except socket.error as err:
-                comm.notify("SEND error '{}' from {}".format(err, self.addrport()), merc.CONSOLE_INFO)
+                comm.notify(f"SEND error '{err}' from {self.addrport()}", merc.CONSOLE_INFO)
                 self.active = False
                 return
 
@@ -342,7 +342,7 @@ class TelnetClient(object):
             # Encode recieved bytes in ansi
             data = str(self.sock.recv(2048), "latin1")
         except socket.error as err:
-            comm.notify("RECIEVE socket error '{}' from {}".format(err, self.addrport()), merc.CONSOLE_ERROR)
+            comm.notify(f"RECIEVE socket error '{err}' from {self.addrport()}", merc.CONSOLE_ERROR)
             raise ConnectionLost()
 
         # Did they close the connection?
@@ -479,7 +479,7 @@ class TelnetClient(object):
         Handle incoming Telnet commmands that are three bytes long.
         """
         cmd = self.telnet_got_cmd
-        # comm.notify("_three_byte_cmd: {}:{}".format(ord(cmd), ord(option)), merc.CONSOLE_INFO)
+        # comm.notify(f"_three_byte_cmd: {ord(cmd)}:{ord(option)}", merc.CONSOLE_INFO)
 
         # Incoming DO's and DONT's refer to the status of this end
         if cmd == DO:
@@ -538,7 +538,7 @@ class TelnetClient(object):
                     self._note_reply_pending(TTYPE, False)
                     self._note_remote_option(TTYPE, True)
                     # Tell them to send their terminal type
-                    self.send("{}{}{}{}{}{}".format(IAC, SB, TTYPE, SEND, IAC, SE))
+                    self.send(f"{IAC}{SB}{TTYPE}{SEND}{IAC}{SE}")
                 elif self._check_remote_option(TTYPE) is False or self._check_remote_option(TTYPE) is UNKNOWN:
                     self._note_remote_option(TTYPE, True)
                     self._iac_do(TTYPE)
@@ -574,15 +574,15 @@ class TelnetClient(object):
         if len(bloc) > 2:
             if bloc[0] == TTYPE and bloc[1] == IS:
                 self.terminal_type = bloc[2:].lower()
-                # comm.notify("Terminal type = '{}'".format(self.terminal_type), merc.CONSOLE_INFO)
+                # comm.notify(f"Terminal type = '{self.terminal_type}'", merc.CONSOLE_INFO)
 
             if bloc[0] == NAWS:
                 if len(bloc) != 5:
-                    comm.notify("Bad length on NAWS SB: {}".format(str(len(bloc))), merc.CONSOLE_INFO)
+                    comm.notify(f"Bad length on NAWS SB: {str(len(bloc))}", merc.CONSOLE_INFO)
                 else:
                     self.columns = (256 * ord(bloc[1])) + ord(bloc[2])
                     self.rows = (256 * ord(bloc[3])) + ord(bloc[4])
-                # comm.notify("Screen is {} x {}".format(self.columns, self.rows), merc.CONSOLE_INFO)
+                # comm.notify(f"Screen is {self.columns} x {self.rows}", merc.CONSOLE_INFO)
 
         self.telnet_sb_buffer = ""
 
@@ -632,19 +632,19 @@ class TelnetClient(object):
 
     def _iac_do(self, option):
         # Send a Telnet IAC "DO" sequence.
-        self.send("{}{}{}".format(IAC, DO, option))
+        self.send(f"{IAC}{DO}{option}")
 
     def _iac_dont(self, option):
         # Send a Telnet IAC "DONT" sequence.
-        self.send("{}{}{}".format(IAC, DONT, option))
+        self.send(f"{IAC}{DONT}{option}")
 
     def _iac_will(self, option):
         # Send a Telnet IAC "WILL" sequence.
-        self.send("{}{}{}".format(IAC, WILL, option))
+        self.send(f"{IAC}{WILL}{option}")
 
     def _iac_wont(self, option):
         # Send a Telnet IAC "WONT" sequence.
-        self.send("{}{}{}".format(IAC, WONT, option))
+        self.send(f"{IAC}{WONT}{option}")
 
     def send_ga(self):
-        self.send("{}{}".format(IAC, GA))
+        self.send(f"{IAC}{GA}")

@@ -50,7 +50,7 @@ def show_spell(ch, spell_type):
                  (merc.YELLOW_MAGIC, "yellow")]
     for (aa, bb) in type_list:
         if spell_type == aa:
-            ch.send("You are {} {} magic.\n".format(bufskill, bb))
+            ch.send(f"You are {bufskill} {bb} magic.\n")
             return
 
 

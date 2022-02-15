@@ -220,7 +220,7 @@ class Affects:
         elif paf.location == merc.APPLY_POLY:
             self.polyaff.bits += mod
         else:
-            comm.notify("affect_modify: unknown location {}".format(paf.location), merc.CONSOLE_ERROR)
+            comm.notify(f"affect_modify: unknown location {paf.location}", merc.CONSOLE_ERROR)
             return
 
         # Check for weapon wielding.

@@ -43,10 +43,10 @@ def cmd_mwhere(ch, argument):
     for victim in list(instance.npcs.values()):
         if victim.in_room and game_utils.is_name(arg, victim.name):
             found = True
-            buf += "[{:5}] {:<28} [{:5}] {}\n".format(victim.vnum, victim.short_descr, victim.in_room.vnum, victim.in_room.name)
+            buf += f"[{victim.vnum:5}] {victim.short_descr:<28} [{victim.in_room.vnum:5}] {victim.in_room.name}\n"
 
     if not found:
-        buf += "You didn't find any {}.".format(arg)
+        buf += f"You didn't find any {arg}."
     ch.send("".join(buf))
 
 

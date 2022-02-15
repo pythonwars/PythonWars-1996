@@ -34,7 +34,7 @@ def cmd_wimpy(ch, argument):
     argument, arg = game_utils.read_word(argument)
 
     if not arg or not arg.isdigit():
-        ch.send("Wimpy set to {:,} hit points.\n".format(ch.wimpy))
+        ch.send(f"Wimpy set to {ch.wimpy:,} hit points.\n")
         return
 
     wimpy = int(arg)
@@ -47,7 +47,7 @@ def cmd_wimpy(ch, argument):
         return
 
     ch.wimpy = wimpy
-    ch.send("Wimpy set to {:,} hit points.\n".format(wimpy))
+    ch.send(f"Wimpy set to {wimpy:,} hit points.\n")
 
 
 interp.register_command(

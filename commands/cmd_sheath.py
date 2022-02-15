@@ -42,7 +42,7 @@ def sheath(ch, right_hand):
     item = "right_hand" if right_hand else "left_hand"
     item = ch.get_eq(item)
     if not item:
-        ch.send("You are not holding anything in your {} hand.\n".format(hand))
+        ch.send(f"You are not holding anything in your {hand} hand.\n")
         return
 
     if item.item_type != merc.ITEM_WEAPON:

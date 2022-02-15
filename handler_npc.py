@@ -96,9 +96,9 @@ class Npc(living.Living):
 
     def __repr__(self):
         if self.instance_id:
-            return "<NPC Instance: {} ID {} template {}>".format(self.short_descr, self.instance_id, self.vnum)
+            return f"<NPC Instance: {self.short_descr} ID {self.instance_id} template {self.vnum}>"
         else:
-            return "<NPC Template: {}:{}>".format(self.short_descr, self.vnum)
+            return f"<NPC Template: {self.short_descr}:{self.vnum}>"
 
     def instance_setup(self):
         instance.global_instances[self.instance_id] = self
@@ -160,9 +160,9 @@ class Npc(living.Living):
         pathname = os.path.join(top_dir, "%d-%s" % (area_number, self.in_area.name), "npcs")
 
         os.makedirs(pathname, 0o755, True)
-        filename = os.path.join(pathname, "%d-npc%s" % (number, settings.DATA_EXTN))
+        filename = os.path.join(pathname, f"{number}-npc{settings.DATA_EXTN}")
 
-        comm.notify("Saving {}".format(filename), merc.CONSOLE_INFO)
+        comm.notify(f"Saving {filename}", merc.CONSOLE_INFO)
         js = json.dumps(self, default=instance.to_json, indent=2, sort_keys=True)
         md5 = hashlib.md5(js.encode("utf-8")).hexdigest()
         if self._md5 != md5:
@@ -174,7 +174,7 @@ class Npc(living.Living):
         if self.inventory:
             for item_id in self.inventory[:]:
                 if item_id not in instance.items:
-                    comm.notify("Item {} is in NPC {}'s inventory, but does not exist?".format(item_id, self.instance_id), merc.CONSOLE_ERROR)
+                    comm.notify(f"Item {item_id} is in NPC {self.instance_id}'s inventory, but does not exist?", merc.CONSOLE_ERROR)
                     continue
 
                 item = instance.items[item_id]
@@ -182,7 +182,7 @@ class Npc(living.Living):
         for item_id in self.equipped.values():
             if item_id:
                 if item_id not in instance.items:
-                    comm.notify("Item {} is in NPC {}'s equipment, but does not exist?".format(item_id, self.instance_id), merc.CONSOLE_ERROR)
+                    comm.notify(f"Item {item_id} is in NPC {self.instance_id}'s equipment, but does not exist?", merc.CONSOLE_ERROR)
                     continue
 
                 item = instance.items[item_id]
@@ -192,7 +192,7 @@ class Npc(living.Living):
     def load(cls, vnum: int = None, instance_id: int = None):
         if instance_id:
             if instance_id in instance.characters:
-                comm.notify("Instance {} of npc already loaded!".format(instance_id), merc.CONSOLE_WARNING)
+                comm.notify(f"Instance {instance_id} of npc already loaded!", merc.CONSOLE_WARNING)
                 return
 
             pathname = settings.INSTANCE_DIR
@@ -226,5 +226,5 @@ class Npc(living.Living):
                     handler_item.Items.load(instance_id=item_id)
             return obj
         else:
-            comm.notify("Could not load npc data for {}".format(number), merc.CONSOLE_INFO)
+            comm.notify(f"Could not load npc data for {number}", merc.CONSOLE_INFO)
             return None

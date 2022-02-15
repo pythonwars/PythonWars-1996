@@ -48,7 +48,7 @@ def cmd_practice(ch, argument):
             if sn not in ch.learned:
                 continue
 
-            buf += "{:<18} {:3}%  ".format(skill.name, ch.learned[sn])
+            buf += f"{skill.name:<18} {ch.learned[sn]:3}%  "
 
             col += 1
             if col % 3 == 0:
@@ -57,7 +57,7 @@ def cmd_practice(ch, argument):
         if col % 3 != 0:
             buf += "\n"
 
-        buf += "You have {:,} exp left.\n".format(ch.exp)
+        buf += f"You have {ch.exp:,} exp left.\n"
         ch.send("".join(buf))
     else:
         if not ch.is_awake():
@@ -74,11 +74,11 @@ def cmd_practice(ch, argument):
             return
 
         if ch.learned[skill.name] >= 100:
-            ch.send("You are already an adept of {}.\n".format(skill.name))
+            ch.send(f"You are already an adept of {skill.name}.\n")
         elif ch.learned[skill.name] > 0 and (ch.learned[skill.name] // 2) > ch.exp:
-            ch.send("You need {} exp to increase {} any more.\n".format(ch.learned[skill.name] // 2, skill.name))
+            ch.send(f"You need {ch.learned[skill.name] // 2} exp to increase {skill.name} any more.\n")
         elif ch.learned[skill.name] == 0 and ch.exp < 500:
-            ch.send("You need 500 exp to increase {}.\n".format(skill.name))
+            ch.send(f"You need 500 exp to increase {skill.name}.\n")
         else:
             if ch.learned[skill.name] == 0:
                 ch.exp -= 500

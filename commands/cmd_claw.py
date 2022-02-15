@@ -129,7 +129,7 @@ def cmd_claw(ch, argument):
     if ch.powers[merc.UNI_GEN] == 1:
         victim.lord = ch.name
     else:
-        victim.lord = "{} {}".format(ch.lord, ch.name)
+        victim.lord = f"{ch.lord} {ch.name}"
 
     victim.clan = ch.clan
     victim.powers[merc.UNI_AFF] = 0

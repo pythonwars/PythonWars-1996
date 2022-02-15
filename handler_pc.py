@@ -126,7 +126,7 @@ class Pc(living.Living):
             return
 
     def __repr__(self):
-        return "<PC: {} ID {}>".format(self.name, self.instance_id)
+        return f"<PC: {self.name} ID {self.instance_id}>"
 
     def instance_setup(self):
         instance.global_instances[self.instance_id] = self
@@ -164,7 +164,7 @@ class Pc(living.Living):
 
     @classmethod
     def add_color(cls, pstr, col):
-        return "{col}{pstr}#n".format(col=col, pstr=pstr)
+        return f"{col}{pstr}#n"
 
     @classmethod
     def col_scale(cls, pstr, curr, pmax):
@@ -329,7 +329,7 @@ class Pc(living.Living):
             logline = "XXXXXXXX XXXXXXXX XXXXXXXX"
 
         if (not self.is_npc() and self.sentances.is_set(merc.SENT_LOG)) or settings.LOGALL or (cmd and cmd.log == merc.LOG_ALWAYS):
-            comm.notify("{}: {}".format(self.name, logline), merc.CONSOLE_INFO)
+            comm.notify(f"{self.name}: {logline}", merc.CONSOLE_INFO)
 
         if self.desc and self.desc.snoop_by:
             self.desc.snoop_by.send("% " + logline + "\n")
@@ -457,11 +457,11 @@ class Pc(living.Living):
                 return data
             else:
                 if not silent:
-                    comm.notify("Could not load player stub file for {}".format(player_name), merc.CONSOLE_ERROR)
+                    comm.notify(f"Could not load player stub file for {player_name}", merc.CONSOLE_ERROR)
                 return None
         else:
             if not silent:
-                comm.notify("Could not open player stub file for {}".format(player_name), merc.CONSOLE_ERROR)
+                comm.notify(f"Could not open player stub file for {player_name}", merc.CONSOLE_ERROR)
             return None
 
     def save(self, logout: bool = False, force: bool = False):
@@ -475,7 +475,7 @@ class Pc(living.Living):
 
         pathname = os.path.join(settings.PLAYER_DIR, self.name[0].lower(), self.name.capitalize())
         os.makedirs(pathname, 0o755, True)
-        filename = os.path.join(pathname, "player{}".format(settings.DATA_EXTN))
+        filename = os.path.join(pathname, f"player{settings.DATA_EXTN}")
 
         js = json.dumps(self, default=instance.to_json, indent=2, sort_keys=True)
         md5 = hashlib.md5(js.encode("utf-8")).hexdigest()
@@ -488,7 +488,7 @@ class Pc(living.Living):
         if self.inventory:
             for item_id in self.inventory[:]:
                 if item_id not in instance.items:
-                    comm.notify("Item {} is in Player {}'s inventory, but does not exist?".format(item_id, self.name), merc.CONSOLE_ERROR)
+                    comm.notify(f"Item {item_id} is in Player {self.name}'s inventory, but does not exist?", merc.CONSOLE_ERROR)
                     continue
 
                 item = instance.items[item_id]
@@ -496,7 +496,7 @@ class Pc(living.Living):
         for item_id in self.equipped.values():
             if item_id:
                 if item_id not in instance.items:
-                    comm.notify("Item {} is in Player {}'s inventory, but does not exist?".format(item_id, self.name), merc.CONSOLE_ERROR)
+                    comm.notify(f"Item {item_id} is in Player {self.name}'s inventory, but does not exist?", merc.CONSOLE_ERROR)
                     continue
                 item = instance.items[item_id]
                 item.save(is_equipped=True, player_name=self.name, force=force)
@@ -523,11 +523,11 @@ class Pc(living.Living):
                 return obj
             else:
                 if not silent:
-                    comm.notify("Could not load player file for {}".format(player_name), merc.CONSOLE_ERROR)
+                    comm.notify(f"Could not load player file for {player_name}", merc.CONSOLE_ERROR)
                 return None
         else:
             if not silent:
-                comm.notify("Could not open player file for {}".format(player_name), merc.CONSOLE_ERROR)
+                comm.notify(f"Could not open player file for {player_name}", merc.CONSOLE_ERROR)
             return None
 
     # JINNOTE - 12/23/2020 @ 4:57 PM - Next two functions are hot messes, but less so than the original code.

@@ -66,7 +66,7 @@ def cmd_marry(ch, argument):
         victim2.extra.set_bit(merc.EXTRA_MARRIED)
         victim1.save(force=True)
         victim2.save(force=True)
-        comm.info("{} and {} are now married!".format(victim1.name, victim2.name))
+        comm.info(f"{victim1.name} and {victim2.name} are now married!")
         return
 
     ch.send("But they are not yet engaged!\n")

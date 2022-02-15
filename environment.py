@@ -46,7 +46,7 @@ class Environment:
         # TODO: Remove this once we track down the source. This should never happen.
         if self._environment == self:
             # noinspection PyUnresolvedReferences
-            comm.notify("{} environment is set to itself".format(self.name), merc.CONSOLE_ERROR)
+            comm.notify(f"{self.name} environment is set to itself", merc.CONSOLE_ERROR)
             self._environment = None
 
         return instance.global_instances.get(self._environment, None)
@@ -131,8 +131,7 @@ class Environment:
             number += 1
             if content.instance_id in counted:
                 # noinspection PyUnresolvedReferences
-                comm.notify("get_number: items contain each other. {} ({}) - {} ({})".format(self.short_descr, self.instance_id,
-                                                                                             content.short_descr, content.instance_id), merc.CONSOLE_ERROR)
+                comm.notify(f"get_number: items contain each other. {self.short_descr} ({self.instance_id}) - {content.short_descr} ({content.instance_id})", merc.CONSOLE_ERROR)
                 break
 
             counted.append(content)
@@ -152,8 +151,7 @@ class Environment:
 
             if content.instance_id in counted:
                 # noinspection PyUnresolvedReferences
-                comm.notify("get_weight: items contain each other. {} ({}) - {} ({})".format(self.short_descr, self.instance_id,
-                                                                                             content.short_descr, content.instance_id), merc.CONSOLE_ERROR)
+                comm.notify(f"get_weight: items contain each other. {self.short_descr} ({self.instance_id}) - {content.short_descr} ({content.instance_id})", merc.CONSOLE_ERROR)
                 break
 
             counted.append(content)

@@ -46,7 +46,7 @@ def register_spell(entry: skill_type):
     spell_lookup_dict[entry.name] = [entry.slot]
 
     if settings.DEBUG:
-        comm.notify("    {}:{} registered in skill table".format(entry.slot, entry.name), merc.CONSOLE_BOOT)
+        comm.notify(f"    {entry.slot}:{entry.name} registered in skill table", merc.CONSOLE_BOOT)
 
 
 class_type = namedtuple("class_type", "name, who_name, skill_adept, thac0_00, thac0_32")

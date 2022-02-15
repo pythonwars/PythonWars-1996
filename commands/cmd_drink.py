@@ -60,7 +60,7 @@ def cmd_drink(ch, argument):
     elif item.item_type == merc.ITEM_FOUNTAIN:
         liquid = item.value[2]
         if liquid < 0:
-            comm.notify("cmd_drink: bad liquid number {}".format(liquid), merc.CONSOLE_WARNING)
+            comm.notify(f"cmd_drink: bad liquid number {liquid}", merc.CONSOLE_WARNING)
             liquid = item.value[2] = 0
 
         if ch.is_affected(merc.AFF_SHADOWPLANE) and item.in_room and not item.flags.shadowplane:
@@ -97,7 +97,7 @@ def cmd_drink(ch, argument):
 
         liquid = item.value[2]
         if liquid < 0:
-            comm.notify("cmd_drink: bad liquid number {}".format(liquid), merc.CONSOLE_WARNING)
+            comm.notify(f"cmd_drink: bad liquid number {liquid}", merc.CONSOLE_WARNING)
             liquid = item.value[2] = 0
 
         if liquid != 13 and ch.is_vampire():

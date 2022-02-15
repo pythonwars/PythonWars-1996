@@ -49,40 +49,35 @@ def cmd_mstat(ch, argument):
         ch.send("You failed.\n")
         return
 
-    buf = ["Name: {}\n".format(victim.name)]
-    buf += "Vnum: {}.  Sex: {}.  Room: {}.\n".format(0 if not victim.is_npc() else victim.vnum, tables.sex_table[victim.sex],
-                                                     0 if not victim.in_room else victim.in_room.vnum)
-    buf += "Str: {}.  Int: {}.  Wis: {}.  Dex: {}.  Con: {}.\n".format(victim.stat(merc.STAT_STR), victim.stat(merc.STAT_INT),
-                                                                       victim.stat(merc.STAT_WIS), victim.stat(merc.STAT_DEX),
-                                                                       victim.stat(merc.STAT_CON))
-    buf += "Hp: {}/{}.  Mana: {}/{}.  Move: {}/{}.  Primal: {}.\n".format(victim.hit, victim.max_hit, victim.mana, victim.max_mana,
-                                                                          victim.move, victim.max_move, victim.practice)
-    buf += "Lv: {}.  Align: {}.  AC: {}.  Gold: {}.  Exp: {}.\n".format(victim.level, victim.alignment, victim.armor, victim.gold, victim.exp)
-    buf += "Hitroll: {}.  Damroll: {}.  Position: {}.  Wimpy: {}.\n".format(victim.hitroll, victim.damroll, tables.position_table[victim.position].name,
-                                                                            victim.wimpy)
+    buf = [f"Name: {victim.name}\n"]
+    buf += f"Vnum: {0 if not victim.is_npc() else victim.vnum}.  Sex: {tables.sex_table[victim.sex]}.  Room: {0 if not victim.in_room else victim.in_room.vnum}.\n"
+    buf += f"Str: {victim.stat(merc.STAT_STR)}.  Int: {victim.stat(merc.STAT_INT)}.  Wis: {victim.stat(merc.STAT_WIS)}.  Dex: {victim.stat(merc.STAT_DEX)}.  Con: {victim.stat(merc.STAT_CON)}.\n"
+    buf += f"Hp: {victim.hit}/{victim.max_hit}.  Mana: {victim.mana}/{victim.max_mana}.  Move: {victim.move}/{victim.max_move}.  Primal: {victim.practice}.\n"
+    buf += f"Lv: {victim.level}.  Align: {victim.alignment}.  AC: {victim.armor}.  Gold: {victim.gold}.  Exp: {victim.exp}.\n"
+    buf += f"Hitroll: {victim.hitroll}.  Damroll: {victim.damroll}.  Position: {tables.position_table[victim.position].name}.  Wimpy: {victim.wimpy}.\n"
     buf += "Fighting: {}.\n".format(victim.fighting.name if victim.fighting else "(none)")
 
     if not victim.is_npc():
-        buf += "Saving throw: {}.\n".format(victim.saving_throw)
+        buf += f"Saving throw: {victim.saving_throw}.\n"
 
         if victim.is_vampire() or victim.is_werewolf():
             buf += "Clan: {}. ".format(victim.clan if victim.clan else "None")
-            buf += "Rage: {}. ".format(victim.powers[merc.UNI_RAGE])
+            buf += f"Rage: {victim.powers[merc.UNI_RAGE]}. "
 
             if victim.is_vampire():
-                buf += "Beast: {}. ".format(victim.beast)
-                buf += "Blood: {}.".format(victim.blood)
+                buf += f"Beast: {victim.beast}. "
+                buf += f"Blood: {victim.blood}."
             buf += "\n"
 
         if victim.is_demon() or victim.special.is_set(merc.SPC_CHAMPION):
             if victim.special.is_set(merc.SPC_CHAMPION):
                 buf += "Lord: {}. ".format(victim.lord if victim.lord else "None")
 
-            buf += "Demonic armor: {} pieces. ".format(victim.powers[merc.DEMON_POWER])
-            buf += "Power: {} ({}).\n".format(victim.powers[merc.DEMON_CURRENT], victim.powers[merc.DEMON_TOTAL])
+            buf += f"Demonic armor: {victim.powers[merc.DEMON_POWER]} pieces. "
+            buf += f"Power: {victim.powers[merc.DEMON_CURRENT]} ({victim.powers[merc.DEMON_TOTAL]}).\n"
 
-    buf += "Carry number: {}.  Carry weight: {}.\n".format(victim.carry_number, state_checks.get_carry_weight(victim))
-    buf += "Age: {}.  Played: {}.  Timer: {}.  Act: {}.\n".format(victim.get_age(), victim.played, victim.timer, repr(victim.act))
+    buf += f"Carry number: {victim.carry_number}.  Carry weight: {state_checks.get_carry_weight(victim)}.\n"
+    buf += f"Age: {victim.get_age()}.  Played: {victim.played}.  Timer: {victim.timer}.  Act: {repr(victim.act)}.\n"
     buf += "Master: {}.  Leader: {}.  Affected by: {}.\n".format(instance.characters[victim.master].name if victim.master else "(none)",
                                                                  victim.leader.name if victim.leader else "(none)", repr(victim.affected_by))
     buf += "Short description: {}.\nLong  description: {}".format(victim.short_descr, victim.long_descr if victim.long_descr else "(none).\n")
@@ -91,8 +86,7 @@ def cmd_mstat(ch, argument):
         buf += "Mobile has spec fun.\n"
 
     for paf in victim.affected:
-        buf += "Spell: '{}' modifies {} by {} for {} hours with bits {}.\n".format(paf.type, merc.affect_loc_name(paf.location), paf.modifier,
-                                                                                   paf.duration, merc.affect_bit_name(paf.bitvector))
+        buf += f"Spell: '{paf.type}' modifies {merc.affect_loc_name(paf.location)} by {paf.modifier} for {paf.duration} hours with bits {merc.affect_bit_name(paf.bitvector)}.\n"
     ch.send("".join(buf))
 
 

@@ -42,20 +42,20 @@ def cmd_examine(ch, argument):
     item = ch.get_item_here(arg)
     if item:
         if item.condition >= 100:
-            buf = "You notice that {} is in perfect condition.\n".format(item.short_descr)
+            buf = f"You notice that {item.short_descr} is in perfect condition.\n"
         elif item.condition >= 75:
-            buf = "You notice that {} is in good condition.\n".format(item.short_descr)
+            buf = f"You notice that {item.short_descr} is in good condition.\n"
         elif item.condition >= 50:
-            buf = "You notice that {} is in average condition.\n".format(item.short_descr)
+            buf = f"You notice that {item.short_descr} is in average condition.\n"
         elif item.condition >= 25:
-            buf = "You notice that {} is in poor condition.\n".format(item.short_descr)
+            buf = f"You notice that {item.short_descr} is in poor condition.\n"
         else:
-            buf = "You notice that {} is in awful condition.\n".format(item.short_descr)
+            buf = f"You notice that {item.short_descr} is in awful condition.\n"
         ch.send(buf)
 
         if item.item_type in [merc.ITEM_DRINK_CON, merc.ITEM_CONTAINER, merc.ITEM_CORPSE_NPC, merc.ITEM_CORPSE_PC]:
             ch.send("When you look inside, you see:\n")
-            ch.cmd_look("in {}".format(arg))
+            ch.cmd_look(f"in {arg}")
 
 
 interp.register_command(

@@ -1141,7 +1141,7 @@ def affect_loc_name(location):
 
     location = affect_loc.get(location, None)
     if not location:
-        comm.notify("affect_location_name: unknown location {}".format(location), CONSOLE_INFO)
+        comm.notify(f"affect_location_name: unknown location {location}", CONSOLE_INFO)
         return "(unknown)"
     return location
 

@@ -44,7 +44,7 @@ def cmd_alignment(ch, argument):
     for (aa, bb, cc) in align_list:
         if game_utils.str_cmp(arg, aa):
             ch.alignment = bb
-            ch.send("Alignment is now {}.\n".format(cc))
+            ch.send(f"Alignment is now {cc}.\n")
             return
     else:
         ch.cmd_alignment("")

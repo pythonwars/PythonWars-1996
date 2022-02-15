@@ -41,7 +41,7 @@ def crack_head(ch, item, argument):
         victim = item.chobj
         object_creator.make_part(victim, "cracked_head")
         object_creator.make_part(victim, "brain")
-        victim.morph = "the quivering brain of {}".format(victim.name)
+        victim.morph = f"the quivering brain of {victim.name}"
     elif game_utils.str_cmp(arg2, "mob"):
         if item.value[1] not in instance.npc_templates:
             return

@@ -42,7 +42,7 @@ def cmd_slookup(ch, argument):
     if game_utils.str_cmp(arg, "all"):
         buf = []
         for sn, skill in const.skill_table.items():
-            buf += "Sn: {:15}  Slot: {:4}  Skill/spell: '{}'\n".format(sn, skill.slot, skill.name)
+            buf += f"Sn: {sn:15}  Slot: {skill.slot:4}  Skill/spell: '{skill.name}'\n"
         ch.send("".join(buf))
     else:
         skill = state_checks.prefix_lookup(const.skill_table, arg)
@@ -50,7 +50,7 @@ def cmd_slookup(ch, argument):
             ch.send("No such skill or spell.\n")
             return
 
-        ch.send("Sn: {:15}  Slot: {:4}  Skill/spell: '{}'\n".format(skill.name, skill.slot, skill.name))
+        ch.send(f"Sn: {skill.name:15}  Slot: {skill.slot:4}  Skill/spell: '{skill.name}'\n")
 
 
 interp.register_command(

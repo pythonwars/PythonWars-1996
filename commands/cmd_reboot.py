@@ -34,7 +34,7 @@ import merc
 
 # noinspection PyUnusedLocal
 def cmd_reboot(ch, argument):
-    ch.cmd_echo("Reboot by {}.".format(ch.name))
+    ch.cmd_echo(f"Reboot by {ch.name}.")
     comm.down = True
 
     for d in instance.descriptor_list[:]:

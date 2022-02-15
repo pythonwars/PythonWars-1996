@@ -52,10 +52,8 @@ def cmd_tribe(ch, argument):
         else:
             clan = "None"
 
-        buf += "[{:<16}] [{:<13}] [{:<6}{:3}] [{:<6}{:3}] [{:<6}{:3}] [{:7}]\n".format(gch.name, clan, gch.hit, (gch.hit * 100 // gch.max_hit),
-                                                                                       gch.mana, (gch.mana * 100 // gch.max_mana), gch.move,
-                                                                                       (gch.move * 100 // gch.max_move), gch.exp)
-
+        buf += f"[{gch.name:<16}] [{clan:<13}] [{gch.hit:<6}{(gch.hit * 100 // gch.max_hit):3}] [{gch.mana:<6}{(gch.mana * 100 // gch.max_mana):3}] " \
+               f"[{gch.move:<6}{(gch.move * 100 // gch.max_move):3}] [{gch.exp:7}]\n"
     ch.send("".join(buf))
 
 

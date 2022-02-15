@@ -42,10 +42,8 @@ def cmd_totems(ch, argument):
         return
 
     if not arg1 and not arg2:
-        ch.send("Totems: Bear ({}), Lynx ({}), Boar ({}), Owl ({}), Spider ({}), Wolf ({}),\n"
-                "        Hawk ({}), Mantis ({}).\n".format(ch.powers[merc.WPOWER_BEAR], ch.powers[merc.WPOWER_LYNX], ch.powers[merc.WPOWER_BOAR],
-                                                           ch.powers[merc.WPOWER_OWL], ch.powers[merc.WPOWER_SPIDER], ch.powers[merc.WPOWER_WOLF],
-                                                           ch.powers[merc.WPOWER_HAWK], ch.powers[merc.WPOWER_MANTIS]))
+        ch.send(f"Totems: Bear ({ch.powers[merc.WPOWER_BEAR]}), Lynx ({ch.powers[merc.WPOWER_LYNX]}), Boar ({ch.powers[merc.WPOWER_BOAR]}), Owl ({ch.powers[merc.WPOWER_OWL]}), Spider ({ch.powers[merc.WPOWER_SPIDER]}), Wolf ({ch.powers[merc.WPOWER_WOLF]}),\n"
+                f"        Hawk ({ch.powers[merc.WPOWER_HAWK]}), Mantis ({ch.powers[merc.WPOWER_MANTIS]}).\n"
         return
 
     if not arg2:
@@ -160,10 +158,7 @@ def cmd_totems(ch, argument):
                         break
             ch.send("".join(buf))
         else:
-            ch.send("Totems: Bear ({}), Lynx ({}), Boar ({}), Owl ({}), Spider ({}), Wolf ({}),\n"
-                    "        Hawk ({}), Mantis ({}).\n".format(ch.powers[merc.WPOWER_BEAR], ch.powers[merc.WPOWER_LYNX], ch.powers[merc.WPOWER_BOAR],
-                                                               ch.powers[merc.WPOWER_OWL], ch.powers[merc.WPOWER_SPIDER], ch.powers[merc.WPOWER_WOLF],
-                                                               ch.powers[merc.WPOWER_HAWK], ch.powers[merc.WPOWER_MANTIS]))
+            ch.cmd_totems("")
         return
 
     if game_utils.str_cmp(arg2, "improve"):
@@ -183,16 +178,16 @@ def cmd_totems(ch, argument):
         arg1 = arg1[0].upper() + arg1[1:].lower()
 
         if ch.powers[improve] >= tmax:
-            ch.send("You have already gained all the powers of the {} totem.\n".format(arg1))
+            ch.send(f"You have already gained all the powers of the {arg1} totem.\n")
             return
 
         if ch.practice < cost:
-            ch.send("It costs you {} primal to improve your {} totem.\n".format(cost, arg1))
+            ch.send(f"It costs you {cost} primal to improve your {arg1} totem.\n")
             return
 
         ch.powers[improve] += 1
         ch.practice -= cost
-        ch.send("You improve your ability in the {} totem.\n".format(arg1))
+        ch.send(f"You improve your ability in the {arg1} totem.\n")
     else:
         ch.send("To improve a totem, type: Totem <totem type> improve.\n")
 

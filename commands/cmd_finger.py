@@ -68,7 +68,7 @@ def cmd_finger(ch, argument):
                       (merc.LEVEL_QUESTMAKER, " Quest Maker"), (merc.LEVEL_BUILDER, " Builder")]
         for (aa, bb) in level_list:
             if ch_dummy.stub["level"] == aa:
-                buf += "They are a{}, ".format(bb)
+                buf += f"They are a{bb}, "
                 break
         else:
             buf += "They are an Implementor, "
@@ -76,14 +76,14 @@ def cmd_finger(ch, argument):
         level_list = [(1, "n Avatar"), (5, "n Immortal"), (10, " Godling"), (15, " Demigod"), (20, " Lesser God"), (25, " Greater God")]
         for (aa, bb) in level_list:
             if ch_dummy.stub["race"] < aa:
-                buf += "They are a{}, ".format(bb)
+                buf += f"They are a{bb}, "
                 break
         else:
             buf += "They are a Supreme God, "
 
     played = ch_dummy.stub["played"]
     played = (2 * (played // 7200)) if played > 0 else 0
-    buf += "and have been playing for {} hours.\n".format(played)
+    buf += f"and have been playing for {played:,} hours.\n"
 
     if ch_dummy.stub["marriage"]:
         buf += "They are {} to {}.\n".format("married" if state_checks.is_set(ch_dummy.stub["extra"], merc.EXTRA_MARRIED) else "engaged",

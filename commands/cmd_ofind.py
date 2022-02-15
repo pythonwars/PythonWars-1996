@@ -49,7 +49,7 @@ def cmd_ofind(ch, argument):
     for item in list(instance.item_templates.values()):
         if fall or game_utils.is_name(arg, item.name):
             nmatch += 1
-            buf += "[{:5}] {} ({})\n".format(item.vnum, item.short_descr, item.name)
+            buf += f"[{item.vnum:5}] {item.short_descr} ({item.name})\n"
 
     if nmatch == 0:
         buf += "Nothing like that in hell, earth, or heaven.\n"

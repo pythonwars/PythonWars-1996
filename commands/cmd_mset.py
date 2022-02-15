@@ -180,7 +180,7 @@ def cmd_mset(ch, argument):
     if game_utils.str_cmp(arg2, ["hitroll", "hit"]):
         smax = 50 if not victim.is_npc() else 250
         if value not in merc.irange(0, smax):
-            ch.send("Hitroll range is 0 to {}.\n".format(smax))
+            ch.send(f"Hitroll range is 0 to {smax}.\n")
             return
 
         if not victim.is_npc() and not ch.is_judge() and ch != victim:
@@ -194,7 +194,7 @@ def cmd_mset(ch, argument):
     if game_utils.str_cmp(arg2, ["damroll", "dam"]):
         smax = 50 if victim.is_npc() else 250
         if value not in merc.irange(0, smax):
-            ch.send("Damroll range is 0 to {}.\n".format(smax))
+            ch.send(f"Damroll range is 0 to {smax}.\n")
             return
 
         if not victim.is_npc() and not ch.is_judge() and ch != victim:

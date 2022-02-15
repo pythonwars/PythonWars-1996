@@ -47,7 +47,7 @@ def cmd_bloodline(ch, argument):
 
     if not ch.clan and ch.powers[merc.UNI_GEN] != 1:
         ch.cmd_say("In the name of Gaia, I announce my Garou heritage.")
-        ch.cmd_say("My name is {}, I am a Ronin of no tribe.".format(ch.name))
+        ch.cmd_say(f"My name is {ch.name}, I am a Ronin of no tribe.")
         return
 
     ch.cmd_say("In the name of Gaia, I announce my Garou heritage.")
@@ -63,27 +63,27 @@ def cmd_bloodline(ch, argument):
             buf2 = ""
 
         if ch.powers[merc.UNI_GEN] == 1:
-            buf = "My name is {}, chosen Champion of Gaia.".format(ch.name)
+            buf = f"My name is {ch.name}, chosen Champion of Gaia."
         elif ch.powers[merc.UNI_GEN] == 2:
-            buf = "My name is {}, Chieftain of the {} tribe, pup of {}.".format(ch.name, ch.clan, buf2)
+            buf = f"My name is {ch.name}, Chieftain of the {ch.clan} tribe, pup of {buf2}."
         else:
-            buf = "My name is {}, of the {} tribe, pup of {}.".format(ch.name, ch.clan, buf2)
+            buf = f"My name is {ch.name}, of the {ch.clan} tribe, pup of {buf2}."
         ch.cmd_say(buf)
 
     if arg3:
-        ch.cmd_say("My name is {}, of the {} tribe, pup of {}.".format(arg3, ch.clan, arg2))
+        ch.cmd_say(f"My name is {arg3}, of the {ch.clan} tribe, pup of {arg2}.")
 
     if arg2:
         if arg1:
-            buf = "My name is {}, Chieftain of the {} tribe, pup of {}.".format(arg2, ch.clan, arg1)
+            buf = f"My name is {arg2}, Chieftain of the {ch.clan} tribe, pup of {arg1}."
         else:
-            buf = "My name is {}, of the {} tribe, pup of {}.".format(arg2, ch.clan, arg1)
+            buf = f"My name is {arg2}, of the {ch.clan} tribe, pup of {arg1}."
         ch.cmd_say(buf)
 
     if ch.powers[merc.UNI_GEN] == 1:
-        buf = "My name is {}, chosen Champion of Gaia.".format(ch.name)
+        buf = f"My name is {ch.name}, chosen Champion of Gaia."
     else:
-        buf = "My name is {}, chosen Champion of Gaia.".format(arg1)
+        buf = f"My name is {arg1}, chosen Champion of Gaia."
     ch.cmd_say(buf)
 
 
@@ -143,9 +143,9 @@ def cmd_tradition(ch, argument):
         buf2 = "Seventh"
 
     if ch.powers[merc.UNI_GEN] == 1:
-        ch.cmd_say("As is the tradition, I recite the lineage of {}, Sire of all Kindred.".format(ch.name))
+        ch.cmd_say(f"As is the tradition, I recite the lineage of {ch.name}, Sire of all Kindred.")
     else:
-        ch.cmd_say("As is the tradition, I recite the lineage of {}, {} of the {} Generation.".format(ch.name, buf3, buf2))
+        ch.cmd_say(f"As is the tradition, I recite the lineage of {ch.name}, {buf3} of the {buf2} Generation.")
 
     if ch.powers[merc.UNI_GEN] != 1:
         if ch.powers[merc.UNI_GEN] == 7:
@@ -162,56 +162,54 @@ def cmd_tradition(ch, argument):
             buf2 = arg1
 
         if ch.special.is_set(merc.SPC_ANARCH) or not ch.clan:
-            buf = "My name is {}.  I am of no clan.  My sire is {}.".format(ch.name, buf2)
+            buf = f"My name is {ch.name}.  I am of no clan.  My sire is {buf2}."
         elif ch.powers[merc.UNI_GEN] == 2:
-            buf = "My name is {}.  I founded {}.  My sire is {}.".format(ch.name, ch.clan, buf2)
+            buf = f"My name is {ch.name}.  I founded {ch.clan}.  My sire is {buf2}."
         else:
-            buf = "My name is {}.  I am of {}.  My sire is {}.".format(ch.name, ch.clan, buf2)
+            buf = f"My name is {ch.name}.  I am of {ch.clan}.  My sire is {buf2}."
         ch.cmd_say(buf)
 
     if arg6:
-        ch.cmd_say("My name is {}.  My sire is {}.".format(arg6, arg5))
+        ch.cmd_say(f"My name is {arg6}.  My sire is {arg5}.")
 
     if arg5:
-        ch.cmd_say("My name is {}.  My sire is {}.".format(arg5, arg4))
+        ch.cmd_say(f"My name is {arg5}.  My sire is {arg4}.")
 
     if arg4:
-        ch.cmd_say("My name is {}.  My sire is {}.".format(arg4, arg3))
+        ch.cmd_say(f"My name is {arg4}.  My sire is {arg3}.")
 
     if arg3:
-        ch.cmd_say("My name is {}.  My sire is {}.".format(arg3, arg2))
+        ch.cmd_say(f"My name is {arg3}.  My sire is {arg2}.")
 
     if arg2:
-        ch.cmd_say("My name is {}.  My sire is {}.".format(arg2, arg1))
+        ch.cmd_say(f"My name is {arg2}.  My sire is {arg1}.")
 
     if ch.powers[merc.UNI_GEN] == 1:
-        buf = "My name is {}.  All Kindred are my childer.".format(ch.name)
+        buf = f"My name is {ch.name}.  All Kindred are my childer."
     else:
-        buf = "My name is {}.  All Kindred are my childer.".format(arg1)
+        buf = f"My name is {arg1}.  All Kindred are my childer."
     ch.cmd_say(buf)
 
     if ch.powers[merc.UNI_GEN] == 7:
-        buf = "My name is {}, childe of {}, childe of {}, childe of {}, childe of {}, childe of {}, childe of {}.  Recognize my lineage.".format(
-            ch.name, arg6, arg5, arg4, arg3, arg2, arg1)
+        buf = f"My name is {ch.name}, childe of {arg6}, childe of {arg5}, childe of {arg4}, childe of {arg3}, childe of {arg2}, childe of {arg1}.  Recognize my lineage."
 
     if ch.powers[merc.UNI_GEN] == 6:
-        buf = "My name is {}, childe of {}, childe of {}, childe of {}, childe of {}, childe of {}.  Recognize my lineage.".format(
-            ch.name, arg5, arg4, arg3, arg2, arg1)
+        buf = f"My name is {ch.name}, childe of {arg5}, childe of {arg4}, childe of {arg3}, childe of {arg2}, childe of {arg1}.  Recognize my lineage."
 
     if ch.powers[merc.UNI_GEN] == 5:
-        buf = "My name is {}, childe of {}, childe of {}, childe of {}, childe of {}.  Recognize my lineage.".format(ch.name, arg4, arg3, arg2, arg1)
+        buf = f"My name is {ch.name}, childe of {arg4}, childe of {arg3}, childe of {arg2}, childe of {arg1}.  Recognize my lineage."
 
     if ch.powers[merc.UNI_GEN] == 4:
-        buf = "My name is {}, childe of {}, childe of {}, childe of {}.  Recognize my lineage.".format(ch.name, arg3, arg2, arg1)
+        buf = f"My name is {ch.name}, childe of {arg3}, childe of {arg2}, childe of {arg1}.  Recognize my lineage."
 
     if ch.powers[merc.UNI_GEN] == 3:
-        buf = "My name is {}, childe of {}, childe of {}.  Recognize my lineage.".format(ch.name, arg2, arg1)
+        buf = f"My name is {ch.name}, childe of {arg2}, childe of {arg1}.  Recognize my lineage."
 
     if ch.powers[merc.UNI_GEN] == 2:
-        buf = "My name is {}, childe of {}.  Recognize my lineage.".format(ch.name, arg1)
+        buf = f"My name is {ch.name}, childe of {arg1}.  Recognize my lineage."
 
     if ch.powers[merc.UNI_GEN] == 1:
-        buf = "My name is {}.  Recognize my lineage.".format(ch.name)
+        buf = f"My name is {ch.name}.  Recognize my lineage."
     ch.cmd_say(buf)
 
 

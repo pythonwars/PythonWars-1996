@@ -50,7 +50,7 @@ def str_cmp(astr, bstr, lower: bool = True):
         return False
 
     if type(astr) != str:
-        comm.notify("str_cmp: astr:{} must be a type(str), received {}".format(astr, type(astr)), merc.CONSOLE_WARNING)
+        comm.notify(f"str_cmp: astr:{astr} must be a type(str), received {type(astr)}", merc.CONSOLE_WARNING)
         return False
 
     if type(bstr) == list:
@@ -134,7 +134,7 @@ def list_in_dict(pstr: str = None, orig_dict: dict = None, delimiter="|"):
 
     for k, v in my_dict.items():
         if k not in my_list:
-            comm.notify("list_in_dict: bad format '{}'".format(k), merc.CONSOLE_WARNING)
+            comm.notify(f"list_in_dict: bad format '{k}'", merc.CONSOLE_WARNING)
             fi_list.append("0")
             continue
 
@@ -166,7 +166,7 @@ def read_int(pstr):
         pstr = list_in_dict(pstr, bit.bitvector_table)
 
     if not pstr[0].isdigit() and pstr[0] not in ["-", "+"]:
-        comm.notify("read_int: bad format ({})".format(pstr), merc.CONSOLE_CRITICAL)
+        comm.notify(f"read_int: bad format ({pstr})", merc.CONSOLE_CRITICAL)
         sys.exit(1)
 
     for index, c in enumerate(pstr):
@@ -351,7 +351,7 @@ def find_location(ch, arg):
 
 
 def append_file(ch, fp, pstr):
-    pstr = "[{:5}] {}: {}".format(ch.in_room.vnum, ch.name, pstr)
+    pstr = f"[{ch.in_room.vnum:5}] {ch.name}: {pstr}"
     with open(fp, "a") as f:
         f.write(pstr + "\n")
 
@@ -394,7 +394,7 @@ def number_fuzzy(number):
 # Handles ranges where b > a, prevents error being raised.
 def number_range(a, b):
     if type(a) != int or type(b) != int:
-        comm.notify("number_range: ({}, {})".format(type(a), type(b)), merc.CONSOLE_WARNING)
+        comm.notify(f"number_range: ({type(a)}, {type(b)})", merc.CONSOLE_WARNING)
         return -1
 
     if b < a:
@@ -429,7 +429,7 @@ def number_percent(num_float=False):
     if not num_float:
         return int(random.randint(1, 100))
     else:
-        return float("{}.{:02}".format(random.randint(1, 100), random.randint(0, 99)))
+        return float(f"{random.randint(1, 100)}.{random.randint(0, 99):02}")
 
 
 # Simple linear interpolation.
@@ -446,7 +446,7 @@ def mass_replace(pstr, pdict):
 
 def get_mob_id(npc=True):
     if npc:
-        return "{}".format(time.time())
+        return f"{time.time()}"
     else:
         return str(uuid.uuid4())
 

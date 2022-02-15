@@ -90,7 +90,7 @@ def con_get_name(self):
         ch_dummy = self.character
 
     ch_dummy.name = name
-    comm.notify("{} trying to connect".format(name), merc.CONSOLE_INFO)
+    comm.notify(f"{name} trying to connect", merc.CONSOLE_INFO)
 
     ch_dummy.stub = handler_pc.Pc.load_stub(name)
     if ch_dummy.stub:
@@ -120,7 +120,7 @@ def con_get_name(self):
         self.set_connected(con_get_old_password)
         return
     else:
-        ch_dummy.send("You want {} engraved on your tombstone (Y/N)? ".format(ch_dummy.name))
+        ch_dummy.send(f"You want {ch_dummy.name} engraved on your tombstone (Y/N)? ")
         self.set_connected(con_confirm_new_name)
 
 
@@ -130,7 +130,7 @@ def con_confirm_new_name(self):
 
     if argument == "Y":
         ch_dummy.send("New character.\n"
-                      "Give me a password for {}: ".format(ch_dummy.name))
+                      f"Give me a password for {ch_dummy.name}: ")
         ch_dummy.desc.password_mode_on()
         self.set_connected(con_get_new_password)
     elif argument == "N":
@@ -195,7 +195,7 @@ def con_get_new_sex(self):
         return
 
     ch.perm_stat = [game_utils.number_range(10, 16) for _ in range(merc.MAX_STATS)]
-    comm.notify("{}@{} new player.".format(ch.name, self.addrport()), merc.CONSOLE_INFO)
+    comm.notify(f"{ch.name}@{self.addrport()} new player.", merc.CONSOLE_INFO)
     ch.send("\n")
     ch.cmd_help("motd")
     self.set_connected(con_read_motd)
@@ -225,7 +225,7 @@ def con_get_old_password(self):
     ch.send = self.send
     ch.desc = self
     self.character = ch
-    comm.notify("{}@{} has connected.".format(ch.name, self.addrport()), merc.CONSOLE_INFO)
+    comm.notify(f"{ch.name}@{self.addrport()} has connected.", merc.CONSOLE_INFO)
 
     # In case we have level 4+ players from another merc mud, or
     # players who have somehow got file access and changed their pfiles.
@@ -316,7 +316,7 @@ def con_read_motd(self):
             to_instance.put(ch)
 
     ch.update_skills()
-    comm.notify("{} has entered the God Wars.".format(ch.name))
+    comm.notify(f"{ch.name} has entered the God Wars.", merc.CONSOLE_INFO)
     handler_game.act("$n has entered the game.", ch, None, None, merc.TO_ROOM)
     ch.cmd_look("auto")
     self.send("\n\n" + self.show_terminal_type())

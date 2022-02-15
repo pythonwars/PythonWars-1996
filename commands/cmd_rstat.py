@@ -43,9 +43,9 @@ def cmd_rstat(ch, argument):
         ch.send("That room is private right now.\n")
         return
 
-    buf = ["Name: '{}.'\nArea: '{}'.\n".format(location.name, location.area.name)]
-    buf += "Vnum: {}.  Sector: {}.  Light: {}.\n".format(location.vnum, location.sector_type, location.available_light)
-    buf += "Room flags: {}.\nDescription:\n{}".format(repr(location.room_flags), location.description)
+    buf = [f"Name: '{location.name}'.\nArea: '{location.area.name}'.\n"]
+    buf += f"Vnum: {location.vnum}.  Sector: {location.sector_type}.  Light: {location.available_light}.\n"
+    buf += f"Room flags: {repr(location.room_flags)}.\nDescription:\n{location.description}"
 
     if location.extra_descr:
         buf += "Extra description keywords: '"
@@ -55,23 +55,19 @@ def cmd_rstat(ch, argument):
     buf += "Characters:"
     for rch_id in location.people:
         rch = instance.characters[rch_id]
-        buf += "'{}' ".format(rch.name if not rch.is_npc() else rch.short_descr)
+        buf += f"'{rch.name if not rch.is_npc() else rch.short_descr}' "
 
     buf += ".\nObjects:   "
     for obj_id in location.inventory[:]:
         obj = instance.global_instances[obj_id]
-        buf += "'{}' ".format(obj.name)
+        buf += f"'{obj.name}' "
     buf += ".\n"
 
     for door, pexit in enumerate(location.exit):
         if pexit:
-            ch.send("Door: {}.  To: {}.  Key: {}.  Exit flags: {}.\nKeyword: '{}'.  Description: {}".format(
-                door,  # TODO:  come back and fix this
-                -1 if pexit.to_room is None else instance.rooms[pexit.to_room].vnum,
-                -1 if pexit.key is None else pexit.key,
-                pexit.exit_info,
-                pexit.keyword,
-                pexit.description if pexit.description else "(none).\n"))
+            buf += f"Door: {door}.  To: {-1 if pexit.to_room is None else instance.rooms[pexit.to_room].vnum}.  Key: {-1 if pexit.key is None else pexit.key}.  Exit flags: {pexit.exit_info}.\n"
+                   "Keyword: '{}'.  Description: {}".format(pexit.keyword, pexit.description if pexit.description else "(none).\n"))
+    ch.send("".join(buf))
 
 
 interp.register_command(

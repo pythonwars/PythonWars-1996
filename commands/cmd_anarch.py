@@ -49,12 +49,12 @@ def cmd_anarch(ch, argument):
 
     if ch.special.is_set(merc.SPC_ANARCH):
         ch.send("You are no longer an Anarch.\n")
-        comm.info("{} is no longer an Anarch!".format(ch.name))
+        comm.info(f"{ch.name} is no longer an Anarch!")
         ch.special.rem_bit(merc.SPC_ANARCH)
         return
 
     ch.send("You are now an Anarch.\n")
-    comm.info("{} is now an Anarch!".format(ch.name))
+    comm.info(f"{ch.name} is now an Anarch!")
     ch.special.set_bit(merc.SPC_ANARCH)
 
 

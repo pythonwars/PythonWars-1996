@@ -57,11 +57,11 @@ def cmd_voodoo(ch, argument):
         ch.not_npc()
         return
 
-    part1 = "{} voodoo doll".format(victim.name)
+    part1 = f"{victim.name} voodoo doll"
     part2 = item.name
 
     if not game_utils.str_cmp(part1, part2):
-        ch.send("But you are holding {}, not {}!\n".format(item.short_descr, victim.name))
+        ch.send(f"But you are holding {item.short_descr}, not {victim.name}!\n")
         return
 
     if game_utils.str_cmp(arg2, "stab"):

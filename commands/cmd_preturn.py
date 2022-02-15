@@ -49,7 +49,7 @@ def cmd_preturn(ch, argument):
         return
 
     d = ch.desc
-    ch.send("You transform back into {}.\n".format(arg))
+    ch.send(f"You transform back into {arg}.\n")
     handler_game.act("$n transforms back into $t.", ch, arg, None, merc.TO_ROOM)
     ch.save(force=True)
 

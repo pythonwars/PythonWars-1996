@@ -65,7 +65,7 @@ def cmd_steal(ch, argument):
         ch.send("Oops.\n")
         handler_game.act("$n tried to steal from you.", ch, None, victim, merc.TO_VICT)
         handler_game.act("$n tried to steal from $N.", ch, None, victim, merc.TO_NOTVICT)
-        victim.cmd_shout("{} is a bloody thief!".format(ch.name))
+        victim.cmd_shout(f"{ch.name} is a bloody thief!")
 
         if not ch.is_npc():
             if victim.is_npc():
@@ -82,7 +82,7 @@ def cmd_steal(ch, argument):
 
         ch.gold += amount
         victim.gold -= amount
-        ch.send("Bingo!  You got {:,} gold coins.\n".format(amount))
+        ch.send(f"Bingo!  You got {amount:,} gold coins.\n")
         ch.save(force=True)
         victim.save(force=True)
         return

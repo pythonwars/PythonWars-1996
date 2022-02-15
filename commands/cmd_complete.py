@@ -64,8 +64,7 @@ def cmd_complete(ch, argument):
             if qitem.value[i] != -1:
                 obj_index = instance.item_templates[qitem.value[i]]
                 if obj_index:
-                    buf += "     {}.\n".format(obj_index.short_descr[0].upper() + obj_index.short_descr[1:])
-
+                    buf += f"     {obj_index.short_descr[0].upper() + obj_index.short_descr[1:]}.\n"
         ch.send("".join(buf))
         return
 

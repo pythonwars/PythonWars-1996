@@ -51,7 +51,7 @@ def cmd_buy(ch, argument):
         if ch.in_room.vnum + 1 in instance.room_templates:
             proomindexnext = handler_room.get_room_by_vnum(ch.in_room.vnum + 1)
         if not proomindexnext:
-            comm.notify("cmd_buy: bad pet shop at vnum {}".format(ch.in_room.vnum), merc.CONSOLE_ERROR)
+            comm.notify(f"cmd_buy: bad pet shop at vnum {ch.in_room.vnum}", merc.CONSOLE_ERROR)
             ch.send("Sorry, you can't buy that here.\n")
             return
 
@@ -79,9 +79,9 @@ def cmd_buy(ch, argument):
 
         argument, arg = game_utils.read_word(argument)
         if arg:
-            pet.name = "{} {}".format(pet.name, arg)
+            pet.name = f"{pet.name} {arg}"
 
-        pet.description = "{}A neck tag says 'I belong to {}'.\n".format(pet.description, ch.name)
+        pet.description = f"{pet.description}A neck tag says 'I belong to {ch.name}'.\n"
         ch.in_room.put(pet)
         pet.add_follower(ch)
         ch.send("Enjoy your pet.\n")

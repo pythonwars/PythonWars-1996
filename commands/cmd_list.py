@@ -45,7 +45,7 @@ def cmd_list(ch, argument):
         if ch.in_room.vnum + 1 in instance.room_templates:
             proomindexnext = handler_room.get_room_by_vnum(ch.in_room.vnum + 1)
         if not proomindexnext:
-            comm.notify("cmd_list: bad pet shop at vnum {}".format(ch.in_room.vnum), merc.CONSOLE_ERROR)
+            comm.notify(f"cmd_list: bad pet shop at vnum {ch.in_room.vnum}", merc.CONSOLE_ERROR)
             ch.send("You can't do that here.\n")
             return
 
@@ -58,7 +58,7 @@ def cmd_list(ch, argument):
                     found = True
                     buf = "Pets for sale:\n"
 
-                buf += "[{:2}] {:8} - {}\n".format(pet.level, 10 * pet.level * pet.level, pet.short_descr)
+                buf += f"[{pet.level:2}] {10 * pet.level * pet.level:8} - {pet.short_descr}\n"
 
         if not found:
             buf += "Sorry, we're out of pets right now.\n"
@@ -95,7 +95,7 @@ def cmd_list(ch, argument):
     for k, p in items.items():
         item, count = p
         cost = shop_utils.get_cost(keeper, item, True)
-        buf += "[{:2} {:5}] {}\n".format(item.level, cost, item.short_descr.capitalize())
+        buf += f"[{item.level:2} {cost:5}] {item.short_descr.capitalize()}\n"
     ch.send("".join(buf))
 
 

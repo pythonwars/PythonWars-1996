@@ -168,9 +168,9 @@ class Items(instance.Instancer, environment.Environment, physical.Physical, inve
 
     def __repr__(self):
         if not self.instance_id:
-            return "<Item Template: {} : {}>".format(self.short_descr, self.vnum)
+            return f"<Item Template: {self.short_descr} : {self.vnum}>"
         else:
-            return "<Item Instance: {} : ID {} VNUM {}>".format(self.short_descr, self.instance_id, self.vnum)
+            return f"<Item Instance: {self.short_descr} : ID {self.instance_id} VNUM {self.vnum}>"
 
     # Equipped/Equips To
     @property
@@ -489,7 +489,7 @@ class Items(instance.Instancer, environment.Environment, physical.Physical, inve
                 if not self.chobj.is_npc():
                     self.chobj.chobj = None
                 self.chobj = None
-                comm.notify("extract: obj {} chobj invalid".format(self.vnum), merc.CONSOLE_WARNING)
+                comm.notify(f"extract: obj {self.vnum} chobj invalid", merc.CONSOLE_WARNING)
 
         if self.environment:
             if self.equipped_to:
@@ -502,7 +502,7 @@ class Items(instance.Instancer, environment.Environment, physical.Physical, inve
 
             for item_id in self.inventory[:]:
                 if self.instance_id not in instance.items:
-                    comm.notify("extract: obj {} not found in obj_instance dict".format(self.instance_id), merc.CONSOLE_ERROR)
+                    comm.notify(f"extract: obj {self.instance_id} not found in obj_instance dict", merc.CONSOLE_ERROR)
                     return
                 tmp = instance.items[item_id]
                 self.get(tmp)
@@ -565,7 +565,7 @@ class Items(instance.Instancer, environment.Environment, physical.Physical, inve
                 raise ValueError("Player items must specify if they are equipped or in their inventory!")
 
         os.makedirs(pathname, 0o755, True)
-        filename = os.path.join(pathname, "{}-item{}".format(number, settings.DATA_EXTN))
+        filename = os.path.join(pathname, f"{number}-item{settings.DATA_EXTN}")
 
         js = json.dumps(self, default=instance.to_json, indent=2, sort_keys=True)
         md5 = hashlib.md5(js.encode("utf-8")).hexdigest()
@@ -578,7 +578,7 @@ class Items(instance.Instancer, environment.Environment, physical.Physical, inve
         if self.inventory:
             for item_id in self.inventory[:]:
                 if item_id not in instance.global_instances:
-                    comm.notify("Item {} is in Item {}'s inventory, but does not exist?".format(item_id, self.instance_id), merc.CONSOLE_ERROR)
+                    comm.notify(f"Item {item_id} is in Item {self.instance_id}'s inventory, but does not exist?", merc.CONSOLE_ERROR)
                     continue
                 item = instance.global_instances[item_id]
                 item.save(is_equipped=is_equipped, in_inventory=in_inventory, player_name=player_name, force=force)
@@ -590,7 +590,7 @@ class Items(instance.Instancer, environment.Environment, physical.Physical, inve
         if vnum and instance_id:
             raise ValueError("You must provide either a vnum or an instance_id, not BOTH!")
         if instance_id and (instance_id in instance.items.keys()):
-            comm.notify("Instance {} of item already loaded!".format(instance_id), merc.CONSOLE_ERROR)
+            comm.notify(f"Instance {instance_id} of item already loaded!", merc.CONSOLE_ERROR)
             return
 
         if not player_name:
@@ -604,7 +604,7 @@ class Items(instance.Instancer, environment.Environment, physical.Physical, inve
             pathname = os.path.join(settings.PLAYER_DIR, player_name[0].lower(), player_name.capitalize())
             number = instance_id
 
-        target_file = "{}-item{}".format(number, settings.DATA_EXTN)
+        target_file = f"{number}-item{settings.DATA_EXTN}"
 
         filename = None
         for a_path, a_directory, i_files in os.walk(pathname):

@@ -59,7 +59,7 @@ def cmd_pload(ch, argument):
         ch.send("That player doesn't exist.\n")
         return
 
-    ch.send("You transform into {}.\n".format(arg))
+    ch.send(f"You transform into {arg}.\n")
     handler_game.act("$n transforms into $t.", ch, arg, None, merc.TO_ROOM)
     d = ch.desc
     ch.save(force=True)

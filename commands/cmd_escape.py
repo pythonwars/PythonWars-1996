@@ -56,7 +56,7 @@ def cmd_escape(ch, argument):
     location.put(ch)
     handler_game.act("$n fades into existance.", ch, None, None, merc.TO_ROOM)
     ch.cmd_look("auto")
-    comm.info("{} has escaped defenceless from a fight.".format(ch.name))
+    comm.info(f"{ch.name} has escaped defenceless from a fight.")
 
 
 interp.register_command(

@@ -45,10 +45,10 @@ def cmd_evileye(ch, argument):
                 "Option TOGGLE has values: spell, self, other.\n\n")
 
         if ch.poweraction:
-            ch.send("Current action: {}.\n".format(ch.poweraction))
+            ch.send(f"Current action: {ch.poweraction}.\n")
 
         if ch.powertype:
-            ch.send("Current message: {}.\n".format(ch.powertype))
+            ch.send(f"Current message: {ch.powertype}.\n")
 
         ch.send("Current flags:")
 
@@ -86,7 +86,7 @@ def cmd_evileye(ch, argument):
             ch.send("TOGGLE flag should be one of: spell, self, other.\n")
             return
 
-        ch.send("{} flag toggled.\n".format(arg2[0].upper + arg2[1:].lower()))
+        ch.send(f"{arg2[0].upper() + arg2[1:].lower()} flag toggled.\n")
     else:
         ch.cmd_evileye("")
 
