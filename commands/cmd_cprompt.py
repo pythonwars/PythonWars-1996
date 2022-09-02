@@ -40,7 +40,7 @@ def cmd_cprompt(ch, argument):
         return
 
     if game_utils.str_cmp(argument, "clear"):
-        ch.prompt = ""
+        ch.cprompt = ""
     else:
         argument = argument[:50] if len(argument) > 50 else argument
         ch.cprompt = argument
