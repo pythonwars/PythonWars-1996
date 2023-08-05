@@ -66,7 +66,7 @@ def cmd_rstat(ch, argument):
     for door, pexit in enumerate(location.exit):
         if pexit:
             buf += f"Door: {door}.  To: {-1 if pexit.to_room is None else instance.rooms[pexit.to_room].vnum}.  Key: {-1 if pexit.key is None else pexit.key}.  Exit flags: {pexit.exit_info}.\n"
-                   "Keyword: '{}'.  Description: {}".format(pexit.keyword, pexit.description if pexit.description else "(none).\n"))
+            buf += "Keyword: '{}'.  Description: {}".format(pexit.keyword, pexit.description if pexit.description else "(none).\n")
     ch.send("".join(buf))
 
 

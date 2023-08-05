@@ -42,8 +42,8 @@ def cmd_totems(ch, argument):
         return
 
     if not arg1 and not arg2:
-        ch.send(f"Totems: Bear ({ch.powers[merc.WPOWER_BEAR]}), Lynx ({ch.powers[merc.WPOWER_LYNX]}), Boar ({ch.powers[merc.WPOWER_BOAR]}), Owl ({ch.powers[merc.WPOWER_OWL]}), Spider ({ch.powers[merc.WPOWER_SPIDER]}), Wolf ({ch.powers[merc.WPOWER_WOLF]}),\n"
-                f"        Hawk ({ch.powers[merc.WPOWER_HAWK]}), Mantis ({ch.powers[merc.WPOWER_MANTIS]}).\n"
+        ch.send(f"Totems: Bear ({ch.powers[merc.WPOWER_BEAR]}), Lynx ({ch.powers[merc.WPOWER_LYNX]}), Boar ({ch.powers[merc.WPOWER_BOAR]}), Owl ({ch.powers[merc.WPOWER_OWL]}), Spider ({ch.powers[merc.WPOWER_SPIDER]}), Wolf ({ch.powers[merc.WPOWER_WOLF]}),\n")
+        ch.send(f"        Hawk ({ch.powers[merc.WPOWER_HAWK]}), Mantis ({ch.powers[merc.WPOWER_MANTIS]}).\n")
         return
 
     if not arg2:
