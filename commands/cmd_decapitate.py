@@ -110,7 +110,7 @@ def cmd_decapitate(ch, argument):
 
     if victim.race < 1 and ch.race > 0:
         comm.info(f"{victim.name} has been decapitated by {ch.name} for no status.")
-        comm.notify(f"victim.name{} decapitated by {ch.name} at {victim.in_room.vnum} for no status.", merc.CONSOLE_INFO)
+        comm.notify(f"{victim.name} decapitated by {ch.name} at {victim.in_room.vnum} for no status.", merc.CONSOLE_INFO)
 
         if victim.is_vampire():
             victim.mortalvamp()
